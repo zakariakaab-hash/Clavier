@@ -66,7 +66,7 @@ export const KeyboardCatalog: React.FC<KeyboardCatalogProps> = ({
               type="text"
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
-              placeholder="Search across all world keyboards (e.g. Arabic, Cyrillic, Greek, Hindi, Runes, Morse, Hieroglyphs)..."
+              placeholder="Search across all world keyboards (e.g. Arabic, Cyrillic, Greek, Hindi, Runes, Braille, Hieroglyphs)..."
               className="w-full pl-10 pr-4 py-2 text-sm bg-white border border-slate-200 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-indigo-500 text-slate-900 shadow-2xs"
             />
             {searchQuery && (

@@ -7,7 +7,7 @@ import { hindiDevanagariKeyboard, bengaliKeyboard, tamilKeyboard } from './indic
 import { japaneseHiraganaKeyboard, koreanHangulKeyboard, thaiKeyboard } from './eastAsian';
 import { georgianKeyboard, armenianKeyboard, amharicGeezKeyboard, tifinaghKeyboard } from './caucasianAfrican';
 import { ipaKeyboard } from './phoneticIpa';
-import { hieroglyphsKeyboard, runesKeyboard, oghamKeyboard, brailleKeyboard, morseCodeKeyboard, mathSymbolsKeyboard } from './ancientSymbols';
+import { hieroglyphsKeyboard, runesKeyboard, oghamKeyboard, brailleKeyboard, mathSymbolsKeyboard } from './ancientSymbols';
 
 export const ALL_KEYBOARDS: KeyboardLayout[] = [
   // Middle Eastern
@@ -59,7 +59,6 @@ export const ALL_KEYBOARDS: KeyboardLayout[] = [
   runesKeyboard,
   oghamKeyboard,
   brailleKeyboard,
-  morseCodeKeyboard,
   mathSymbolsKeyboard
 ];
 
@@ -73,7 +72,7 @@ export const CATEGORIES_CONFIG: { id: KeyboardCategory; name: string; icon: stri
   { id: 'caucasian-african', name: 'Caucasian & African', icon: '🌍', description: 'Georgian, Armenian, Amharic Ge\'ez, Tifinagh Berber' },
   { id: 'phonetic-ipa', name: 'Phonetics & IPA', icon: '🗣️', description: 'International Phonetic Alphabet, vowel charts, linguistic diacritics' },
   { id: 'ancient-historical', name: 'Ancient & Historical Scripts', icon: '📜', description: 'Egyptian Hieroglyphs, Runes, Ogham, Cuneiform, Phoenician' },
-  { id: 'math-symbols', name: 'Math, Morse & Braille', icon: '∑', description: 'Mathematical logic symbols, Morse code audio, Braille dots' },
+  { id: 'math-symbols', name: 'Math & Braille Symbols', icon: '∑', description: 'Mathematical logic symbols, calculus operators, Braille dots' },
 ];
 
 export function getKeyboardById(id: string): KeyboardLayout {

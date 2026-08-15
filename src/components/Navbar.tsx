@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Search, Globe, Star, Volume2, VolumeX, Sparkles, BookOpen, Layers, X, Command, MapPin, Check, Sun, Moon, Radio } from 'lucide-react';
+import { Search, Globe, Star, Volume2, VolumeX, Sparkles, X, Check } from 'lucide-react';
 import { KeyboardLayout } from '../types';
 import { ALL_KEYBOARDS, searchKeyboards, getKeyboardById } from '../data/keyboards';
 import { SupportedLocale, TRANSLATIONS, TranslationDict, detectUserSystemLanguageAndLocation } from '../utils/i18n';
@@ -229,23 +229,6 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Right Action Items */}
           <div className="flex items-center gap-1.5 sm:gap-2">
 
-            {/* Dedicated Morse Code Button */}
-            <button
-              id="morse-nav-btn"
-              onClick={() => onSelectKeyboard(getKeyboardById('morse'))}
-              title="Code Morse / Morse Code"
-              className={`flex items-center gap-1.5 px-2 sm:px-2.5 py-1.5 rounded-lg border text-xs font-bold transition-all cursor-pointer ${
-                currentKeyboard.id === 'morse'
-                  ? 'bg-amber-500 text-white border-amber-600 shadow-xs'
-                  : (isDarkMode 
-                      ? 'bg-slate-800 text-amber-400 border-slate-700 hover:bg-slate-700' 
-                      : 'bg-amber-50/80 text-amber-900 border-amber-200 hover:bg-amber-100 shadow-2xs')
-              }`}
-            >
-              <Radio className="w-3.5 h-3.5 text-amber-500" />
-              <span className="font-mono tracking-tight hidden sm:inline">Morse</span>
-            </button>
-
             {/* Language & Geolocation Detection Menu */}
             <div className="relative">
               <button
@@ -336,19 +319,6 @@ export const Navbar: React.FC<NavbarProps> = ({
                 </div>
               )}
             </div>
-            
-            {/* Catalog Button */}
-            <button
-              id="catalog-nav-btn"
-              onClick={onOpenCatalog}
-              title="Browse all 100+ World Keyboards"
-              className={`hidden lg:flex items-center gap-1.5 text-xs sm:text-sm font-medium transition-colors cursor-pointer ${
-                isDarkMode ? 'text-slate-300 hover:text-emerald-400' : 'text-slate-600 hover:text-emerald-600'
-              }`}
-            >
-              <Layers className="w-4 h-4 text-emerald-500" />
-              <span>{t.library}</span>
-            </button>
 
             {/* AI Assistant Button */}
             <button
@@ -428,20 +398,6 @@ export const Navbar: React.FC<NavbarProps> = ({
               }`}
             >
               {soundEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
-            </button>
-
-            {/* Mode Clair / Sombre Icon Toggle in Upper Right */}
-            <button
-              id="theme-toggle-nav-btn"
-              onClick={onToggleTheme}
-              title={isDarkMode ? (t.lightMode || 'Light Mode') : (t.darkMode || 'Dark Mode')}
-              className={`p-2 rounded-lg border transition-colors cursor-pointer ${
-                isDarkMode 
-                  ? 'text-amber-400 bg-slate-800 border-slate-700 hover:bg-slate-700' 
-                  : 'text-slate-600 bg-slate-100 border-slate-200 hover:bg-slate-200 shadow-2xs'
-              }`}
-            >
-              {isDarkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
 
           </div>

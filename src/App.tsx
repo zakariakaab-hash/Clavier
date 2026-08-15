@@ -333,7 +333,7 @@ export function App() {
         onToggleTheme={handleToggleTheme}
       />
 
-      {/* Sleek Quick Popular Keyboards Strip with Separate Morse */}
+      {/* Sleek Quick Popular Keyboards Strip */}
       <div className={`border-b transition-colors ${
         isDarkMode ? 'bg-slate-900/60 border-slate-800' : 'bg-white border-slate-200 shadow-2xs'
       }`}>
@@ -342,7 +342,7 @@ export function App() {
             <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider pr-1 shrink-0">
               {t.popularKeyboards} :
             </span>
-            {ALL_KEYBOARDS.slice(0, 12).map(kb => (
+            {ALL_KEYBOARDS.slice(0, 14).map(kb => (
               <button
                 key={`quick-${kb.id}`}
                 id={`quick-kb-${kb.id}`}
@@ -357,27 +357,6 @@ export function App() {
                 <span>{kb.name.split(' ')[0]}</span>
               </button>
             ))}
-
-            {/* Dedicated Morse Code Shortcut */}
-            <button
-              id="quick-morse-btn"
-              onClick={() => handleSelectKeyboard(getKeyboardById('morse'))}
-              className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-bold whitespace-nowrap transition-all cursor-pointer border ${
-                currentKeyboard.id === 'morse'
-                  ? 'bg-amber-500 text-white border-amber-600 shadow-xs'
-                  : (isDarkMode ? 'bg-slate-800 hover:bg-slate-700 text-amber-400 border-slate-700' : 'bg-amber-50 hover:bg-amber-100 text-amber-900 border-amber-200 shadow-2xs')
-              }`}
-            >
-              <span>📻</span>
-              <span className="font-mono">Morse (CW)</span>
-            </button>
-
-            <button
-              onClick={() => setIsCatalogOpen(true)}
-              className="text-xs font-semibold text-emerald-500 hover:underline px-2 py-1 whitespace-nowrap cursor-pointer ml-auto"
-            >
-              {t.library} (+100) →
-            </button>
           </div>
         </div>
       </div>
@@ -460,7 +439,6 @@ export function App() {
                 <li><button onClick={() => handleSelectKeyboard(getKeyboardById('hieroglyphs'))} className="hover:text-emerald-400 cursor-pointer">Egyptian Hieroglyphs</button></li>
                 <li><button onClick={() => handleSelectKeyboard(getKeyboardById('runes'))} className="hover:text-emerald-400 cursor-pointer">Runic Futhark (ᚠᚢᚦᚨᚱᚲ)</button></li>
                 <li><button onClick={() => handleSelectKeyboard(getKeyboardById('math-symbols'))} className="hover:text-emerald-400 cursor-pointer">Mathematical & Logic Symbols</button></li>
-                <li><button onClick={() => handleSelectKeyboard(getKeyboardById('morse'))} className="hover:text-emerald-400 cursor-pointer">Morse Code</button></li>
                 <li><button onClick={() => handleSelectKeyboard(getKeyboardById('braille'))} className="hover:text-emerald-400 cursor-pointer">Braille (⠃⠗⠁⠊⠇⠇⠑)</button></li>
               </ul>
             </div>
