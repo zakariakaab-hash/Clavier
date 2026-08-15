@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Search, Globe, Star, Volume2, VolumeX, Sparkles, X, Check } from 'lucide-react';
+import { Search, Globe, Star, Volume2, VolumeX, Sparkles, X, Check, Command } from 'lucide-react';
 import { KeyboardLayout } from '../types';
 import { ALL_KEYBOARDS, searchKeyboards, getKeyboardById } from '../data/keyboards';
 import { SupportedLocale, TRANSLATIONS, TranslationDict, detectUserSystemLanguageAndLocation } from '../utils/i18n';
