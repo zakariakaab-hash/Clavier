@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LexiKey — Multilingual Online Keyboards, Transliteration & World Scripts</title>
+    <script>
+      (function() {
+        try {
+          var rawFetch = window.fetch;
+          var currentFetch = typeof rawFetch === 'function' ? rawFetch.bind(window) : rawFetch;
+          
+          Object.defineProperty(window, 'fetch', {
+            get: function() {
+              return currentFetch;
+            },
+            set: function(val) {
+              currentFetch = val;
+            },
+            configurable: true,
+            enumerable: true
+          });
+
+          if (typeof Window !== 'undefined' && Window.prototype) {
+            try {
+              Object.defineProperty(Window.prototype, 'fetch', {
+                get: function() {
+                  return currentFetch;
+                },
+                set: function(val) {
+                  currentFetch = val;
+                },
+                configurable: true,
+                enumerable: true
+              });
+            } catch (e) {}
+          }
+        } catch (err) {}
+      })();
+    </script>
+    <meta name="description" content="Type in any language with online virtual keyboards, real-time phonetic transliteration, diacritics, ancient scripts, IPA phonetics, and dictionaries — inspired by Lexilogos." />
+    <meta name="keywords" content="online keyboard, multilingual keyboard, lexilogos, virtual keyboard, transliteration, arabic keyboard, russian keyboard, greek keyboard, hebrew keyboard, hindi keyboard, ipa phonetic keyboard, polytonic greek, hieroglyphs, runes, unicode characters" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="LexiKey — Multilingual Online Keyboards & Transliteration Portal" />
+    <meta property="og:description" content="Type online in 100+ world languages and historical alphabets. Real-time phonetic transliteration, diacritics palettes, IPA symbols, and dictionary lookups." />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=1200&auto=format&fit=crop&q=80" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="LexiKey — Multilingual Online Keyboards & Transliteration" />
+    <meta name="twitter:description" content="Type in Arabic, Cyrillic, Greek, Hindi, Japanese, Hebrew, IPA, Hieroglyphs, Runes, and 100+ world languages with virtual keyboards and phonetic conversion." />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans:wght@400;500;600;700&family=Noto+Serif:wght@400;600&family=Amiri:wght@400;700&family=Noto+Sans+Devanagari:wght@400;600&family=Noto+Sans+Arabic:wght@400;600&family=Noto+Sans+Hebrew:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- JSON-LD Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "LexiKey Multilingual Keyboards",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "All",
+      "description": "Comprehensive suite of virtual multilingual keyboards, transliteration converters, and world script tools.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+  </head>
+  <body class="bg-slate-50 text-slate-900 antialiased selection:bg-indigo-500 selection:text-white min-h-screen">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
