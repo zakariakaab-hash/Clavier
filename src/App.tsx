@@ -2,17 +2,32 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Navbar } from './components/Navbar';
 import { EditorPad } from './components/EditorPad';
 import { VirtualKeyboard } from './components/VirtualKeyboard';
-import { TransliterationPanel } from './components/TransliterationPanel';
-import { ScriptInfoCard } from './components/ScriptInfoCard';
 import { KeyboardCatalog } from './components/KeyboardCatalog';
 import { AIAssistantModal } from './components/AIAssistantModal';
-import { KeyboardLayout, KeyboardCategory } from './types';
-import { ALL_KEYBOARDS, CATEGORIES_CONFIG, getKeyboardById } from './data/keyboards';
+import { ParrotLogo } from './components/ParrotLogo';
+import { KeyboardLayout } from './types';
+import { ALL_KEYBOARDS, getKeyboardById } from './data/keyboards';
 import { transliterateText } from './utils/transliterate';
-import { Globe, Sparkles, Star, Layers, ShieldCheck, Heart, ExternalLink, BookOpen } from 'lucide-react';
+import { processPhysicalKeyStroke } from './utils/keyboardEngine';
+import { playKeyClickSound, playSpacebarSound } from './utils/audio';
+import { SupportedLocale, TRANSLATIONS, getTranslation, detectUserSystemLanguageAndLocation } from './utils/i18n';
+import { Globe, Sparkles, Star, Layers, ShieldCheck, Heart, BookOpen } from 'lucide-react';
 
 export function App() {
-  // 1. Initial states with local storage caching
+  // 1. User system language detection & persistence
+  const [detectedInfo] = useState(() => detectUserSystemLanguageAndLocation());
+  const [locale, setLocale] = useState<SupportedLocale>(() => {
+    const saved = localStorage.getItem('lexi_user_locale');
+    if (saved && TRANSLATIONS[saved as SupportedLocale]) {
+      return saved as SupportedLocale;
+    }
+    const detected = detectUserSystemLanguageAndLocation();
+    return detected.locale;
+  });
+
+  const t = getTranslation(locale);
+
+  // 2. Initial states with local storage caching
   const [currentKeyboard, setCurrentKeyboard] = useState<KeyboardLayout>(() => {
     const params = new URLSearchParams(window.location.search);
     const kbParam = params.get('kb');
@@ -24,6 +39,10 @@ export function App() {
     if (saved) {
       const found = ALL_KEYBOARDS.find(k => k.id === saved);
       if (found) return found;
+    }
+    const detected = detectUserSystemLanguageAndLocation();
+    if (detected.matchedKeyboard) {
+      return detected.matchedKeyboard;
     }
     return ALL_KEYBOARDS[0]; // Default to Arabic
   });
@@ -48,17 +67,43 @@ export function App() {
   });
 
   const [phoneticMode, setPhoneticMode] = useState<boolean>(true);
-  const [activeCategory, setActiveCategory] = useState<KeyboardCategory | 'all'>('all');
   const [isAIModalOpen, setIsAIModalOpen] = useState<boolean>(false);
   const [isCatalogOpen, setIsCatalogOpen] = useState<boolean>(false);
 
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
-  // Sync current keyboard to URL & LocalStorage & SEO Title
+  // Dynamic SEO Title, Description, and Social Tags Sync
   useEffect(() => {
     localStorage.setItem('lexi_current_kb', currentKeyboard.id);
-    document.title = `${currentKeyboard.name} (${currentKeyboard.nativeName}) - Clavier en ligne Lexilogos`;
     
+    // Dynamic High-Impact SEO Title & Description
+    const isRtl = locale === 'ar' || locale === 'he' || locale === 'fa';
+    const seoTitle = `${currentKeyboard.name} (${currentKeyboard.nativeName}) — Clavier Virtuel en Ligne & Translittération | LexiKey`;
+    const seoDesc = `Tapez en ligne en ${currentKeyboard.name} (${currentKeyboard.nativeName}) avec clavier virtuel Lexilogos, mode phonétique sur clavier d'ordinateur, diacritiques, translittération instantanée et synthèse sonore.`;
+    
+    document.title = seoTitle;
+    
+    // Update Meta Description
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (!metaDesc) {
+      metaDesc = document.createElement('meta');
+      metaDesc.setAttribute('name', 'description');
+      document.head.appendChild(metaDesc);
+    }
+    metaDesc.setAttribute('content', seoDesc);
+
+    // Update OpenGraph
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) ogTitle.setAttribute('content', seoTitle);
+    const ogDesc = document.querySelector('meta[property="og:description"]');
+    if (ogDesc) ogDesc.setAttribute('content', seoDesc);
+
+    // Update Twitter Tags
+    const twTitle = document.querySelector('meta[name="twitter:title"]');
+    if (twTitle) twTitle.setAttribute('content', seoTitle);
+    const twDesc = document.querySelector('meta[name="twitter:description"]');
+    if (twDesc) twDesc.setAttribute('content', seoDesc);
+
     const url = new URL(window.location.href);
     url.searchParams.set('kb', currentKeyboard.id);
     window.history.replaceState({}, '', url.toString());
@@ -66,14 +111,32 @@ export function App() {
     if (currentKeyboard.defaultFontSize) {
       setActiveFontSize(currentKeyboard.defaultFontSize);
     }
-  }, [currentKeyboard]);
+  }, [currentKeyboard, locale]);
 
-  // Sync theme
+  // Sync document language and text direction (RTL for Arabic/Hebrew/Persian, LTR for others)
   useEffect(() => {
-    localStorage.setItem('lexi_theme', theme);
-  }, [theme]);
+    document.documentElement.lang = locale;
+    const isRtl = locale === 'ar' || locale === 'he' || locale === 'fa';
+    document.documentElement.dir = isRtl ? 'rtl' : 'ltr';
+    localStorage.setItem('lexi_user_locale', locale);
+  }, [locale]);
 
-  // Sync sound setting
+  // Listen to browser system language changes dynamically
+  useEffect(() => {
+    const handleSystemLanguageChange = () => {
+      const isManual = localStorage.getItem('lexi_user_locale_manual');
+      if (!isManual) {
+        const detected = detectUserSystemLanguageAndLocation();
+        setLocale(detected.locale);
+        if (detected.matchedKeyboard && !localStorage.getItem('lexi_current_kb_manual')) {
+          setCurrentKeyboard(detected.matchedKeyboard);
+        }
+      }
+    };
+
+    window.addEventListener('languagechange', handleSystemLanguageChange);
+    return () => window.removeEventListener('languagechange', handleSystemLanguageChange);
+  }, []);
   useEffect(() => {
     localStorage.setItem('lexi_sound_enabled', String(soundEnabled));
   }, [soundEnabled]);
@@ -82,6 +145,75 @@ export function App() {
   useEffect(() => {
     localStorage.setItem('lexi_favorites', JSON.stringify(favorites));
   }, [favorites]);
+
+  // Global physical keyboard listener when user types outside input fields
+  useEffect(() => {
+    const handleGlobalKeyDown = (e: KeyboardEvent) => {
+      // Don't intercept if inside an input, other textarea, or if modal is open
+      const activeEl = document.activeElement as HTMLElement | null;
+      if (
+        activeEl && 
+        (activeEl.tagName === 'INPUT' || 
+         activeEl.tagName === 'SELECT' || 
+         (activeEl.tagName === 'TEXTAREA' && activeEl.id === 'lexi-editor-textarea'))
+      ) {
+        return;
+      }
+      if (isAIModalOpen || isCatalogOpen) {
+        return;
+      }
+      if ((e.ctrlKey || e.metaKey) && e.key !== 'AltGraph') {
+        return;
+      }
+      if (e.altKey && !e.ctrlKey && e.key !== 'AltGraph') {
+        return;
+      }
+      if (e.key === 'Tab' || e.key === 'Escape' || e.key.startsWith('F') && e.key.length > 1) {
+        return;
+      }
+
+      // If printable key or space
+      if (e.key.length === 1 || e.key === 'Backspace') {
+        const textarea = textareaRef.current;
+        if (!textarea) return;
+
+        textarea.focus();
+        if (e.key === 'Backspace') {
+          handleBackspace();
+          return;
+        }
+
+        const start = textarea.selectionStart;
+        const end = textarea.selectionEnd;
+        const result = processPhysicalKeyStroke(
+          e.key,
+          e.code,
+          e.shiftKey,
+          e.getModifierState('AltGraph'),
+          textarea.value,
+          start,
+          end,
+          currentKeyboard,
+          phoneticMode
+        );
+
+        if (result.handled) {
+          e.preventDefault();
+          setEditorText(result.newText);
+          if (soundEnabled) {
+            if (e.key === ' ') playSpacebarSound();
+            else playKeyClickSound();
+          }
+          setTimeout(() => {
+            textarea.setSelectionRange(result.newCursor, result.newCursor);
+          }, 0);
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleGlobalKeyDown);
+    return () => window.removeEventListener('keydown', handleGlobalKeyDown);
+  }, [currentKeyboard, phoneticMode, soundEnabled, isAIModalOpen, isCatalogOpen]);
 
   const handleToggleTheme = () => {
     setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
@@ -166,81 +298,55 @@ export function App() {
     }
   };
 
-  // Filtered keyboards for quick pills bar
-  const categoryKeyboards = activeCategory === 'all' 
-    ? ALL_KEYBOARDS 
-    : ALL_KEYBOARDS.filter(k => k.category === activeCategory);
+  const handleSelectKeyboard = (kb: KeyboardLayout) => {
+    localStorage.setItem('lexi_current_kb_manual', 'true');
+    setCurrentKeyboard(kb);
+  };
+
+  const handleChangeLocale = (loc: SupportedLocale) => {
+    localStorage.setItem('lexi_user_locale_manual', 'true');
+    setLocale(loc);
+  };
 
   const isDarkMode = theme === 'dark';
 
   return (
-    <div className={`min-h-screen flex flex-col font-sans transition-colors duration-200 ${
+    <div className={`min-h-screen w-full flex flex-col font-sans transition-colors duration-200 overflow-x-hidden ${
       isDarkMode 
         ? 'bg-[#0b1120] text-slate-100 selection:bg-emerald-600 selection:text-white' 
         : 'bg-[#F1F5F9] text-slate-800 selection:bg-emerald-600 selection:text-white'
     }`}>
-      
       {/* Header / Navbar */}
       <Navbar
         currentKeyboard={currentKeyboard}
-        onSelectKeyboard={setCurrentKeyboard}
+        onSelectKeyboard={handleSelectKeyboard}
         favorites={favorites}
         onToggleFavorite={handleToggleFavorite}
         soundEnabled={soundEnabled}
         onToggleSound={() => setSoundEnabled(!soundEnabled)}
         onOpenAI={() => setIsAIModalOpen(true)}
         onOpenCatalog={() => setIsCatalogOpen(true)}
+        currentLocale={locale}
+        onChangeLocale={handleChangeLocale}
+        detectedLocationLabel={detectedInfo.locationLabel}
+        theme={theme}
+        onToggleTheme={handleToggleTheme}
       />
 
-      {/* Subheader: Category Bar & Quick Switcher */}
-      <nav aria-label="Keyboard Categories" className={`border-b transition-colors ${
-        isDarkMode ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-200 shadow-2xs'
+      {/* Sleek Quick Popular Keyboards Strip with Separate Morse */}
+      <div className={`border-b transition-colors ${
+        isDarkMode ? 'bg-slate-900/60 border-slate-800' : 'bg-white border-slate-200 shadow-2xs'
       }`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5">
-          <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-thin pb-1">
-            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider pr-2 shrink-0 hidden md:inline">
-              Catégories :
-            </span>
-
-            <button
-              id="cat-all-btn"
-              onClick={() => setActiveCategory('all')}
-              className={`px-3 py-1.5 text-xs font-semibold rounded-lg whitespace-nowrap transition-all cursor-pointer ${
-                activeCategory === 'all'
-                  ? 'bg-emerald-600 text-white shadow-xs'
-                  : (isDarkMode ? 'bg-slate-800 text-slate-300 hover:bg-slate-700' : 'bg-slate-100 text-slate-600 hover:bg-slate-200')
-              }`}
-            >
-              Tous les claviers
-            </button>
-
-            {CATEGORIES_CONFIG.map(cat => (
-              <button
-                key={cat.id}
-                id={`cat-btn-${cat.id}`}
-                onClick={() => setActiveCategory(cat.id)}
-                className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg whitespace-nowrap transition-all cursor-pointer ${
-                  activeCategory === cat.id
-                    ? 'bg-emerald-600 text-white shadow-xs'
-                    : (isDarkMode ? 'bg-slate-800 text-slate-300 hover:bg-slate-700' : 'bg-slate-100 text-slate-600 hover:bg-slate-200')
-                }`}
-              >
-                <span>{cat.icon}</span>
-                <span>{cat.name}</span>
-              </button>
-            ))}
-          </div>
-
-          {/* Quick Keyboard Selectors */}
-          <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-thin pt-2">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
+          <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-thin">
             <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider pr-1 shrink-0">
-              Populaires :
+              {t.popularKeyboards} :
             </span>
-            {categoryKeyboards.slice(0, 14).map(kb => (
+            {ALL_KEYBOARDS.slice(0, 12).map(kb => (
               <button
                 key={`quick-${kb.id}`}
                 id={`quick-kb-${kb.id}`}
-                onClick={() => setCurrentKeyboard(kb)}
+                onClick={() => handleSelectKeyboard(kb)}
                 className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium whitespace-nowrap transition-all cursor-pointer border ${
                   kb.id === currentKeyboard.id
                     ? 'bg-emerald-600 text-white font-bold border-emerald-600 shadow-xs'
@@ -251,23 +357,36 @@ export function App() {
                 <span>{kb.name.split(' ')[0]}</span>
               </button>
             ))}
-            {categoryKeyboards.length > 14 && (
-              <button
-                onClick={() => setIsCatalogOpen(true)}
-                className="text-xs font-semibold text-emerald-500 hover:underline px-2 py-1 whitespace-nowrap cursor-pointer"
-              >
-                + Voir tout ({categoryKeyboards.length})
-              </button>
-            )}
+
+            {/* Dedicated Morse Code Shortcut */}
+            <button
+              id="quick-morse-btn"
+              onClick={() => handleSelectKeyboard(getKeyboardById('morse'))}
+              className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-bold whitespace-nowrap transition-all cursor-pointer border ${
+                currentKeyboard.id === 'morse'
+                  ? 'bg-amber-500 text-white border-amber-600 shadow-xs'
+                  : (isDarkMode ? 'bg-slate-800 hover:bg-slate-700 text-amber-400 border-slate-700' : 'bg-amber-50 hover:bg-amber-100 text-amber-900 border-amber-200 shadow-2xs')
+              }`}
+            >
+              <span>📻</span>
+              <span className="font-mono">Morse (CW)</span>
+            </button>
+
+            <button
+              onClick={() => setIsCatalogOpen(true)}
+              className="text-xs font-semibold text-emerald-500 hover:underline px-2 py-1 whitespace-nowrap cursor-pointer ml-auto"
+            >
+              {t.library} (+100) →
+            </button>
           </div>
         </div>
-      </nav>
+      </div>
 
       {/* Main App Workspace */}
       <main className="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-5 space-y-5">
         
         {/* Editor Writing Area */}
-        <section aria-label="Éditeur de texte Multilingue">
+        <section aria-label="Multilingual Text Editor">
           <EditorPad
             text={editorText}
             onChangeText={setEditorText}
@@ -280,11 +399,15 @@ export function App() {
             theme={theme}
             onToggleTheme={handleToggleTheme}
             onInsertSpace={() => handleInsertChar(' ')}
+            soundEnabled={soundEnabled}
+            phoneticMode={phoneticMode}
+            onTogglePhoneticMode={() => setPhoneticMode(!phoneticMode)}
+            currentLocale={locale}
           />
         </section>
 
         {/* Interactive Virtual Keyboard with Original Keyboard Letters */}
-        <section aria-label="Clavier Virtuel avec touches d'origine">
+        <section aria-label="Virtual Keyboard">
           <VirtualKeyboard
             currentKeyboard={currentKeyboard}
             onInsertChar={handleInsertChar}
@@ -294,23 +417,8 @@ export function App() {
             phoneticMode={phoneticMode}
             onTogglePhoneticMode={() => setPhoneticMode(!phoneticMode)}
             theme={theme}
+            currentLocale={locale}
           />
-        </section>
-
-        {/* Transliteration & Linguistic Tools Panel */}
-        <section aria-label="Outils de Translittération et Unicode">
-          <TransliterationPanel
-            currentKeyboard={currentKeyboard}
-            editorText={editorText}
-            onApplyToEditor={(newVal) => {
-              setEditorText(editorText ? `${editorText} ${newVal}` : newVal);
-            }}
-          />
-        </section>
-
-        {/* Encyclopedic & SEO Linguistic Information Card */}
-        <section aria-label="Informations Linguistiques et Historiques">
-          <ScriptInfoCard keyboard={currentKeyboard} />
         </section>
 
       </main>
@@ -318,83 +426,56 @@ export function App() {
       {/* Modern SEO-friendly Footer */}
       <footer className="bg-slate-900 text-slate-300 border-t border-slate-800 mt-12 py-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 pb-8 border-b border-slate-800">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pb-8 border-b border-slate-800">
             
             {/* Column 1: Brand & Mission */}
             <div className="space-y-3">
               <div className="flex items-center gap-2.5">
-                <div className="w-9 h-9 rounded-lg bg-emerald-600 flex items-center justify-center text-white font-bold font-serif text-lg shadow-md shadow-emerald-900/50">
-                  Ω
-                </div>
-                <span className="font-bold text-base text-white tracking-tight">LexiKey • Claviers Multilingues</span>
+                <ParrotLogo size={34} />
+                <span className="font-bold text-base text-white tracking-tight">{t.appName}</span>
               </div>
               <p className="text-xs text-slate-400 leading-relaxed">
-                Portail de claviers virtuels multilingues inspiré de Lexilogos. Écrivez dans toutes les langues du monde avec les touches de votre clavier d'origine ou à la souris.
+                {t.footerDesc || t.tagline}
               </p>
             </div>
 
             {/* Column 2: Popular Keyboards */}
             <div>
-              <h4 className="font-bold text-white text-xs uppercase tracking-wider mb-3">Claviers Populaires</h4>
+              <h4 className="font-bold text-white text-xs uppercase tracking-wider mb-3">{t.popularKeyboardsFooter || 'Popular Keyboards'}</h4>
               <ul className="space-y-1.5 text-xs text-slate-400">
-                <li><button onClick={() => setCurrentKeyboard(getKeyboardById('arabic'))} className="hover:text-emerald-400 cursor-pointer">Clavier Arabe (العربية)</button></li>
-                <li><button onClick={() => setCurrentKeyboard(getKeyboardById('russian'))} className="hover:text-emerald-400 cursor-pointer">Clavier Russe (Русский)</button></li>
-                <li><button onClick={() => setCurrentKeyboard(getKeyboardById('polytonic-greek'))} className="hover:text-emerald-400 cursor-pointer">Grec Ancien / Moderne (Ἑλληνική)</button></li>
-                <li><button onClick={() => setCurrentKeyboard(getKeyboardById('hindi'))} className="hover:text-emerald-400 cursor-pointer">Clavier Hindi Devanagari (हिन्दी)</button></li>
-                <li><button onClick={() => setCurrentKeyboard(getKeyboardById('japanese-hiragana'))} className="hover:text-emerald-400 cursor-pointer">Japonais Hiragana & Katakana (日本語)</button></li>
-                <li><button onClick={() => setCurrentKeyboard(getKeyboardById('hebrew'))} className="hover:text-emerald-400 cursor-pointer">Hébreu avec Niqqud (עברית)</button></li>
+                <li><button onClick={() => handleSelectKeyboard(getKeyboardById('arabic'))} className="hover:text-emerald-400 cursor-pointer">Arabic (العربية)</button></li>
+                <li><button onClick={() => handleSelectKeyboard(getKeyboardById('russian'))} className="hover:text-emerald-400 cursor-pointer">Russian (Русский)</button></li>
+                <li><button onClick={() => handleSelectKeyboard(getKeyboardById('polytonic-greek'))} className="hover:text-emerald-400 cursor-pointer">Greek (Ἑλληνική)</button></li>
+                <li><button onClick={() => handleSelectKeyboard(getKeyboardById('hindi'))} className="hover:text-emerald-400 cursor-pointer">Hindi Devanagari (हिन्दी)</button></li>
+                <li><button onClick={() => handleSelectKeyboard(getKeyboardById('japanese-hiragana'))} className="hover:text-emerald-400 cursor-pointer">Japanese Hiragana (日本語)</button></li>
+                <li><button onClick={() => handleSelectKeyboard(getKeyboardById('hebrew'))} className="hover:text-emerald-400 cursor-pointer">Hebrew (עברית)</button></li>
               </ul>
             </div>
 
             {/* Column 3: Ancient & STEM */}
             <div>
-              <h4 className="font-bold text-white text-xs uppercase tracking-wider mb-3">Écritures Anciennes & STEM</h4>
+              <h4 className="font-bold text-white text-xs uppercase tracking-wider mb-3">{t.ancientAndStemFooter || 'Ancient Scripts & STEM'}</h4>
               <ul className="space-y-1.5 text-xs text-slate-400">
-                <li><button onClick={() => setCurrentKeyboard(getKeyboardById('ipa-phonetic'))} className="hover:text-emerald-400 cursor-pointer">Alphabet Phonétique International (API / IPA)</button></li>
-                <li><button onClick={() => setCurrentKeyboard(getKeyboardById('hieroglyphs'))} className="hover:text-emerald-400 cursor-pointer">Hiéroglyphes Égyptiens (Gardiner)</button></li>
-                <li><button onClick={() => setCurrentKeyboard(getKeyboardById('runes'))} className="hover:text-emerald-400 cursor-pointer">Runes Futhark (ᚠᚢᚦᚨᚱᚲ)</button></li>
-                <li><button onClick={() => setCurrentKeyboard(getKeyboardById('math-symbols'))} className="hover:text-emerald-400 cursor-pointer">Symboles Mathématiques & Logique</button></li>
-                <li><button onClick={() => setCurrentKeyboard(getKeyboardById('morse'))} className="hover:text-emerald-400 cursor-pointer">Code Morse avec Synthétiseur Audio</button></li>
-                <li><button onClick={() => setCurrentKeyboard(getKeyboardById('braille'))} className="hover:text-emerald-400 cursor-pointer">Braille Unicode (⠃⠗⠁⠊⠇⠇⠑)</button></li>
-              </ul>
-            </div>
-
-            {/* Column 4: Linguistic Resources */}
-            <div>
-              <h4 className="font-bold text-white text-xs uppercase tracking-wider mb-3">Ressources Linguistiques</h4>
-              <ul className="space-y-1.5 text-xs text-slate-400">
-                <li>
-                  <a href="https://www.lexilogos.com/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-emerald-400">
-                    <span>Site Officiel Lexilogos</span>
-                    <ExternalLink className="w-3 h-3 text-slate-500" />
-                  </a>
-                </li>
-                <li>
-                  <a href="https://unicode.org/charts/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-emerald-400">
-                    <span>Tables de Caractères Unicode</span>
-                    <ExternalLink className="w-3 h-3 text-slate-500" />
-                  </a>
-                </li>
-                <li>
-                  <a href="https://www.internationalphoneticassociation.org/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-emerald-400">
-                    <span>Association Phonétique Internationale</span>
-                    <ExternalLink className="w-3 h-3 text-slate-500" />
-                  </a>
-                </li>
+                <li><button onClick={() => handleSelectKeyboard(getKeyboardById('ipa-phonetic'))} className="hover:text-emerald-400 cursor-pointer">International Phonetic Alphabet (IPA)</button></li>
+                <li><button onClick={() => handleSelectKeyboard(getKeyboardById('hieroglyphs'))} className="hover:text-emerald-400 cursor-pointer">Egyptian Hieroglyphs</button></li>
+                <li><button onClick={() => handleSelectKeyboard(getKeyboardById('runes'))} className="hover:text-emerald-400 cursor-pointer">Runic Futhark (ᚠᚢᚦᚨᚱᚲ)</button></li>
+                <li><button onClick={() => handleSelectKeyboard(getKeyboardById('math-symbols'))} className="hover:text-emerald-400 cursor-pointer">Mathematical & Logic Symbols</button></li>
+                <li><button onClick={() => handleSelectKeyboard(getKeyboardById('morse'))} className="hover:text-emerald-400 cursor-pointer">Morse Code</button></li>
+                <li><button onClick={() => handleSelectKeyboard(getKeyboardById('braille'))} className="hover:text-emerald-400 cursor-pointer">Braille (⠃⠗⠁⠊⠇⠇⠑)</button></li>
               </ul>
             </div>
 
           </div>
 
           <div className="pt-6 flex flex-wrap items-center justify-between gap-4 text-xs text-slate-400">
-            <p>© {new Date().getFullYear()} LexiKey • Tous les claviers du monde en ligne • Style Lexilogos.</p>
+            <p>© {new Date().getFullYear()} {t.appName} • {t.tagline}</p>
             <div className="flex items-center gap-4">
               <span className="flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                 <span>Unicode 15.1 Compatible</span>
               </span>
               <span>•</span>
-              <span>100% Hors-ligne & Rapide</span>
+              <span>100% Client-side & Fast</span>
             </div>
           </div>
         </div>
@@ -404,7 +485,7 @@ export function App() {
       <KeyboardCatalog
         isOpen={isCatalogOpen}
         onClose={() => setIsCatalogOpen(false)}
-        onSelectKeyboard={(kb) => setCurrentKeyboard(kb)}
+        onSelectKeyboard={(kb) => handleSelectKeyboard(kb)}
         currentKeyboardId={currentKeyboard.id}
         favorites={favorites}
         onToggleFavorite={handleToggleFavorite}

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Search, Star, Layers, Globe, ArrowRight, X, Sparkles } from 'lucide-react';
 import { KeyboardCategory, KeyboardLayout } from '../types';
 import { ALL_KEYBOARDS, CATEGORIES_CONFIG, searchKeyboards } from '../data/keyboards';
+import { ParrotLogo } from './ParrotLogo';
 
 interface KeyboardCatalogProps {
   isOpen: boolean;
@@ -37,9 +38,7 @@ export const KeyboardCatalog: React.FC<KeyboardCatalogProps> = ({
         {/* Catalog Header */}
         <div className="p-4 sm:p-5 bg-slate-900 text-white flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-xl bg-indigo-600 text-white">
-              <Layers className="w-5 h-5" />
-            </div>
+            <ParrotLogo size={36} />
             <div>
               <h2 className="font-bold text-lg text-white">
                 World Multilingual Keyboard Library

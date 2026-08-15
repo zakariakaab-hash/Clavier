@@ -3,11 +3,14 @@ import {
   Copy, Check, Volume2, Download, Trash2, RotateCcw, 
   ZoomIn, ZoomOut, Search, ExternalLink, Globe, BookOpen, 
   Sparkles, FileText, Share2, Maximize2, Minimize2,
-  Sun, Moon, Space, HelpCircle
+  Sun, Moon, Space, HelpCircle, Keyboard as KeyboardIcon, CheckCircle2
 } from 'lucide-react';
 import { KeyboardLayout } from '../types';
 import { ALL_KEYBOARDS } from '../data/keyboards';
 import { removeDiacritics } from '../utils/transliterate';
+import { processPhysicalKeyStroke } from '../utils/keyboardEngine';
+import { playKeyClickSound, playSpacebarSound, playBackspaceSound } from '../utils/audio';
+import { SupportedLocale, TRANSLATIONS, TranslationDict, getTranslation } from '../utils/i18n';
 
 interface EditorPadProps {
   text: string;
@@ -21,6 +24,10 @@ interface EditorPadProps {
   theme: 'dark' | 'light';
   onToggleTheme: () => void;
   onInsertSpace: () => void;
+  soundEnabled?: boolean;
+  phoneticMode?: boolean;
+  onTogglePhoneticMode?: () => void;
+  currentLocale?: SupportedLocale;
 }
 
 export const EditorPad: React.FC<EditorPadProps> = ({
@@ -34,7 +41,11 @@ export const EditorPad: React.FC<EditorPadProps> = ({
   textareaRef,
   theme,
   onToggleTheme,
-  onInsertSpace
+  onInsertSpace,
+  soundEnabled = true,
+  phoneticMode = true,
+  onTogglePhoneticMode,
+  currentLocale = 'en'
 }) => {
   const [copied, setCopied] = useState(false);
   const [speaking, setSpeaking] = useState(false);
@@ -43,6 +54,7 @@ export const EditorPad: React.FC<EditorPadProps> = ({
   const [isExpanded, setIsExpanded] = useState(false);
   const [showDictMenu, setShowDictMenu] = useState(false);
 
+  const t = getTranslation(currentLocale);
   const isDarkMode = theme === 'dark';
 
   // Sync history
@@ -52,6 +64,68 @@ export const EditorPad: React.FC<EditorPadProps> = ({
     newHist.push(newVal);
     setHistory(newHist);
     setHistoryIndex(newHist.length - 1);
+  };
+
+  // Intercept physical keyboard typing to map directly to the chosen language
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    // Allow system combinations (Ctrl+C, Ctrl+V, Ctrl+A, Ctrl+Z, Ctrl+Y, Ctrl+X, Cmd+...)
+    if ((e.ctrlKey || e.metaKey) && e.key !== 'AltGraph') {
+      return;
+    }
+    // Allow Alt without Ctrl (system navigation)
+    if (e.altKey && !e.ctrlKey && e.key !== 'AltGraph') {
+      return;
+    }
+
+    if (e.key === 'Backspace') {
+      if (soundEnabled) playBackspaceSound();
+      return;
+    }
+    if (e.key === 'Enter') {
+      if (soundEnabled) playKeyClickSound();
+      return;
+    }
+    if (e.key === 'Tab' || e.key.startsWith('F') && e.key.length > 1) {
+      return;
+    }
+
+    // Process all printable keys and space
+    if (e.key.length === 1) {
+      const textarea = textareaRef.current;
+      if (!textarea) return;
+
+      const start = textarea.selectionStart;
+      const end = textarea.selectionEnd;
+
+      const result = processPhysicalKeyStroke(
+        e.key,
+        e.code,
+        e.shiftKey,
+        e.getModifierState('AltGraph'),
+        text,
+        start,
+        end,
+        currentKeyboard,
+        phoneticMode
+      );
+
+      if (result.handled) {
+        e.preventDefault();
+        handleTextChange(result.newText);
+
+        if (soundEnabled) {
+          if (e.key === ' ') playSpacebarSound();
+          else playKeyClickSound();
+        }
+
+        setTimeout(() => {
+          if (textareaRef.current) {
+            textareaRef.current.focus();
+            textareaRef.current.setSelectionRange(result.newCursor, result.newCursor);
+          }
+        }, 0);
+      }
+    }
   };
 
   const handleUndo = () => {
@@ -167,7 +241,7 @@ export const EditorPad: React.FC<EditorPadProps> = ({
               </span>
             </div>
             <span className="text-[11px] text-slate-400 font-medium">
-              {currentKeyboard.direction === 'rtl' ? 'De droite à gauche (RTL)' : 'De gauche à droite (LTR)'} • ISO: {currentKeyboard.isoCode || 'N/A'}
+              {currentKeyboard.direction === 'rtl' ? 'RTL' : 'LTR'} • ISO: {currentKeyboard.isoCode || 'N/A'}
             </span>
           </div>
         </div>
@@ -175,7 +249,7 @@ export const EditorPad: React.FC<EditorPadProps> = ({
         {/* Center: "changer de clavier" dropdown */}
         <div className="flex items-center gap-2">
           <label htmlFor="keyboard-quick-select" className="text-xs font-semibold text-slate-400 hidden md:inline">
-            Changer de clavier :
+            {t.allKeyboards} :
           </label>
           <select
             id="keyboard-quick-select"
@@ -203,10 +277,10 @@ export const EditorPad: React.FC<EditorPadProps> = ({
           {currentKeyboard.sampleText && (
             <button
               onClick={handleInsertSample}
-              title="Insérer un exemple de texte"
+              title="Insert sample text"
               className="text-xs font-semibold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 px-2.5 py-1.5 rounded-lg transition-colors cursor-pointer"
             >
-              Exemple
+              Sample
             </button>
           )}
 
@@ -216,7 +290,7 @@ export const EditorPad: React.FC<EditorPadProps> = ({
           }`}>
             <button
               onClick={() => onChangeFontSize(Math.max(14, activeFontSize - 2))}
-              title="Diminuer la taille de police"
+              title="Zoom Out"
               className="p-1 text-slate-400 hover:text-slate-200 rounded cursor-pointer"
             >
               <ZoomOut className="w-3.5 h-3.5" />
@@ -226,7 +300,7 @@ export const EditorPad: React.FC<EditorPadProps> = ({
             </span>
             <button
               onClick={() => onChangeFontSize(Math.min(48, activeFontSize + 2))}
-              title="Augmenter la taille de police"
+              title="Zoom In"
               className="p-1 text-slate-400 hover:text-slate-200 rounded cursor-pointer"
             >
               <ZoomIn className="w-3.5 h-3.5" />
@@ -237,7 +311,7 @@ export const EditorPad: React.FC<EditorPadProps> = ({
           <button
             onClick={handleUndo}
             disabled={historyIndex <= 0}
-            title="Annuler"
+            title="Undo"
             className={`p-1.5 border rounded-lg disabled:opacity-30 cursor-pointer ${
               isDarkMode ? 'bg-slate-800 border-slate-700 text-slate-300' : 'bg-white border-slate-300 text-slate-600 shadow-2xs'
             }`}
@@ -254,8 +328,9 @@ export const EditorPad: React.FC<EditorPadProps> = ({
           id="lexi-editor-textarea"
           value={text}
           onChange={e => handleTextChange(e.target.value)}
+          onKeyDown={handleKeyDown}
           dir={currentKeyboard.direction}
-          placeholder={`Écrivez ici avec le clavier virtuel ou votre clavier d'ordinateur... (${currentKeyboard.name})`}
+          placeholder={`${t.editorPlaceholder} (${currentKeyboard.name})`}
           style={{ fontSize: `${activeFontSize}px`, lineHeight: 1.6 }}
           className={`w-full min-h-[140px] sm:min-h-[160px] p-4 rounded-xl border focus:outline-hidden transition-all resize-y font-sans shadow-inner ${
             isDarkMode 
@@ -264,12 +339,41 @@ export const EditorPad: React.FC<EditorPadProps> = ({
           } ${currentKeyboard.fontFamilyClass || ''}`}
         />
 
-        {/* Classic Lexilogos Toolbar Button Row */}
+        {/* Active Physical Keyboard Mapping Info Bar */}
+        <div className={`flex items-center justify-between text-xs px-2.5 py-1.5 rounded-lg border ${
+          isDarkMode ? 'bg-slate-900/60 border-slate-800 text-slate-300' : 'bg-emerald-50/70 border-emerald-200/70 text-emerald-900'
+        }`}>
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className="flex items-center gap-1 font-semibold">
+              <KeyboardIcon className="w-3.5 h-3.5 text-emerald-500" />
+              <span>{t.physicalTypingLabel}</span>
+            </span>
+            <span className="text-slate-500 dark:text-slate-400">
+              {t.physicalTypingDesc} <strong className="text-emerald-700 dark:text-emerald-400 font-bold">{currentKeyboard.name}</strong> ({currentKeyboard.nativeName})
+            </span>
+          </div>
+
+          {currentKeyboard.hasPhoneticMode && onTogglePhoneticMode && (
+            <button
+              onClick={onTogglePhoneticMode}
+              className={`flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-bold transition-all cursor-pointer border ${
+                phoneticMode 
+                  ? 'bg-emerald-600 text-white border-emerald-600 shadow-2xs' 
+                  : (isDarkMode ? 'bg-slate-800 text-slate-400 border-slate-700' : 'bg-white text-slate-600 border-slate-300')
+              }`}
+            >
+              <CheckCircle2 className="w-3 h-3" />
+              <span>{t.phoneticMode} {phoneticMode ? t.phoneticActive : t.phoneticStandard}</span>
+            </button>
+          )}
+        </div>
+
+        {/* Classic Toolbar Button Row */}
         <div className={`flex items-center justify-between pt-2 border-t flex-wrap gap-2 ${
           isDarkMode ? 'border-slate-800' : 'border-slate-200'
         }`}>
           
-          {/* Action buttons (copier, enregistrer, fichier, dictionnaire, espace, déployer, mode clair, ❌) */}
+          {/* Action buttons */}
           <div className="flex items-center gap-1.5 flex-wrap">
             
             {/* Copier */}
@@ -284,7 +388,7 @@ export const EditorPad: React.FC<EditorPadProps> = ({
               }`}
             >
               {copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
-              <span>{copied ? 'Copié !' : 'copier'}</span>
+              <span>{copied ? t.copied : t.copyText}</span>
             </button>
 
             {/* Enregistrer (Download txt) */}
@@ -296,7 +400,7 @@ export const EditorPad: React.FC<EditorPadProps> = ({
               }`}
             >
               <Download className="w-3.5 h-3.5" />
-              <span>enregistrer</span>
+              <span>{t.saveText || 'Save'}</span>
             </button>
 
             {/* Dictionnaire Dropdown */}
@@ -308,7 +412,7 @@ export const EditorPad: React.FC<EditorPadProps> = ({
                 }`}
               >
                 <BookOpen className="w-3.5 h-3.5 text-emerald-500" />
-                <span>dictionnaire</span>
+                <span>{t.dictionary || 'Dictionary'}</span>
               </button>
 
               {showDictMenu && (
@@ -322,7 +426,7 @@ export const EditorPad: React.FC<EditorPadProps> = ({
                     className="flex items-center gap-2 px-3 py-2 text-xs rounded-lg hover:bg-emerald-500/10 hover:text-emerald-500 transition-colors"
                   >
                     <BookOpen className="w-3.5 h-3.5" />
-                    <span>Wiktionnaire</span>
+                    <span>Wiktionary</span>
                     <ExternalLink className="w-3 h-3 ml-auto opacity-50" />
                   </a>
                   <a
@@ -332,7 +436,7 @@ export const EditorPad: React.FC<EditorPadProps> = ({
                     className="flex items-center gap-2 px-3 py-2 text-xs rounded-lg hover:bg-emerald-500/10 hover:text-emerald-500 transition-colors"
                   >
                     <Globe className="w-3.5 h-3.5" />
-                    <span>Google Traduction</span>
+                    <span>Google Translate</span>
                     <ExternalLink className="w-3 h-3 ml-auto opacity-50" />
                   </a>
                   <a
@@ -342,7 +446,7 @@ export const EditorPad: React.FC<EditorPadProps> = ({
                     className="flex items-center gap-2 px-3 py-2 text-xs rounded-lg hover:bg-emerald-500/10 hover:text-emerald-500 transition-colors"
                   >
                     <FileText className="w-3.5 h-3.5" />
-                    <span>Wikipédia</span>
+                    <span>Wikipedia</span>
                     <ExternalLink className="w-3 h-3 ml-auto opacity-50" />
                   </a>
                 </div>
@@ -357,39 +461,26 @@ export const EditorPad: React.FC<EditorPadProps> = ({
               }`}
             >
               <Space className="w-3.5 h-3.5" />
-              <span>espace</span>
+              <span>{t.space}</span>
             </button>
 
             {/* Déployer (Full Screen / Expand) */}
             <button
               onClick={() => setIsExpanded(!isExpanded)}
-              title={isExpanded ? 'Réduire' : 'Déployer plein écran'}
+              title={isExpanded ? t.exitFullscreen : t.fullscreen}
               className={`flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg border transition-all cursor-pointer shadow-xs ${
                 isDarkMode ? 'bg-slate-800 hover:bg-slate-700 text-white border-slate-700' : 'bg-white hover:bg-slate-50 text-slate-700 border-slate-300'
               }`}
             >
               {isExpanded ? <Minimize2 className="w-3.5 h-3.5" /> : <Maximize2 className="w-3.5 h-3.5" />}
-              <span>{isExpanded ? 'réduire' : 'déployer'}</span>
-            </button>
-
-            {/* Mode clair / Mode sombre toggle */}
-            <button
-              onClick={onToggleTheme}
-              className={`flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg border transition-all cursor-pointer shadow-xs ${
-                isDarkMode 
-                  ? 'bg-slate-800 hover:bg-slate-700 text-amber-400 border-slate-700' 
-                  : 'bg-white hover:bg-slate-50 text-slate-700 border-slate-300'
-              }`}
-            >
-              {isDarkMode ? <Sun className="w-3.5 h-3.5" /> : <Moon className="w-3.5 h-3.5" />}
-              <span>{isDarkMode ? 'mode clair' : 'mode sombre'}</span>
+              <span>{isExpanded ? t.exitFullscreen : t.fullscreen}</span>
             </button>
 
             {/* Clear button (❌) */}
             <button
               onClick={() => handleTextChange('')}
               disabled={!text}
-              title="Effacer tout le texte"
+              title={t.clearText}
               className={`flex items-center justify-center w-8 h-8 rounded-lg border transition-all cursor-pointer shadow-xs disabled:opacity-30 ${
                 isDarkMode ? 'bg-slate-800 hover:bg-rose-950 text-rose-400 border-slate-700' : 'bg-white hover:bg-rose-50 text-rose-600 border-slate-300'
               }`}
@@ -406,14 +497,14 @@ export const EditorPad: React.FC<EditorPadProps> = ({
               className="flex items-center gap-1 text-xs font-semibold px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white shadow-xs transition-all cursor-pointer"
             >
               <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-              <span>IA Traducteur</span>
+              <span>{t.aiLinguist}</span>
             </button>
 
             {/* Audio Speech */}
             <button
               onClick={handleSpeak}
               disabled={!text}
-              title="Écouter la prononciation"
+              title={t.listenSpeech}
               className={`p-1.5 rounded-lg border transition-all cursor-pointer ${
                 speaking
                   ? 'bg-amber-500 text-white border-amber-600 animate-pulse'
@@ -425,7 +516,7 @@ export const EditorPad: React.FC<EditorPadProps> = ({
 
             {/* Stats */}
             <span className="text-xs text-slate-400 font-mono hidden sm:inline ml-1">
-              {charCount} caractères • {wordCount} mots
+              {charCount} {t.charsCount || 'chars'} • {wordCount} {t.wordsCount || 'words'}
             </span>
           </div>
         </div>

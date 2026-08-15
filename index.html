@@ -2,56 +2,56 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LexiKey — Multilingual Online Keyboards, Transliteration & World Scripts</title>
-    <script>
-      (function() {
-        try {
-          var rawFetch = window.fetch;
-          var currentFetch = typeof rawFetch === 'function' ? rawFetch.bind(window) : rawFetch;
-          
-          Object.defineProperty(window, 'fetch', {
-            get: function() {
-              return currentFetch;
-            },
-            set: function(val) {
-              currentFetch = val;
-            },
-            configurable: true,
-            enumerable: true
-          });
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
+    <title>LexiKey — Claviers Multilingues en Ligne, Translittération & Polices du Monde</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none'%3E%3Cpath d='M27 13C25 8 29 4 33 4C35 7 34 11 31 14Z' fill='%2310B981'/%3E%3Cpath d='M32 14C33 8 38 6 41 8C41 12 37 14 34 15Z' fill='%23059669'/%3E%3Cpath d='M22 20C22 13.37 27.37 8 34 8C40.63 8 46 13.37 46 20V34C46 43 38 52 27 55C26 55.5 25 54.8 25.5 53.8C27 50.5 28 46 28 41L22 35V20Z' fill='%2310B981'/%3E%3Cpath d='M24 28C26 27 35 27 37 33C39 39 33 45 24 47' stroke='%23FFFFFF' stroke-width='2' stroke-linecap='round'/%3E%3Cpath d='M44 19C45 19 54 21 56 26C56.6 28 54.5 30 52 29.5C48 29 44 28 44 28V19Z' fill='%23F59E0B'/%3E%3Cellipse cx='37' cy='18' rx='5' ry='5' fill='%23FFFFFF'/%3E%3Ccircle cx='37.5' cy='18' r='2.5' fill='%230F172A'/%3E%3Ccircle cx='36.5' cy='17' r='0.9' fill='%23FFFFFF'/%3E%3C/svg%3E" />
+    <meta name="theme-color" content="#10B981" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="LexiKey" />
+    <link rel="canonical" href="https://lexikey.app/" />
 
-          if (typeof Window !== 'undefined' && Window.prototype) {
-            try {
-              Object.defineProperty(Window.prototype, 'fetch', {
-                get: function() {
-                  return currentFetch;
-                },
-                set: function(val) {
-                  currentFetch = val;
-                },
-                configurable: true,
-                enumerable: true
-              });
-            } catch (e) {}
-          }
-        } catch (err) {}
-      })();
-    </script>
-    <meta name="description" content="Type in any language with online virtual keyboards, real-time phonetic transliteration, diacritics, ancient scripts, IPA phonetics, and dictionaries — inspired by Lexilogos." />
-    <meta name="keywords" content="online keyboard, multilingual keyboard, lexilogos, virtual keyboard, transliteration, arabic keyboard, russian keyboard, greek keyboard, hebrew keyboard, hindi keyboard, ipa phonetic keyboard, polytonic greek, hieroglyphs, runes, unicode characters" />
-    <meta name="robots" content="index, follow" />
+    <meta name="description" content="Tapez en ligne dans plus de 100 langues et alphabets du monde avec claviers virtuels, translittération phonétique en temps réel, diacritiques, code Morse avec son CW, symboles IPA et hiéroglyphes — inspiré de Lexilogos." />
+    <meta name="keywords" content="clavier en ligne, claviers multilingues, lexilogos, clavier virtuel, translittération phonétique, clavier arabe, clavier russe cyrillique, clavier grec polytonique, clavier hébreu, clavier hindi, clavier morse avec son, alphabet phonétique international ipa, hiéroglyphes égyptiens, runes, caractères spéciaux unicode" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="author" content="LexiKey Multilingual Linguistic Platform" />
+    
+    <!-- Multi-language SEO Alternates -->
+    <link rel="alternate" hreflang="x-default" href="https://lexikey.app/" />
+    <link rel="alternate" hreflang="fr" href="https://lexikey.app/?lang=fr" />
+    <link rel="alternate" hreflang="en" href="https://lexikey.app/?lang=en" />
+    <link rel="alternate" hreflang="es" href="https://lexikey.app/?lang=es" />
+    <link rel="alternate" hreflang="ar" href="https://lexikey.app/?lang=ar" />
+    <link rel="alternate" hreflang="ru" href="https://lexikey.app/?lang=ru" />
+    <link rel="alternate" hreflang="de" href="https://lexikey.app/?lang=de" />
+    <link rel="alternate" hreflang="it" href="https://lexikey.app/?lang=it" />
+    <link rel="alternate" hreflang="pt" href="https://lexikey.app/?lang=pt" />
+    <link rel="alternate" hreflang="hi" href="https://lexikey.app/?lang=hi" />
+    <link rel="alternate" hreflang="zh" href="https://lexikey.app/?lang=zh" />
+    <link rel="alternate" hreflang="ja" href="https://lexikey.app/?lang=ja" />
+    <link rel="alternate" hreflang="ko" href="https://lexikey.app/?lang=ko" />
+    <link rel="alternate" hreflang="el" href="https://lexikey.app/?lang=el" />
+    <link rel="alternate" hreflang="he" href="https://lexikey.app/?lang=he" />
+    <link rel="alternate" hreflang="tr" href="https://lexikey.app/?lang=tr" />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="LexiKey — Multilingual Online Keyboards & Transliteration Portal" />
-    <meta property="og:description" content="Type online in 100+ world languages and historical alphabets. Real-time phonetic transliteration, diacritics palettes, IPA symbols, and dictionary lookups." />
+    <meta property="og:site_name" content="LexiKey" />
+    <meta property="og:url" content="https://lexikey.app/" />
+    <meta property="og:title" content="LexiKey — Claviers Multilingues en Ligne & Translittération" />
+    <meta property="og:description" content="Accédez à plus de 100 claviers virtuels multilingues, translittération phonétique instantanée, code Morse avec audio, symboles IPA et alphabets anciens." />
     <meta property="og:image" content="https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=1200&auto=format&fit=crop&q=80" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:locale:alternate" content="es_ES" />
+    <meta property="og:locale:alternate" content="ar_SA" />
+    <meta property="og:locale:alternate" content="ru_RU" />
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="LexiKey — Multilingual Online Keyboards & Transliteration" />
-    <meta name="twitter:description" content="Type in Arabic, Cyrillic, Greek, Hindi, Japanese, Hebrew, IPA, Hieroglyphs, Runes, and 100+ world languages with virtual keyboards and phonetic conversion." />
+    <meta name="twitter:title" content="LexiKey — Claviers Multilingues en Ligne & Translittération" />
+    <meta name="twitter:description" content="Tapez en Arabe, Russe, Grec, Hindi, Japonais, Hébreu, Code Morse, IPA, Hiéroglyphes et plus de 100 langues avec retour audio et translittération." />
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=1200&auto=format&fit=crop&q=80" />
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -59,23 +59,66 @@
     
     <!-- JSON-LD Structured Data for SEO -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "LexiKey Multilingual Keyboards",
-      "applicationCategory": "EducationalApplication",
-      "operatingSystem": "All",
-      "description": "Comprehensive suite of virtual multilingual keyboards, transliteration converters, and world script tools.",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "LexiKey - Claviers Multilingues & Translittération en Ligne",
+        "url": "https://lexikey.app/",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "All (Web, Windows, macOS, Linux, Android, iOS)",
+        "inLanguage": ["fr", "en", "es", "ar", "ru", "de", "it", "pt", "hi", "zh", "ja", "ko", "el", "he", "tr", "pl", "uk", "vi", "nl", "sv", "fa"],
+        "description": "Portail complet de claviers virtuels multilingues (Arabe, Russe, Grec, Hindi, Hébreu, Morse, IPA), translittération phonétique instantanée et diacritiques.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "featureList": [
+          "100+ World Keyboards & Ancient Scripts",
+          "Real-time Phonetic Transliteration",
+          "CW Audio Morse Code Synthesizer",
+          "International Phonetic Alphabet (IPA) Symbol Map",
+          "Physical Computer Keyboard Passthrough & Phonetic Mapping",
+          "Automatic System Language & Geolocation Detection",
+          "Full Unicode 15.1 Compliance"
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Comment taper en arabe ou en cyrillique sans clavier physique spécifique ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "LexiKey vous permet de taper directement avec votre clavier d'ordinateur grâce au mode phonétique (ex: taper 'a' produit 'ا' en arabe ou 'а' en russe) ou en cliquant sur les touches du clavier virtuel avec les lettres de repère."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Comment fonctionne le générateur de code Morse ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Le clavier Morse permet d'insérer des points (·), des traits (—) ou du texte latin qui est instantanément converti en code Morse avec synthèse sonore CW (700Hz)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "LexiKey est-il compatible avec les diacritiques et le grec polytonique ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Oui, LexiKey prend en charge tous les accents polytoniques grecs (oxia, varia, perispomeni, iota souscrit), les voyelles arabes (tashkeel), l'hébreu avec niqqud, et les symboles de l'API phonétique."
+            }
+          }
+        ]
       }
-    }
+    ]
     </script>
   </head>
-  <body class="bg-slate-50 text-slate-900 antialiased selection:bg-indigo-500 selection:text-white min-h-screen">
-    <div id="root"></div>
+  <body class="bg-slate-50 text-slate-900 antialiased selection:bg-emerald-500 selection:text-white min-h-screen w-full overflow-x-hidden m-0 p-0">
+    <div id="root" class="min-h-screen w-full flex flex-col"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

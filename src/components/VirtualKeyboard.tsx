@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import { KeyboardLayout, KeyDefinition } from '../types';
 import { playKeyClickSound, playSpacebarSound, playBackspaceSound } from '../utils/audio';
+import { SupportedLocale, getTranslation } from '../utils/i18n';
 
 interface VirtualKeyboardProps {
   currentKeyboard: KeyboardLayout;
@@ -16,6 +17,7 @@ interface VirtualKeyboardProps {
   phoneticMode: boolean;
   onTogglePhoneticMode: () => void;
   theme?: 'dark' | 'light';
+  currentLocale?: SupportedLocale;
 }
 
 export const VirtualKeyboard: React.FC<VirtualKeyboardProps> = ({
@@ -26,8 +28,10 @@ export const VirtualKeyboard: React.FC<VirtualKeyboardProps> = ({
   soundEnabled,
   phoneticMode,
   onTogglePhoneticMode,
-  theme = 'light'
+  theme = 'light',
+  currentLocale = 'en'
 }) => {
+  const t = getTranslation(currentLocale);
   const [isShiftActive, setIsShiftActive] = useState(false);
   const [isCapsLockActive, setIsCapsLockActive] = useState(false);
   const [isAltGrActive, setIsAltGrActive] = useState(false);
@@ -139,7 +143,7 @@ export const VirtualKeyboard: React.FC<VirtualKeyboardProps> = ({
                     : (isDarkMode ? 'text-slate-400 hover:text-white' : 'text-slate-600 hover:text-slate-900')
                 }`}
               >
-                🔤 Clavier Original (Lettres Guide)
+                🔤 {t.originalKeyboard || 'Original Keyboard'}
               </button>
               <button
                 onClick={() => setViewMode('hardware')}
@@ -149,7 +153,7 @@ export const VirtualKeyboard: React.FC<VirtualKeyboardProps> = ({
                     : (isDarkMode ? 'text-slate-400 hover:text-white' : 'text-slate-600 hover:text-slate-900')
                 }`}
               >
-                ⌨️ Matrice PC
+                ⌨️ {t.pcMatrix || 'PC Matrix'}
               </button>
             </div>
           )}
@@ -168,7 +172,7 @@ export const VirtualKeyboard: React.FC<VirtualKeyboardProps> = ({
               }`}
             >
               <Sparkles className="w-3.5 h-3.5" />
-              <span>Phonétique : {phoneticMode ? 'ACTIF' : 'INACTIF'}</span>
+              <span>{t.phoneticMode} : {phoneticMode ? t.phoneticActive.toUpperCase() : t.phoneticStandard.toUpperCase()}</span>
             </button>
           )}
         </div>
@@ -183,7 +187,7 @@ export const VirtualKeyboard: React.FC<VirtualKeyboardProps> = ({
                 : (isDarkMode ? 'bg-slate-800 text-slate-300 border-slate-700' : 'bg-white text-slate-700 border-slate-300')
             }`}
           >
-            MAJ {isCapsLockActive ? 'ON' : 'OFF'}
+            {t.capsLock || 'CAPS'} {isCapsLockActive ? 'ON' : 'OFF'}
           </button>
 
           <button
@@ -195,7 +199,7 @@ export const VirtualKeyboard: React.FC<VirtualKeyboardProps> = ({
             }`}
           >
             <HelpCircle className="w-3.5 h-3.5" />
-            <span>Aide</span>
+            <span>{t.help || 'Help'}</span>
           </button>
         </div>
       </div>
@@ -206,7 +210,7 @@ export const VirtualKeyboard: React.FC<VirtualKeyboardProps> = ({
           isDarkMode ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-200 shadow-2xs'
         }`}>
           <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider px-1 shrink-0">
-            Voyelles & Harakat :
+            {t.vowelsAndDiacritics || t.diacritics} :
           </span>
           <div className="flex items-center gap-1.5 flex-nowrap">
             {currentKeyboard.diacritics.map((dia, idx) => (
@@ -278,7 +282,7 @@ export const VirtualKeyboard: React.FC<VirtualKeyboardProps> = ({
               className="px-6 py-2.5 bg-white hover:bg-slate-50 active:bg-slate-100 border border-slate-300 text-slate-700 hover:border-slate-400 rounded-lg text-xs font-bold flex items-center justify-center gap-2 transition-all shadow-xs cursor-pointer min-w-[200px]"
             >
               <Space className="w-4 h-4 text-slate-400" />
-              <span className="font-mono tracking-widest text-slate-500 uppercase">Espace (Space)</span>
+              <span className="font-mono tracking-widest text-slate-500 uppercase">{t.space}</span>
             </button>
 
             <button
@@ -289,7 +293,7 @@ export const VirtualKeyboard: React.FC<VirtualKeyboardProps> = ({
               className="px-4 py-2.5 bg-white hover:bg-rose-50 hover:text-rose-700 border border-slate-300 text-slate-700 rounded-lg text-xs font-bold flex items-center justify-center gap-1.5 transition-all shadow-xs cursor-pointer"
             >
               <Delete className="w-4 h-4" />
-              <span>Effacer (Bksp)</span>
+              <span>{t.backspace}</span>
             </button>
           </div>
         </div>
@@ -375,7 +379,7 @@ export const VirtualKeyboard: React.FC<VirtualKeyboardProps> = ({
                   style={{ flex: 1.5 }}
                 >
                   <Delete className="w-4 h-4" />
-                  <span className="hidden sm:inline ml-1">Bksp</span>
+                  <span className="hidden sm:inline ml-1">{t.backspace}</span>
                 </button>
               )}
 
@@ -408,7 +412,7 @@ export const VirtualKeyboard: React.FC<VirtualKeyboardProps> = ({
               }`}
               style={{ flex: 1.5 }}
             >
-              Caps
+              {t.capsLock || 'Caps'}
             </button>
 
             <button
@@ -420,7 +424,7 @@ export const VirtualKeyboard: React.FC<VirtualKeyboardProps> = ({
               style={{ flex: 6 }}
             >
               <Space className="w-4 h-4 text-slate-400" />
-              <span className="hidden sm:inline font-mono tracking-widest text-slate-400 uppercase">ESPACE</span>
+              <span className="hidden sm:inline font-mono tracking-widest text-slate-400 uppercase">{t.space}</span>
             </button>
 
             <button
@@ -432,7 +436,7 @@ export const VirtualKeyboard: React.FC<VirtualKeyboardProps> = ({
               style={{ flex: 2 }}
             >
               <CornerDownLeft className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">ENTRÉE</span>
+              <span className="hidden sm:inline">{t.enter}</span>
             </button>
           </div>
         </div>
@@ -449,10 +453,10 @@ export const VirtualKeyboard: React.FC<VirtualKeyboardProps> = ({
             <Info className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
             <div className="space-y-1">
               <p className="font-semibold text-emerald-700 dark:text-emerald-400">
-                Mode d'emploi Lexilogos :
+                {t.instructionsTitle || "Instructions :"}
               </p>
               <p className="text-[11px] sm:text-xs leading-relaxed">
-                Pour écrire directement avec le clavier d'origine (ordinateur) : utiliser les touches indiquées au-dessus de chaque lettre.
+                {t.instructionsDesc || "To type directly with your computer keyboard: use the keys shown above each letter."}
                 {currentKeyboard.instructions && (
                   <span className="block mt-1 font-mono text-[10px] sm:text-[11px] opacity-90">
                     {currentKeyboard.instructions}
