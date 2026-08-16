@@ -147,19 +147,26 @@ export function getLocalizedPath(keyboardId: string, locale: SupportedLocale = '
 }
 
 /**
- * Parse any pathname & query params into a resolved locale and keyboardId.
+ * Parse any pathname & query params into a resolved locale, keyboardId, and whether it is a homepage.
  * Supports:
- * - /en/arabic-keyboard
- * - /fr/clavier-arabe
- * - /ar
- * - /ar/
- * - /ar/clavier-arabe
- * - /es/teclado-arabe
- * - /clavier-arabe (without locale prefix)
- * - /arabic-keyboard
+ * - / -> isHomepage: true, locale: undefined, keyboardId: undefined
+ * - /en/ or /en -> isHomepage: true, locale: 'en', keyboardId: undefined
+ * - /fr/ or /fr -> isHomepage: true, locale: 'fr', keyboardId: undefined
+ * - /es/ or /es -> isHomepage: true, locale: 'es', keyboardId: undefined
+ * - /ar/ or /ar -> isHomepage: true, locale: 'ar', keyboardId: undefined
+ * - /en/arabic-keyboard -> isHomepage: false, locale: 'en', keyboardId: 'arabic'
+ * - /fr/clavier-arabe -> isHomepage: false, locale: 'fr', keyboardId: 'arabic'
+ * - /ar/clavier-arabe -> isHomepage: false, locale: 'ar', keyboardId: 'arabic'
+ * - /es/teclado-arabe -> isHomepage: false, locale: 'es', keyboardId: 'arabic'
+ * - /clavier-arabe -> isHomepage: false, locale: 'fr', keyboardId: 'arabic'
+ * - /arabic-keyboard -> isHomepage: false, locale: 'en', keyboardId: 'arabic'
  * - ?kb=arabic&lang=fr
  */
-export function parseCurrentPath(pathname: string, search: string): { locale?: SupportedLocale; keyboardId?: string } {
+export function parseCurrentPath(pathname: string, search: string): { 
+  locale?: SupportedLocale; 
+  keyboardId?: string;
+  isHomepage?: boolean;
+} {
   const searchParams = new URLSearchParams(search);
   const kbQuery = searchParams.get('kb');
   const langQuery = searchParams.get('lang') as SupportedLocale | null;
@@ -169,22 +176,26 @@ export function parseCurrentPath(pathname: string, search: string): { locale?: S
 
   let detectedLocale: SupportedLocale | undefined = undefined;
   let detectedKbId: string | undefined = undefined;
+  let isHomepage = false;
 
-  // Check if first segment is a supported locale code (e.g. /fr, /en, /ar)
-  if (segments.length > 0 && SUPPORTED_LOCALES.includes(segments[0] as SupportedLocale)) {
+  // Root homepage: /
+  if (segments.length === 0) {
+    isHomepage = true;
+  } else if (segments.length === 1 && SUPPORTED_LOCALES.includes(segments[0] as SupportedLocale)) {
+    // Localized homepage: /en, /fr, /es, /ar
     detectedLocale = segments[0] as SupportedLocale;
-    
-    // If only language was provided (e.g. /ar/ or /fr)
-    if (segments.length === 1) {
-      detectedKbId = LOCALE_DEFAULT_KEYBOARDS[detectedLocale] || 'arabic';
-    } else {
-      const slug = segments[1].toLowerCase();
-      detectedKbId = resolveKeyboardFromSlug(slug);
-    }
+    isHomepage = true;
+  } else if (segments.length > 1 && SUPPORTED_LOCALES.includes(segments[0] as SupportedLocale)) {
+    // Localized keyboard page: /en/arabic-keyboard, /fr/clavier-arabe
+    detectedLocale = segments[0] as SupportedLocale;
+    const slug = segments[1].toLowerCase();
+    detectedKbId = resolveKeyboardFromSlug(slug);
+    isHomepage = false;
   } else if (segments.length > 0) {
     // No locale prefix, just a slug directly like /clavier-arabe or /arabic-keyboard
     const slug = segments[0].toLowerCase();
     detectedKbId = resolveKeyboardFromSlug(slug);
+    isHomepage = false;
     
     if (slug.startsWith('clavier-')) {
       detectedLocale = 'fr';
@@ -198,7 +209,10 @@ export function parseCurrentPath(pathname: string, search: string): { locale?: S
   // Override with query params if explicitly present
   if (kbQuery) {
     const found = ALL_KEYBOARDS.find(k => k.id === kbQuery);
-    if (found) detectedKbId = found.id;
+    if (found) {
+      detectedKbId = found.id;
+      isHomepage = false;
+    }
   }
   if (langQuery && SUPPORTED_LOCALES.includes(langQuery)) {
     detectedLocale = langQuery;
@@ -206,7 +220,8 @@ export function parseCurrentPath(pathname: string, search: string): { locale?: S
 
   return {
     locale: detectedLocale,
-    keyboardId: detectedKbId
+    keyboardId: detectedKbId,
+    isHomepage
   };
 }
 

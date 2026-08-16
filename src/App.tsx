@@ -16,9 +16,10 @@ import { getPageSeoMetadata } from './utils/seo';
 import { Globe, Star, Layers, ShieldCheck, Heart, BookOpen } from 'lucide-react';
 
 export function App() {
-  // 1. Initial URL Path Parsing (e.g. /en/arabic-keyboard, /fr/clavier-arabe, /ar/)
+  // 1. Initial URL Path Parsing (e.g. /en/arabic-keyboard, /fr/clavier-arabe, /ar/, /)
   const [initialRoute] = useState(() => parseCurrentPath(window.location.pathname, window.location.search));
   const [detectedInfo] = useState(() => detectUserSystemLanguageAndLocation());
+  const [isHomepage, setIsHomepage] = useState<boolean>(() => Boolean(initialRoute.isHomepage));
 
   const [locale, setLocale] = useState<SupportedLocale>(() => {
     // 1. URL path or query parameter has highest priority
@@ -80,8 +81,8 @@ export function App() {
   useEffect(() => {
     localStorage.setItem('lexi_current_kb', currentKeyboard.id);
     
-    // Accurate Dynamic SEO Title, Description & H1
-    const seoMeta = getPageSeoMetadata(currentKeyboard, locale);
+    // Accurate Dynamic SEO Title, Description & H1 (Check if homepage or specific keyboard page)
+    const seoMeta = getPageSeoMetadata(currentKeyboard, locale, isHomepage);
     
     document.title = seoMeta.title;
     
@@ -106,28 +107,52 @@ export function App() {
     const twDesc = document.querySelector('meta[name="twitter:description"]');
     if (twDesc) twDesc.setAttribute('content', seoMeta.description);
 
-    // Clean SEO URL Path Sync (e.g. /fr/clavier-arabe, /en/arabic-keyboard, /ar/clavier-arabe)
-    const targetPath = getLocalizedPath(currentKeyboard.id, locale);
-    if (window.location.pathname !== targetPath) {
-      window.history.replaceState({ kbId: currentKeyboard.id, locale }, '', targetPath);
+    // Clean SEO URL Path Sync
+    // Homepage routes: / (or /en/, /fr/, /es/, /ar/)
+    // Keyboard routes: /fr/clavier-arabe, /en/arabic-keyboard, /ar/clavier-arabe, /es/teclado-arabe
+    let targetPath = '';
+    if (isHomepage) {
+      // If root path '/' and locale is detected/default, keep '/' or localized home '/fr/', '/ar/', etc.
+      const currentPathClean = window.location.pathname.replace(/\/+$/, '');
+      if (currentPathClean === '' || currentPathClean === '/') {
+        targetPath = '/';
+      } else {
+        targetPath = `/${locale}/`;
+      }
+    } else {
+      targetPath = getLocalizedPath(currentKeyboard.id, locale);
     }
 
-    // Update canonical link
-    let canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) {
-      canonical.setAttribute('href', `https://keypadking.com${targetPath}`);
+    if (window.location.pathname !== targetPath) {
+      window.history.replaceState({ kbId: isHomepage ? undefined : currentKeyboard.id, locale, isHomepage }, '', targetPath);
     }
+
+    // Update canonical link (Self-referencing for EVERY page)
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonical);
+    }
+    const fullCanonicalUrl = `https://keypadking.com${targetPath}`;
+    canonical.setAttribute('href', fullCanonicalUrl);
 
     // Update OpenGraph URL
     const ogUrl = document.querySelector('meta[property="og:url"]');
     if (ogUrl) {
-      ogUrl.setAttribute('content', `https://keypadking.com${targetPath}`);
+      ogUrl.setAttribute('content', fullCanonicalUrl);
     }
 
     // Update page-specific hreflang alternates (en, fr, es, ar, x-default)
     const activeLocales: SupportedLocale[] = ['en', 'fr', 'es', 'ar'];
     activeLocales.forEach((loc) => {
-      const locPath = getLocalizedPath(currentKeyboard.id, loc);
+      let locPath = '';
+      if (isHomepage) {
+        locPath = `/${loc}/`;
+      } else {
+        locPath = getLocalizedPath(currentKeyboard.id, loc);
+      }
+      
       let link = document.querySelector(`link[rel="alternate"][hreflang="${loc}"]`);
       if (!link) {
         link = document.createElement('link');
@@ -145,18 +170,19 @@ export function App() {
       xDefault.setAttribute('hreflang', 'x-default');
       document.head.appendChild(xDefault);
     }
-    const enPath = getLocalizedPath(currentKeyboard.id, 'en');
-    xDefault.setAttribute('href', `https://keypadking.com${enPath}`);
+    const xDefaultHref = isHomepage ? 'https://keypadking.com/' : `https://keypadking.com${getLocalizedPath(currentKeyboard.id, 'en')}`;
+    xDefault.setAttribute('href', xDefaultHref);
 
     if (currentKeyboard.defaultFontSize) {
       setActiveFontSize(currentKeyboard.defaultFontSize);
     }
-  }, [currentKeyboard, locale]);
+  }, [currentKeyboard, locale, isHomepage]);
 
   // Handle Browser Back / Forward navigation (PopState)
   useEffect(() => {
     const handlePopState = () => {
       const parsed = parseCurrentPath(window.location.pathname, window.location.search);
+      setIsHomepage(Boolean(parsed.isHomepage));
       if (parsed.locale && TRANSLATIONS[parsed.locale]) {
         setLocale(parsed.locale);
       }
@@ -357,6 +383,7 @@ export function App() {
 
   const handleSelectKeyboard = (kb: KeyboardLayout) => {
     localStorage.setItem('lexi_current_kb_manual', 'true');
+    setIsHomepage(false);
     setCurrentKeyboard(kb);
   };
 
@@ -433,12 +460,12 @@ export function App() {
             <h1 className={`text-lg sm:text-2xl font-bold tracking-tight ${
               isDarkMode ? 'text-white' : 'text-slate-900'
             }`}>
-              {getPageSeoMetadata(currentKeyboard, locale).h1}
+              {getPageSeoMetadata(currentKeyboard, locale, isHomepage).h1}
             </h1>
             <p className={`text-xs sm:text-sm mt-0.5 leading-relaxed ${
               isDarkMode ? 'text-slate-400' : 'text-slate-600'
             }`}>
-              {getPageSeoMetadata(currentKeyboard, locale).description}
+              {getPageSeoMetadata(currentKeyboard, locale, isHomepage).description}
             </p>
           </div>
           {currentKeyboard.flag && (
