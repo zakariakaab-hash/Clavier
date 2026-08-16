@@ -1,0 +1,6 @@
+{
+  "name": "KeypadKing - World Multilingual Keyboards & Alphabets",
+  "description": "Modern portal for online multilingual keyboards, transliteration, ancient scripts, IPA phonetics, and world language tools.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
