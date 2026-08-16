@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Search, Globe, Star, Volume2, VolumeX, Sparkles, X, Check, Command } from 'lucide-react';
+import { Search, Globe, Star, Volume2, VolumeX, Sparkles, X, Check, Command, Sun, Moon } from 'lucide-react';
 import { KeyboardLayout } from '../types';
 import { ALL_KEYBOARDS, searchKeyboards, getKeyboardById } from '../data/keyboards';
 import { SupportedLocale, TRANSLATIONS, TranslationDict, detectUserSystemLanguageAndLocation } from '../utils/i18n';
@@ -398,6 +398,21 @@ export const Navbar: React.FC<NavbarProps> = ({
               }`}
             >
               {soundEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
+            </button>
+
+            {/* Bright Mode / Night Mode Theme Toggle */}
+            <button
+              id="theme-toggle-btn"
+              onClick={onToggleTheme}
+              title={isDarkMode ? (t.lightMode || 'Bright Mode') : (t.darkMode || 'Night Mode')}
+              aria-label={isDarkMode ? 'Switch to Bright Mode' : 'Switch to Night Mode'}
+              className={`p-2 rounded-lg border transition-all active:scale-95 cursor-pointer ${
+                isDarkMode 
+                  ? 'text-amber-400 bg-slate-800 border-slate-700 hover:bg-slate-700 hover:text-amber-300' 
+                  : 'text-slate-600 bg-slate-100 border-slate-200 hover:bg-slate-200/80 hover:text-slate-900 shadow-2xs'
+              }`}
+            >
+              {isDarkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
 
           </div>
