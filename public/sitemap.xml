@@ -8,8 +8,6 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/"/>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
   </url>
   <url>
     <loc>https://keypadking.com/en/</loc>
@@ -18,8 +16,6 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/"/>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://keypadking.com/fr/</loc>
@@ -28,8 +24,6 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/"/>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://keypadking.com/es/</loc>
@@ -38,8 +32,6 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/"/>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://keypadking.com/ar/</loc>
@@ -48,8 +40,6 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/"/>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
   </url>
 
   <!-- Arabic Keyboards -->
@@ -60,8 +50,6 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-arabe"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-arabe"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-arabe"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://keypadking.com/fr/clavier-arabe</loc>
@@ -70,8 +58,6 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-arabe"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-arabe"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-arabe"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://keypadking.com/es/teclado-arabe</loc>
@@ -80,8 +66,6 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-arabe"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-arabe"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-arabe"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://keypadking.com/ar/clavier-arabe</loc>
@@ -90,8 +74,6 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-arabe"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-arabe"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-arabe"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
   </url>
 
   <!-- Russian Keyboards -->
@@ -102,8 +84,6 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-russe"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-ruso"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-russian"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://keypadking.com/fr/clavier-russe</loc>
@@ -112,8 +92,6 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-russe"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-ruso"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-russian"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://keypadking.com/es/teclado-ruso</loc>
@@ -122,8 +100,6 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-russe"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-ruso"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-russian"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://keypadking.com/ar/clavier-russian</loc>
@@ -132,8 +108,6 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-russe"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-ruso"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-russian"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
 
   <!-- Urdu Keyboards -->
@@ -144,8 +118,6 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-ourdou"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-urdu"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-urdu"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://keypadking.com/fr/clavier-ourdou</loc>
@@ -154,8 +126,6 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-ourdou"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-urdu"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-urdu"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://keypadking.com/es/teclado-urdu</loc>
@@ -164,8 +134,6 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-ourdou"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-urdu"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-urdu"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://keypadking.com/ar/clavier-urdu</loc>
@@ -174,8 +142,6 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-ourdou"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-urdu"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-urdu"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
 
   <!-- Persian Farsi Keyboards -->
@@ -186,8 +152,6 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-persan-farsi"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-persa-farsi"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-persian"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://keypadking.com/fr/clavier-persan-farsi</loc>
@@ -196,8 +160,6 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-persan-farsi"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-persa-farsi"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-persian"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://keypadking.com/es/teclado-persa-farsi</loc>
@@ -206,8 +168,6 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-persan-farsi"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-persa-farsi"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-persian"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://keypadking.com/ar/clavier-persian</loc>
@@ -216,8 +176,6 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-persan-farsi"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-persa-farsi"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-persian"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
 
   <!-- Polytonic Greek Keyboards -->
@@ -228,8 +186,6 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-grec-polytonique"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-griego-politonico"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-polytonic-greek"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://keypadking.com/fr/clavier-grec-polytonique</loc>
@@ -238,8 +194,6 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-grec-polytonique"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-griego-politonico"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-polytonic-greek"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://keypadking.com/es/teclado-griego-politonico</loc>
@@ -248,8 +202,6 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-grec-polytonique"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-griego-politonico"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-polytonic-greek"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://keypadking.com/ar/clavier-polytonic-greek</loc>
@@ -258,8 +210,6 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-grec-polytonique"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-griego-politonico"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-polytonic-greek"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
 
   <!-- Greek Keyboards -->
@@ -269,8 +219,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/greek-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-grec"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-griego"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://keypadking.com/fr/clavier-grec</loc>
@@ -278,8 +226,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/greek-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-grec"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-griego"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://keypadking.com/es/teclado-griego</loc>
@@ -287,8 +233,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/greek-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-grec"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-griego"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
 
   <!-- Hebrew Keyboards -->
@@ -298,8 +242,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/hebrew-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-hebreu"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-hebreo"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://keypadking.com/fr/clavier-hebreu</loc>
@@ -307,8 +249,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/hebrew-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-hebreu"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-hebreo"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://keypadking.com/es/teclado-hebreo</loc>
@@ -316,8 +256,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/hebrew-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-hebreu"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-hebreo"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
 
   <!-- Hindi Devanagari Keyboards -->
@@ -327,8 +265,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/hindi-devanagari-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-hindi-devanagari"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-hindi-devanagari"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://keypadking.com/fr/clavier-hindi-devanagari</loc>
@@ -336,8 +272,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/hindi-devanagari-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-hindi-devanagari"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-hindi-devanagari"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://keypadking.com/es/teclado-hindi-devanagari</loc>
@@ -345,8 +279,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/hindi-devanagari-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-hindi-devanagari"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-hindi-devanagari"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
   </url>
 
   <!-- Japanese Hiragana Keyboards -->
@@ -356,8 +288,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/japanese-hiragana-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-japonais-hiragana"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-japones-hiragana"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://keypadking.com/fr/clavier-japonais-hiragana</loc>
@@ -365,8 +295,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/japanese-hiragana-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-japonais-hiragana"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-japones-hiragana"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://keypadking.com/es/teclado-japones-hiragana</loc>
@@ -374,8 +302,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/japanese-hiragana-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-japonais-hiragana"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-japones-hiragana"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
   </url>
 
   <!-- Korean Hangul Keyboards -->
@@ -385,8 +311,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/korean-hangul-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-coreen-hangul"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-coreano-hangul"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://keypadking.com/fr/clavier-coreen-hangul</loc>
@@ -394,8 +318,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/korean-hangul-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-coreen-hangul"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-coreano-hangul"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://keypadking.com/es/teclado-coreano-hangul</loc>
@@ -403,8 +325,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/korean-hangul-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-coreen-hangul"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-coreano-hangul"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
   </url>
 
   <!-- IPA Phonetic Keyboards -->
@@ -414,8 +334,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/ipa-phonetic-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-phonetique-ipa"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-fonetico-ipa"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://keypadking.com/fr/clavier-phonetique-ipa</loc>
@@ -423,8 +341,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/ipa-phonetic-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-phonetique-ipa"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-fonetico-ipa"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://keypadking.com/es/teclado-fonetico-ipa</loc>
@@ -432,8 +348,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/ipa-phonetic-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-phonetique-ipa"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-fonetico-ipa"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
   </url>
 
   <!-- Egyptian Hieroglyphs Keyboards -->
@@ -443,8 +357,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/egyptian-hieroglyphs-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-hieroglyphes-egyptiens"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-jeroglificos-egipcios"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://keypadking.com/fr/clavier-hieroglyphes-egyptiens</loc>
@@ -452,8 +364,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/egyptian-hieroglyphs-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-hieroglyphes-egyptiens"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-jeroglificos-egipcios"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://keypadking.com/es/teclado-jeroglificos-egipcios</loc>
@@ -461,8 +371,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/egyptian-hieroglyphs-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-hieroglyphes-egyptiens"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-jeroglificos-egipcios"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
 
   <!-- Tifinagh Berber Keyboards -->
@@ -472,8 +380,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/tifinagh-berber-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-tifinaghe-berbere"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-tifinagh-bereber"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://keypadking.com/fr/clavier-tifinaghe-berbere</loc>
@@ -481,8 +387,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/tifinagh-berber-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-tifinaghe-berbere"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-tifinagh-bereber"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://keypadking.com/es/teclado-tifinagh-bereber</loc>
@@ -490,8 +394,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/tifinagh-berber-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-tifinaghe-berbere"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-tifinagh-bereber"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
 
   <!-- Ukrainian Keyboards -->
@@ -501,8 +403,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/ukrainian-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-ukrainian"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-ukrainian"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://keypadking.com/fr/clavier-ukrainian</loc>
@@ -510,8 +410,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/ukrainian-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-ukrainian"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-ukrainian"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://keypadking.com/es/teclado-ukrainian</loc>
@@ -519,8 +417,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/ukrainian-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-ukrainian"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-ukrainian"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
 
   <!-- Georgian Keyboards -->
@@ -530,8 +426,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/georgian-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-georgien"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-georgiano"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://keypadking.com/fr/clavier-georgien</loc>
@@ -539,8 +433,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/georgian-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-georgien"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-georgiano"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://keypadking.com/es/teclado-georgiano</loc>
@@ -548,8 +440,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/georgian-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-georgien"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-georgiano"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
 
   <!-- Armenian Keyboards -->
@@ -559,8 +449,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/armenian-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-armenien"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-armenio"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://keypadking.com/fr/clavier-armenien</loc>
@@ -568,8 +456,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/armenian-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-armenien"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-armenio"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://keypadking.com/es/teclado-armenio</loc>
@@ -577,8 +463,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/armenian-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-armenien"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-armenio"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
 
   <!-- Amharic Geez Keyboards -->
@@ -588,8 +472,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/amharic-geez-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-amharique-geez"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-amharico-geez"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://keypadking.com/fr/clavier-amharique-geez</loc>
@@ -597,8 +479,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/amharic-geez-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-amharique-geez"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-amharico-geez"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://keypadking.com/es/teclado-amharico-geez</loc>
@@ -606,8 +486,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/amharic-geez-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-amharique-geez"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-amharico-geez"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
 
   <!-- Mathematical & Logic Symbols Keyboards -->
@@ -617,8 +495,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/math-symbols-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-symboles-mathematiques"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-simbolos-matematicos"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://keypadking.com/fr/clavier-symboles-mathematiques</loc>
@@ -626,8 +502,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/math-symbols-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-symboles-mathematiques"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-simbolos-matematicos"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://keypadking.com/es/teclado-simbolos-matematicos</loc>
@@ -635,8 +509,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/math-symbols-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-symboles-mathematiques"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-simbolos-matematicos"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
 
   <!-- Braille Keyboards -->
@@ -646,8 +518,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/braille-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-braille"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-braille"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
   </url>
   <url>
     <loc>https://keypadking.com/fr/clavier-braille</loc>
@@ -655,8 +525,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/braille-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-braille"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-braille"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
   </url>
   <url>
     <loc>https://keypadking.com/es/teclado-braille</loc>
@@ -664,8 +532,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/braille-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-braille"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-braille"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
   </url>
 
   <!-- Runes Futhark Keyboards -->
@@ -675,8 +541,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/runic-futhark-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-runes-futhark"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-runas-futhark"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
   </url>
   <url>
     <loc>https://keypadking.com/fr/clavier-runes-futhark</loc>
@@ -684,8 +548,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/runic-futhark-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-runes-futhark"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-runas-futhark"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
   </url>
   <url>
     <loc>https://keypadking.com/es/teclado-runas-futhark</loc>
@@ -693,7 +555,5 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/runic-futhark-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-runes-futhark"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-runas-futhark"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
   </url>
 </urlset>
