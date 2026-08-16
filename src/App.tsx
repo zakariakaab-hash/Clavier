@@ -840,8 +840,6 @@ export function App() {
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                 <span>Unicode 15.1 Compatible</span>
               </span>
-              <span>•</span>
-              <span>100% Client-side & Fast</span>
             </div>
           </div>
         </div>
