@@ -78,8 +78,8 @@ export function App() {
     
     // Dynamic High-Impact SEO Title & Description
     const isRtl = locale === 'ar' || locale === 'he' || locale === 'fa';
-    const seoTitle = `${currentKeyboard.name} (${currentKeyboard.nativeName}) — Clavier Virtuel en Ligne & Translittération | LexiKey`;
-    const seoDesc = `Tapez en ligne en ${currentKeyboard.name} (${currentKeyboard.nativeName}) avec clavier virtuel Lexilogos, mode phonétique sur clavier d'ordinateur, diacritiques, translittération instantanée et synthèse sonore.`;
+    const seoTitle = `${currentKeyboard.name} (${currentKeyboard.nativeName}) — Clavier Virtuel en Ligne & Translittération | KeypadKing`;
+    const seoDesc = `Tapez en ligne en ${currentKeyboard.name} (${currentKeyboard.nativeName}) avec clavier virtuel KeypadKing, mode phonétique sur clavier d'ordinateur, diacritiques, translittération instantanée et synthèse sonore.`;
     
     document.title = seoTitle;
     

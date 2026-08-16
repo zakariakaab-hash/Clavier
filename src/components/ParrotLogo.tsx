@@ -19,7 +19,7 @@ export const ParrotLogo: React.FC<ParrotLogoProps> = ({
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className="shrink-0 transition-transform group-hover:scale-105"
-        aria-label="LexiKey Logo"
+        aria-label="KeypadKing Logo"
       >
         <defs>
           <linearGradient id="lexiEmeraldGrad" x1="16" y1="8" x2="44" y2="56" gradientUnits="userSpaceOnUse">

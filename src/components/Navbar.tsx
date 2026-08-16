@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Search, Globe, Star, Volume2, VolumeX, Sparkles, X, Check, Command, Sun, Moon } from 'lucide-react';
+import { Search, Globe, Star, Sparkles, X, Check, Command, Sun, Moon } from 'lucide-react';
 import { KeyboardLayout } from '../types';
 import { ALL_KEYBOARDS, searchKeyboards, getKeyboardById } from '../data/keyboards';
 import { SupportedLocale, TRANSLATIONS, TranslationDict, detectUserSystemLanguageAndLocation } from '../utils/i18n';
@@ -385,20 +385,6 @@ export const Navbar: React.FC<NavbarProps> = ({
                 </div>
               )}
             </div>
-
-            {/* Tactile Sound Feedback Toggle */}
-            <button
-              id="sound-toggle-btn"
-              onClick={onToggleSound}
-              title={soundEnabled ? t.soundOn : t.soundMuted}
-              className={`p-2 rounded-lg border transition-colors cursor-pointer ${
-                soundEnabled
-                  ? (isDarkMode ? 'text-emerald-400 bg-emerald-950/40 border-emerald-800' : 'text-emerald-600 bg-emerald-50/80 border-emerald-200')
-                  : (isDarkMode ? 'text-slate-500 bg-slate-800 border-slate-700' : 'text-slate-400 bg-slate-100 border-slate-200')
-              }`}
-            >
-              {soundEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
-            </button>
 
             {/* Bright Mode / Night Mode Theme Toggle */}
             <button

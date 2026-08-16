@@ -82,7 +82,7 @@ export interface TranslationDict {
 
 export function getTranslation(locale?: SupportedLocale | string): Required<TranslationDict> {
   const baseEn: Required<TranslationDict> = {
-    appName: 'LEXIKEY',
+    appName: 'KEYPADKING',
     tagline: 'Universal Multilingual Keyboards & Transliteration',
     searchPlaceholder: 'Search 100+ languages (e.g. Arabic, Russian, Greek, Hindi)...',
     searchModalPlaceholder: 'Type a language (e.g., Arabic, Russian, Greek, Hindi, Runes, IPA)...',
@@ -160,7 +160,7 @@ export function getTranslation(locale?: SupportedLocale | string): Required<Tran
 
 export const TRANSLATIONS: Record<SupportedLocale, TranslationDict> = {
   en: {
-    appName: 'LEXIKEY',
+    appName: 'KEYPADKING',
     tagline: 'Universal Multilingual Keyboards & Transliteration',
     searchPlaceholder: 'Search 100+ languages (e.g. Arabic, Russian, Greek, Hindi)...',
     searchModalPlaceholder: 'Type a language (e.g., Arabic, Russian, Greek, Hindi, Runes, IPA)...',
@@ -203,7 +203,7 @@ export const TRANSLATIONS: Record<SupportedLocale, TranslationDict> = {
     autoDetectedLocation: 'Auto-detected from your system/location'
   },
   fr: {
-    appName: 'LEXIKEY',
+    appName: 'KEYPADKING',
     tagline: 'Claviers Multilingues & Translittération en Ligne',
     searchPlaceholder: 'Rechercher parmi 100+ langues (Arabe, Russe, Grec, Hindi...)...',
     searchModalPlaceholder: 'Tapez une langue (ex: Arabe, Russe, Grec, Hindi, Runes, API)...',
@@ -246,7 +246,7 @@ export const TRANSLATIONS: Record<SupportedLocale, TranslationDict> = {
     autoDetectedLocation: 'Détecté automatiquement selon votre système / région'
   },
   es: {
-    appName: 'LEXIKEY',
+    appName: 'KEYPADKING',
     tagline: 'Teclados Multilingües y Transliteración en Línea',
     searchPlaceholder: 'Buscar más de 100 idiomas (Árabe, Ruso, Griego, Hindi)...',
     searchModalPlaceholder: 'Escriba un idioma (ej: Árabe, Ruso, Griego, Hindi, Runas, AFI)...',
@@ -289,7 +289,7 @@ export const TRANSLATIONS: Record<SupportedLocale, TranslationDict> = {
     autoDetectedLocation: 'Detectado automáticamente según su sistema / ubicación'
   },
   ar: {
-    appName: 'لكسيكي LEXIKEY',
+    appName: 'كيباد كينغ KEYPADKING',
     tagline: 'لوحات مفاتيح متعددة اللغات وترجمة صوتية فورية',
     searchPlaceholder: 'ابحث في أكثر من 100 لغة (مثل العربية، الروسية، اليونانية، الهندية)...',
     searchModalPlaceholder: 'اكتب اسم لغة (مثال: العربية، الروسية، اليونانية، الهيروغليفية)...',
@@ -332,7 +332,7 @@ export const TRANSLATIONS: Record<SupportedLocale, TranslationDict> = {
     autoDetectedLocation: 'تم التعرف تلقائياً من نظامك وموقعك'
   },
   ru: {
-    appName: 'LEXIKEY',
+    appName: 'KEYPADKING',
     tagline: 'Многоязычные онлайн-клавиатуры и транслитерация',
     searchPlaceholder: 'Поиск среди 100+ языков (Арабский, Греческий, Хинди, Руны)...',
     searchModalPlaceholder: 'Введите язык (напр., Русский, Арабский, Греческий, Иероглифы)...',
@@ -375,7 +375,7 @@ export const TRANSLATIONS: Record<SupportedLocale, TranslationDict> = {
     autoDetectedLocation: 'Автоматически определено по системе и региону'
   },
   de: {
-    appName: 'LEXIKEY',
+    appName: 'KEYPADKING',
     tagline: 'Mehrsprachige Online-Tastaturen & Transliteration',
     searchPlaceholder: 'Über 100 Sprachen durchsuchen (Arabisch, Russisch, Griechisch)...',
     searchModalPlaceholder: 'Sprache eingeben (z. B. Arabisch, Russisch, Griechisch, Runen)...',
@@ -418,7 +418,7 @@ export const TRANSLATIONS: Record<SupportedLocale, TranslationDict> = {
     autoDetectedLocation: 'Automatisch anhand von System und Standort ermittelt'
   },
   it: {
-    appName: 'LEXIKEY',
+    appName: 'KEYPADKING',
     tagline: 'Tastiere Multilingue Online e Traslitterazione',
     searchPlaceholder: 'Cerca tra oltre 100 lingue (Arabo, Russo, Greco, Hindi)...',
     searchModalPlaceholder: 'Digita una lingua (es. Arabo, Russo, Greco, Hindi, Rune, API)...',
@@ -461,7 +461,7 @@ export const TRANSLATIONS: Record<SupportedLocale, TranslationDict> = {
     autoDetectedLocation: 'Rilevato automaticamente in base al sistema / posizione'
   },
   pt: {
-    appName: 'LEXIKEY',
+    appName: 'KEYPADKING',
     tagline: 'Teclados Multilíngues Online & Transliteração',
     searchPlaceholder: 'Pesquise mais de 100 idiomas (Árabe, Russo, Grego, Hindi)...',
     searchModalPlaceholder: 'Digite um idioma (ex: Árabe, Russo, Grego, Hindi, Runas)...',
@@ -504,7 +504,7 @@ export const TRANSLATIONS: Record<SupportedLocale, TranslationDict> = {
     autoDetectedLocation: 'Detectado automaticamente do seu sistema / localização'
   },
   hi: {
-    appName: 'लेक्सिकी LEXIKEY',
+    appName: 'कीपैड किंग KEYPADKING',
     tagline: 'बहुभाषी ऑनलाइन कीबोर्ड और लिप्यंतरण (Transliteration)',
     searchPlaceholder: '100+ भाषाओं में खोजें (उदा. हिंदी, संस्कृत, अरबी, रूसी, यूनानी)...',
     searchModalPlaceholder: 'भाषा का नाम लिखें (उदा. हिन्दी, देवनागरी, अरबी, ग्रीक)...',
@@ -547,7 +547,7 @@ export const TRANSLATIONS: Record<SupportedLocale, TranslationDict> = {
     autoDetectedLocation: 'आपके सिस्टम और स्थान से स्वचालित रूप से पहचाना गया'
   },
   zh: {
-    appName: 'LEXIKEY 多语键盘',
+    appName: 'KEYPADKING 多语键盘',
     tagline: '全球多语言在线虚拟键盘与拼音音译系统',
     searchPlaceholder: '搜索 100+ 种世界语言（如阿拉伯语、俄语、希腊语、梵文等）...',
     searchModalPlaceholder: '输入语言名称（例如阿拉伯语、俄语、希腊语、印地语、象形文字）...',
@@ -590,7 +590,7 @@ export const TRANSLATIONS: Record<SupportedLocale, TranslationDict> = {
     autoDetectedLocation: '根据您的系统偏好与时区/位置自动适配'
   },
   ja: {
-    appName: 'LEXIKEY 多言語キーボード',
+    appName: 'KEYPADKING 多言語キーボード',
     tagline: '世界100言語対応のオンライン仮想キーボード＆リアルタイム翻字',
     searchPlaceholder: '100以上の言語を検索（アラビア語、ロシア語、ギリシャ語、ヒンディー語など）...',
     searchModalPlaceholder: '言語名を入力（例: アラビア語、ロシア語、ヒエログリフ、サンスクリット）...',
@@ -633,7 +633,7 @@ export const TRANSLATIONS: Record<SupportedLocale, TranslationDict> = {
     autoDetectedLocation: 'ブラウザ設定および地域情報から自動検出'
   },
   ko: {
-    appName: 'LEXIKEY 다국어 키보드',
+    appName: 'KEYPADKING 다국어 키보드',
     tagline: '전 세계 100개 언어 온라인 가상 키보드 & 실시간 음역',
     searchPlaceholder: '100개 이상의 언어 검색 (아랍어, 러시아어, 그리스어, 힌디어 등)...',
     searchModalPlaceholder: '언어 입력 (예: 아랍어, 러시아어, 그리스어, 상형문자)...',
@@ -676,7 +676,7 @@ export const TRANSLATIONS: Record<SupportedLocale, TranslationDict> = {
     autoDetectedLocation: '시스템 환경 및 위치를 기반으로 자동 설정되었습니다'
   },
   el: {
-    appName: 'LEXIKEY',
+    appName: 'KEYPADKING',
     tagline: 'Πολυγλωσσικά Πληκτρολόγια & Μεταγραμματισμός',
     searchPlaceholder: 'Αναζήτηση σε 100+ γλώσσες (π.χ. Αραβικά, Ρωσικά, Ελληνικά)...',
     searchModalPlaceholder: 'Πληκτρολογήστε γλώσσα (π.χ. Αραβικά, Ρωσικά, Αρχαία Ελληνικά)...',
@@ -719,7 +719,7 @@ export const TRANSLATIONS: Record<SupportedLocale, TranslationDict> = {
     autoDetectedLocation: 'Αυτόματος εντοπισμός από το σύστημα και την τοποθεσία σας'
   },
   he: {
-    appName: 'LEXIKEY מקלדות',
+    appName: 'KEYPADKING מקלדות',
     tagline: 'מקלדות וירטואליות רב-לשוניות ותעתיק פונטי אונליין',
     searchPlaceholder: 'חיפוש בלמעלה מ-100 שפות (ערבית, רוסית, יוונית, הינדי)...',
     searchModalPlaceholder: 'הקלד שם שפה (לדוגמה: עברית, ערבית, רוסית, כתב חרטומים)...',
@@ -762,7 +762,7 @@ export const TRANSLATIONS: Record<SupportedLocale, TranslationDict> = {
     autoDetectedLocation: 'זוהה אוטומטית לפי הגדרות המערכת והאזור'
   },
   tr: {
-    appName: 'LEXIKEY',
+    appName: 'KEYPADKING',
     tagline: 'Çok Dilli Çevrimiçi Klavyeler & Harf Çevirisi',
     searchPlaceholder: '100+ dilde arama yapın (Arapça, Rusça, Yunanca, Hintçe)...',
     searchModalPlaceholder: 'Bir dil yazın (örn. Arapça, Rusça, Yunanca, Göktürkçe)...',
@@ -805,7 +805,7 @@ export const TRANSLATIONS: Record<SupportedLocale, TranslationDict> = {
     autoDetectedLocation: 'Sisteminiz ve bölgenizden otomatik olarak algılandı'
   },
   pl: {
-    appName: 'LEXIKEY',
+    appName: 'KEYPADKING',
     tagline: 'Wielojęzyczne Klawiatury Online i Transliteracja',
     searchPlaceholder: 'Szukaj w ponad 100 językach (Arabski, Rosyjski, Grecki)...',
     searchModalPlaceholder: 'Wpisz język (np. Arabski, Rosyjski, Grecki, Runy)...',
@@ -848,7 +848,7 @@ export const TRANSLATIONS: Record<SupportedLocale, TranslationDict> = {
     autoDetectedLocation: 'Wykryto automatycznie na podstawie systemu i lokalizacji'
   },
   uk: {
-    appName: 'LEXIKEY',
+    appName: 'KEYPADKING',
     tagline: 'Багатомовні онлайн-клавіатури та транслітерація',
     searchPlaceholder: 'Пошук серед 100+ мов (Арабська, Грецька, Гінді, Руни)...',
     searchModalPlaceholder: 'Введіть мову (наприклад, Українська, Арабська, Грецька)...',
@@ -891,7 +891,7 @@ export const TRANSLATIONS: Record<SupportedLocale, TranslationDict> = {
     autoDetectedLocation: 'Визначено автоматично за системою та локацією'
   },
   vi: {
-    appName: 'LEXIKEY',
+    appName: 'KEYPADKING',
     tagline: 'Bàn phím đa ngôn ngữ trực tuyến & Chuyển tự',
     searchPlaceholder: 'Tìm kiếm hơn 100 ngôn ngữ (tiếng Ả Rập, Nga, Hy Lạp, Hindi)...',
     searchModalPlaceholder: 'Nhập tên ngôn ngữ (ví dụ: tiếng Việt, Ả Rập, Nga, Hy Lạp)...',
@@ -934,7 +934,7 @@ export const TRANSLATIONS: Record<SupportedLocale, TranslationDict> = {
     autoDetectedLocation: 'Tự động nhận diện theo hệ thống và vị trí của bạn'
   },
   nl: {
-    appName: 'LEXIKEY',
+    appName: 'KEYPADKING',
     tagline: 'Meertalige Online Toetsenborden & Transliteratie',
     searchPlaceholder: 'Zoek in meer dan 100 talen (Arabisch, Russisch, Grieks, Hindi)...',
     searchModalPlaceholder: 'Typ een taal (bijv. Arabisch, Russisch, Grieks, Runen)...',
@@ -977,7 +977,7 @@ export const TRANSLATIONS: Record<SupportedLocale, TranslationDict> = {
     autoDetectedLocation: 'Automatisch gedetecteerd via uw systeem en regio'
   },
   sv: {
-    appName: 'LEXIKEY',
+    appName: 'KEYPADKING',
     tagline: 'Flerspråkiga Tangentbord Online & Translitterering',
     searchPlaceholder: 'Sök bland över 100 språk (Arabiska, Ryska, Grekiska, Hindi)...',
     searchModalPlaceholder: 'Skriv ett språk (t.ex. Arabiska, Ryska, Grekiska, Runor)...',
@@ -1020,7 +1020,7 @@ export const TRANSLATIONS: Record<SupportedLocale, TranslationDict> = {
     autoDetectedLocation: 'Identifierat automatiskt från ditt system och region'
   },
   fa: {
-    appName: 'لکسیکی LEXIKEY',
+    appName: 'کی‌پد کینگ KEYPADKING',
     tagline: 'صفحه کلیدهای چندزبانه و نویسه‌گردانی آنلاین',
     searchPlaceholder: 'جستجو در بیش از ۱۰۰ زبان (عربی، روسی، یونانی، هندی)...',
     searchModalPlaceholder: 'نام زبان را بنویسید (مثال: فارسی، عربی، روسی، یونانی)...',

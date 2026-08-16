@@ -148,7 +148,7 @@ Respond ONLY in JSON.`;
   }
 
   app.listen(PORT, '0.0.0.0', () => {
-    console.log(`LexiKey server running on http://0.0.0.0:${PORT}`);
+    console.log(`KeypadKing server running on http://0.0.0.0:${PORT}`);
   });
 }
 

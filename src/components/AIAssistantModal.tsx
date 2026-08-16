@@ -100,7 +100,7 @@ export const AIAssistantModal: React.FC<AIAssistantModalProps> = ({
             <ParrotLogo size={34} />
             <div>
               <h3 className="font-bold text-base flex items-center gap-2">
-                LexiKey AI Linguistic Engine
+                KeypadKing AI Linguistic Engine
                 <span className="text-[10px] font-semibold bg-emerald-500/30 text-emerald-200 border border-emerald-400/30 px-2 py-0.5 rounded-full">
                   Gemini Flash
                 </span>
