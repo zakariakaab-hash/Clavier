@@ -116,7 +116,7 @@ export function App() {
     // Update canonical link
     let canonical = document.querySelector('link[rel="canonical"]');
     if (canonical) {
-      canonical.setAttribute('href', `https://keypadking.app${targetPath}`);
+      canonical.setAttribute('href', `https://keypadking.com${targetPath}`);
     }
 
     if (currentKeyboard.defaultFontSize) {
@@ -526,8 +526,31 @@ export function App() {
 
           </div>
 
-          <div className="pt-6 flex flex-wrap items-center justify-between gap-4 text-xs text-slate-400">
+          <div className="pt-6 border-t border-slate-800 flex flex-wrap items-center justify-between gap-4 text-xs text-slate-400">
             <p>© {new Date().getFullYear()} {t.appName} • {t.tagline}</p>
+            
+            {/* Quick Locale Switcher in Footer */}
+            <div className="flex items-center gap-1.5 flex-wrap">
+              <Globe className="w-3.5 h-3.5 text-emerald-400" />
+              <span className="text-slate-400 mr-1">{t.switchUiLanguage}:</span>
+              {[
+                { code: 'en' as const, label: '🇬🇧 English' },
+                { code: 'fr' as const, label: '🇫🇷 Français' },
+                { code: 'es' as const, label: '🇪🇸 Español' },
+                { code: 'ar' as const, label: '🇸🇦 العربية' },
+              ].map(item => (
+                <button
+                  key={`footer-lang-${item.code}`}
+                  onClick={() => handleChangeLocale(item.code)}
+                  className={`px-2 py-0.5 rounded text-xs transition-colors cursor-pointer touch-manipulation active:scale-95 ${
+                    locale === item.code ? 'bg-emerald-600 text-white font-bold' : 'text-slate-400 hover:text-white bg-slate-800 hover:bg-slate-700'
+                  }`}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+
             <div className="flex items-center gap-4">
               <span className="flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>

@@ -46,13 +46,15 @@ export const Navbar: React.FC<NavbarProps> = ({
   const [favoritesOpen, setFavoritesOpen] = useState(false);
   const [langMenuOpen, setLangMenuOpen] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
+  const langMenuRef = useRef<HTMLDivElement>(null);
+  const favoritesRef = useRef<HTMLDivElement>(null);
 
   const t: TranslationDict = TRANSLATIONS[currentLocale] || TRANSLATIONS.en;
   const isDarkMode = theme === 'dark';
 
   const searchResults = searchKeyboards(searchQuery);
 
-  // Keyboard shortcut Ctrl+K to open search
+  // Close dropdowns on outside click or Escape key
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
@@ -66,14 +68,29 @@ export const Navbar: React.FC<NavbarProps> = ({
         setLangMenuOpen(false);
       }
     };
+
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as Node;
+      if (langMenuRef.current && !langMenuRef.current.contains(target)) {
+        setLangMenuOpen(false);
+      }
+      if (favoritesRef.current && !favoritesRef.current.contains(target)) {
+        setFavoritesOpen(false);
+      }
+    };
+
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
   }, []);
 
   const favoriteKeyboards = ALL_KEYBOARDS.filter(k => favorites.includes(k.id));
 
   return (
-    <header className={`sticky top-0 z-40 shrink-0 border-b transition-colors w-full overflow-hidden ${
+    <header className={`sticky top-0 z-40 shrink-0 border-b transition-colors w-full ${
       isDarkMode ? 'bg-slate-900 border-slate-800 text-white' : 'bg-white border-slate-200 text-slate-900 shadow-xs'
     }`}>
       <div className="max-w-7xl mx-auto px-2.5 sm:px-6 lg:px-8">
@@ -211,7 +228,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="flex items-center gap-1 sm:gap-2 shrink-0">
 
             {/* Language & Geolocation Detection Menu */}
-            <div className="relative">
+            <div className="relative" ref={langMenuRef}>
               <button
                 id="language-switcher-btn"
                 onClick={() => {
@@ -277,6 +294,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                       return (
                         <button
                           key={loc}
+                          id={`lang-select-${loc}`}
                           onClick={() => {
                             onChangeLocale(loc);
                             setLangMenuOpen(false);
@@ -302,7 +320,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
 
             {/* Favorites Dropdown */}
-            <div className="relative">
+            <div className="relative" ref={favoritesRef}>
               <button
                 id="favorites-menu-btn"
                 onClick={() => {
