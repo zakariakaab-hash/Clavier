@@ -1,71 +1,62 @@
 import { SupportedLocale } from './i18n';
 import { ALL_KEYBOARDS } from '../data/keyboards';
 
-// Standard slug aliases for popular keyboards across major languages
+// Standard slug aliases for popular keyboards across the 4 supported website languages (en, fr, es, ar)
 export const KEYBOARD_SLUGS_MAP: Record<string, Record<string, string>> = {
   arabic: {
     en: 'arabic-keyboard',
     fr: 'clavier-arabe',
     es: 'teclado-arabe',
-    ar: 'clavier-arabe',
-    de: 'arabische-tastatur',
-    it: 'tastiera-araba',
-    pt: 'teclado-arabe',
-    ru: 'arabskaya-klaviatura'
+    ar: 'clavier-arabe'
   },
   russian: {
     en: 'russian-keyboard',
     fr: 'clavier-russe',
     es: 'teclado-ruso',
-    ru: 'russkaya-klaviatura',
-    de: 'russische-tastatur'
+    ar: 'clavier-russian'
   },
   'polytonic-greek': {
     en: 'polytonic-greek-keyboard',
     fr: 'clavier-grec-polytonique',
     es: 'teclado-griego-politonico',
-    el: 'elliniko-pliktrologio'
+    ar: 'clavier-polytonic-greek'
   },
   greek: {
     en: 'greek-keyboard',
     fr: 'clavier-grec',
-    es: 'teclado-griego',
-    el: 'elliniko-pliktrologio'
+    es: 'teclado-griego'
   },
   hebrew: {
     en: 'hebrew-keyboard',
     fr: 'clavier-hebreu',
-    es: 'teclado-hebreo',
-    he: 'mikledet-ivrit'
+    es: 'teclado-hebreo'
   },
   persian: {
     en: 'persian-farsi-keyboard',
     fr: 'clavier-persan-farsi',
     es: 'teclado-persa-farsi',
-    fa: 'keybord-farsi'
+    ar: 'clavier-persian'
   },
   urdu: {
     en: 'urdu-keyboard',
     fr: 'clavier-ourdou',
-    es: 'teclado-urdu'
+    es: 'teclado-urdu',
+    ar: 'clavier-urdu'
   },
   hindi: {
     en: 'hindi-devanagari-keyboard',
     fr: 'clavier-hindi-devanagari',
-    es: 'teclado-hindi-devanagari',
-    hi: 'hindi-keyboard'
+    es: 'teclado-hindi-devanagari'
   },
   'japanese-hiragana': {
     en: 'japanese-hiragana-keyboard',
     fr: 'clavier-japonais-hiragana',
-    es: 'teclado-japones-hiragana',
-    ja: 'japanese-keyboard'
+    es: 'teclado-japones-hiragana'
   },
   'korean-hangul': {
     en: 'korean-hangul-keyboard',
     fr: 'clavier-coreen-hangul',
-    es: 'teclado-coreano-hangul',
-    ko: 'korean-keyboard'
+    es: 'teclado-coreano-hangul'
   },
   'ipa-phonetic': {
     en: 'ipa-phonetic-keyboard',
@@ -82,7 +73,7 @@ export const KEYBOARD_SLUGS_MAP: Record<string, Record<string, string>> = {
     fr: 'clavier-tifinaghe-berbere',
     es: 'teclado-tifinagh-bereber'
   },
-  'amharic-geez': {
+  amharic: {
     en: 'amharic-geez-keyboard',
     fr: 'clavier-amharique-geez',
     es: 'teclado-amharico-geez'

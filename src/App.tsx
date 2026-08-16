@@ -6,7 +6,7 @@ import { KeyboardCatalog } from './components/KeyboardCatalog';
 import { FAQSection } from './components/FAQSection';
 import { ParrotLogo } from './components/ParrotLogo';
 import { KeyboardLayout } from './types';
-import { ALL_KEYBOARDS, getKeyboardById } from './data/keyboards';
+import { ALL_KEYBOARDS, POPULAR_KEYBOARDS, getKeyboardById } from './data/keyboards';
 import { transliterateText } from './utils/transliterate';
 import { processPhysicalKeyStroke } from './utils/keyboardEngine';
 import { playKeyClickSound, playSpacebarSound } from './utils/audio';
@@ -139,10 +139,14 @@ export function App() {
     });
 
     let xDefault = document.querySelector('link[rel="alternate"][hreflang="x-default"]');
-    if (xDefault) {
-      const enPath = getLocalizedPath(currentKeyboard.id, 'en');
-      xDefault.setAttribute('href', `https://keypadking.com${enPath}`);
+    if (!xDefault) {
+      xDefault = document.createElement('link');
+      xDefault.setAttribute('rel', 'alternate');
+      xDefault.setAttribute('hreflang', 'x-default');
+      document.head.appendChild(xDefault);
     }
+    const enPath = getLocalizedPath(currentKeyboard.id, 'en');
+    xDefault.setAttribute('href', `https://keypadking.com${enPath}`);
 
     if (currentKeyboard.defaultFontSize) {
       setActiveFontSize(currentKeyboard.defaultFontSize);
@@ -384,6 +388,41 @@ export function App() {
         theme={theme}
         onToggleTheme={handleToggleTheme}
       />
+
+      {/* Popular Keyboards Navbar (Desktop / Web version only) */}
+      <div className={`hidden md:block border-b transition-colors w-full overflow-hidden ${
+        isDarkMode ? 'bg-slate-900/60 border-slate-800' : 'bg-white border-slate-200 shadow-2xs'
+      }`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
+          <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-touch scrollbar-none">
+            <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider pr-1 shrink-0">
+              {t.popularKeyboards} :
+            </span>
+            {POPULAR_KEYBOARDS.slice(0, 16).map(kb => {
+              const localizedHref = getLocalizedPath(kb.id, locale);
+              return (
+                <a
+                  key={`quick-${kb.id}`}
+                  id={`quick-kb-${kb.id}`}
+                  href={localizedHref}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleSelectKeyboard(kb);
+                  }}
+                  className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all cursor-pointer border touch-manipulation active:scale-95 ${
+                    kb.id === currentKeyboard.id
+                      ? 'bg-emerald-600 text-white font-bold border-emerald-600 shadow-xs'
+                      : (isDarkMode ? 'bg-slate-800 hover:bg-slate-700 text-slate-300 border-slate-700 active:bg-slate-650' : 'bg-white hover:bg-slate-50 text-slate-700 border-slate-200 shadow-2xs active:bg-slate-100')
+                  }`}
+                >
+                  <span>{kb.flag || '🌐'}</span>
+                  <span>{kb.name.split(' ')[0]}</span>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      </div>
 
       {/* Main App Workspace */}
       <main className="flex-1 max-w-6xl w-full mx-auto px-2.5 sm:px-6 lg:px-8 py-3 sm:py-4 space-y-3 sm:space-y-4">
