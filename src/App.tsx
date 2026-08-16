@@ -640,14 +640,10 @@ export function App() {
               <p className="text-xs text-slate-400 leading-relaxed">
                 {t.footerDesc || t.tagline}
               </p>
-              <div className="pt-2 flex flex-col gap-2 items-start">
+              <div className="pt-2">
                 <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[11px] font-semibold">
                   <ShieldCheck className="w-3.5 h-3.5" />
                   <span>100% Client-Side Privacy</span>
-                </span>
-                <span className="flex items-center gap-1.5 text-[11px] text-slate-400 pl-0.5">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                  <span>Unicode 15.1 Compatible</span>
                 </span>
               </div>
             </div>

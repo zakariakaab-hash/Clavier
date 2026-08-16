@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { 
   Copy, Check, Volume2, Download, Trash2, RotateCcw, 
-  ZoomIn, ZoomOut, Search, ExternalLink, Globe, BookOpen, 
+  ZoomIn, ZoomOut, Search, ExternalLink, Globe, 
   Sparkles, FileText, Share2, Maximize2, Minimize2,
   Sun, Moon, Space, HelpCircle, Keyboard as KeyboardIcon, CheckCircle2
 } from 'lucide-react';
@@ -50,7 +50,6 @@ export const EditorPad: React.FC<EditorPadProps> = ({
   const [history, setHistory] = useState<string[]>([text]);
   const [historyIndex, setHistoryIndex] = useState(0);
   const [isExpanded, setIsExpanded] = useState(false);
-  const [showDictMenu, setShowDictMenu] = useState(false);
 
   const t = getTranslation(currentLocale);
   const isDarkMode = theme === 'dark';
@@ -190,19 +189,7 @@ export const EditorPad: React.FC<EditorPadProps> = ({
   const wordCount = text.trim() ? text.trim().split(/\s+/).length : 0;
   const byteSize = new Blob([text]).size;
 
-  // External Dictionary Queries
-  const getWikipediaUrl = () => {
-    const lang = currentKeyboard.externalLinks?.wikipediaLang || currentKeyboard.isoCode || 'en';
-    const query = encodeURIComponent(text.trim() || currentKeyboard.name);
-    return `https://${lang}.wikipedia.org/wiki/Special:Search?search=${query}`;
-  };
-
-  const getWiktionaryUrl = () => {
-    const lang = currentKeyboard.externalLinks?.wiktionaryLang || currentKeyboard.isoCode || 'en';
-    const query = encodeURIComponent(text.trim() || currentKeyboard.name);
-    return `https://${lang}.wiktionary.org/wiki/Special:Search?search=${query}`;
-  };
-
+  // External Search & Translate Queries
   const getGoogleTranslateUrl = () => {
     const query = encodeURIComponent(text.trim());
     const srcLang = currentKeyboard.isoCode || 'auto';
@@ -238,9 +225,15 @@ export const EditorPad: React.FC<EditorPadProps> = ({
                 {currentKeyboard.nativeName}
               </span>
             </div>
-            <span className="text-[10px] sm:text-[11px] text-slate-400 font-medium">
-              {currentKeyboard.direction === 'rtl' ? 'RTL' : 'LTR'} • ISO: {currentKeyboard.isoCode || 'N/A'}
-            </span>
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="text-[10px] sm:text-[11px] text-slate-400 font-medium">
+                {currentKeyboard.direction === 'rtl' ? 'RTL' : 'LTR'} • ISO: {currentKeyboard.isoCode || 'N/A'}
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-[10px] font-semibold">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span>Unicode 15.1 Compatible</span>
+              </span>
+            </div>
           </div>
         </div>
 
@@ -397,71 +390,35 @@ export const EditorPad: React.FC<EditorPadProps> = ({
               <span>{t.saveText || 'Save'}</span>
             </button>
 
-            {/* Dictionnaire Dropdown */}
-            <div className="relative">
-              <button
-                onClick={() => setShowDictMenu(!showDictMenu)}
-                className={`flex items-center gap-1.5 text-xs font-semibold px-2.5 sm:px-3 py-2 rounded-lg border transition-all cursor-pointer shadow-xs active:scale-95 touch-manipulation min-h-[38px] ${
-                  showDictMenu
-                    ? 'bg-emerald-50 text-emerald-700 border-emerald-300 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border-emerald-700'
-                    : (isDarkMode ? 'bg-slate-800 hover:bg-slate-700 text-white border-slate-700' : 'bg-white hover:bg-slate-50 text-slate-700 border-slate-300')
-                }`}
-              >
-                <BookOpen className="w-3.5 h-3.5 text-emerald-500" />
-                <span>{t.dictionary || 'Dictionary'}</span>
-              </button>
+            {/* Google Translate */}
+            <a
+              href={getGoogleTranslateUrl()}
+              target="_blank"
+              rel="noreferrer"
+              title="Translate with Google Translate"
+              className={`flex items-center gap-1.5 text-xs font-semibold px-2.5 sm:px-3 py-2 rounded-lg border transition-all cursor-pointer shadow-xs active:scale-95 touch-manipulation min-h-[38px] ${
+                isDarkMode ? 'bg-slate-800 hover:bg-slate-700 text-white border-slate-700' : 'bg-white hover:bg-slate-50 text-slate-700 border-slate-300'
+              }`}
+            >
+              <Globe className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
+              <span>{currentLocale === 'fr' ? 'Traduire' : currentLocale === 'ar' ? 'ترجمة' : currentLocale === 'es' ? 'Traducir' : 'Translate'}</span>
+              <ExternalLink className="w-2.5 h-2.5 opacity-50 ml-0.5" />
+            </a>
 
-              {showDictMenu && (
-                <div className={`absolute bottom-full left-0 mb-1.5 w-60 rounded-xl border shadow-2xl p-1.5 z-50 animate-in fade-in zoom-in-95 duration-100 ${
-                  isDarkMode ? 'bg-slate-900 border-slate-700 text-slate-100 divide-y divide-slate-800' : 'bg-white border-slate-200 text-slate-800 divide-y divide-slate-100'
-                }`}>
-                  <div className="py-1">
-                    <a
-                      href={getGoogleSearchUrl()}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="flex items-center gap-2.5 px-3 py-2 text-xs font-medium rounded-lg hover:bg-emerald-500/10 hover:text-emerald-500 transition-colors"
-                    >
-                      <Search className="w-3.5 h-3.5 text-blue-500 shrink-0" />
-                      <span className="font-semibold">Google Search</span>
-                      <ExternalLink className="w-3 h-3 ml-auto opacity-50" />
-                    </a>
-                    <a
-                      href={getGoogleTranslateUrl()}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="flex items-center gap-2.5 px-3 py-2 text-xs font-medium rounded-lg hover:bg-emerald-500/10 hover:text-emerald-500 transition-colors"
-                    >
-                      <Globe className="w-3.5 h-3.5 text-indigo-500 shrink-0" />
-                      <span>Google Translate</span>
-                      <ExternalLink className="w-3 h-3 ml-auto opacity-50" />
-                    </a>
-                  </div>
-                  <div className="py-1">
-                    <a
-                      href={getWiktionaryUrl()}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="flex items-center gap-2.5 px-3 py-2 text-xs font-medium rounded-lg hover:bg-emerald-500/10 hover:text-emerald-500 transition-colors"
-                    >
-                      <BookOpen className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
-                      <span>Wiktionary</span>
-                      <ExternalLink className="w-3 h-3 ml-auto opacity-50" />
-                    </a>
-                    <a
-                      href={getWikipediaUrl()}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="flex items-center gap-2.5 px-3 py-2 text-xs font-medium rounded-lg hover:bg-emerald-500/10 hover:text-emerald-500 transition-colors"
-                    >
-                      <FileText className="w-3.5 h-3.5 text-amber-500 shrink-0" />
-                      <span>Wikipedia</span>
-                      <ExternalLink className="w-3 h-3 ml-auto opacity-50" />
-                    </a>
-                  </div>
-                </div>
-              )}
-            </div>
+            {/* Google Search */}
+            <a
+              href={getGoogleSearchUrl()}
+              target="_blank"
+              rel="noreferrer"
+              title="Search with Google"
+              className={`flex items-center gap-1.5 text-xs font-semibold px-2.5 sm:px-3 py-2 rounded-lg border transition-all cursor-pointer shadow-xs active:scale-95 touch-manipulation min-h-[38px] ${
+                isDarkMode ? 'bg-slate-800 hover:bg-slate-700 text-white border-slate-700' : 'bg-white hover:bg-slate-50 text-slate-700 border-slate-300'
+              }`}
+            >
+              <Search className="w-3.5 h-3.5 text-blue-500 shrink-0" />
+              <span>{currentLocale === 'fr' ? 'Recherche Google' : currentLocale === 'ar' ? 'بحث Google' : currentLocale === 'es' ? 'Buscar en Google' : 'Google Search'}</span>
+              <ExternalLink className="w-2.5 h-2.5 opacity-50 ml-0.5" />
+            </a>
 
             {/* Espace (Space) */}
             <button
