@@ -6,12 +6,13 @@ import { KeyboardCatalog } from './components/KeyboardCatalog';
 import { FAQSection } from './components/FAQSection';
 import { ParrotLogo } from './components/ParrotLogo';
 import { KeyboardLayout } from './types';
-import { ALL_KEYBOARDS, POPULAR_KEYBOARDS, getKeyboardById } from './data/keyboards';
+import { ALL_KEYBOARDS, getKeyboardById } from './data/keyboards';
 import { transliterateText } from './utils/transliterate';
 import { processPhysicalKeyStroke } from './utils/keyboardEngine';
 import { playKeyClickSound, playSpacebarSound } from './utils/audio';
 import { SupportedLocale, TRANSLATIONS, getTranslation, detectUserSystemLanguageAndLocation } from './utils/i18n';
 import { getLocalizedPath, parseCurrentPath } from './utils/routes';
+import { getPageSeoMetadata } from './utils/seo';
 import { Globe, Star, Layers, ShieldCheck, Heart, BookOpen } from 'lucide-react';
 
 export function App() {
@@ -79,12 +80,10 @@ export function App() {
   useEffect(() => {
     localStorage.setItem('lexi_current_kb', currentKeyboard.id);
     
-    // Dynamic High-Impact SEO Title & Description
-    const isRtl = locale === 'ar' || locale === 'he' || locale === 'fa';
-    const seoTitle = `${currentKeyboard.name} (${currentKeyboard.nativeName}) — Clavier Virtuel en Ligne & Translittération | KeypadKing`;
-    const seoDesc = `Tapez en ligne en ${currentKeyboard.name} (${currentKeyboard.nativeName}) avec clavier virtuel KeypadKing, mode phonétique sur clavier d'ordinateur, diacritiques, translittération instantanée et synthèse sonore.`;
+    // Accurate Dynamic SEO Title, Description & H1
+    const seoMeta = getPageSeoMetadata(currentKeyboard, locale);
     
-    document.title = seoTitle;
+    document.title = seoMeta.title;
     
     // Update Meta Description
     let metaDesc = document.querySelector('meta[name="description"]');
@@ -93,19 +92,19 @@ export function App() {
       metaDesc.setAttribute('name', 'description');
       document.head.appendChild(metaDesc);
     }
-    metaDesc.setAttribute('content', seoDesc);
+    metaDesc.setAttribute('content', seoMeta.description);
 
     // Update OpenGraph
     const ogTitle = document.querySelector('meta[property="og:title"]');
-    if (ogTitle) ogTitle.setAttribute('content', seoTitle);
+    if (ogTitle) ogTitle.setAttribute('content', seoMeta.title);
     const ogDesc = document.querySelector('meta[property="og:description"]');
-    if (ogDesc) ogDesc.setAttribute('content', seoDesc);
+    if (ogDesc) ogDesc.setAttribute('content', seoMeta.description);
 
     // Update Twitter Tags
     const twTitle = document.querySelector('meta[name="twitter:title"]');
-    if (twTitle) twTitle.setAttribute('content', seoTitle);
+    if (twTitle) twTitle.setAttribute('content', seoMeta.title);
     const twDesc = document.querySelector('meta[name="twitter:description"]');
-    if (twDesc) twDesc.setAttribute('content', seoDesc);
+    if (twDesc) twDesc.setAttribute('content', seoMeta.description);
 
     // Clean SEO URL Path Sync (e.g. /fr/clavier-arabe, /en/arabic-keyboard, /ar/clavier-arabe)
     const targetPath = getLocalizedPath(currentKeyboard.id, locale);
@@ -117,6 +116,32 @@ export function App() {
     let canonical = document.querySelector('link[rel="canonical"]');
     if (canonical) {
       canonical.setAttribute('href', `https://keypadking.com${targetPath}`);
+    }
+
+    // Update OpenGraph URL
+    const ogUrl = document.querySelector('meta[property="og:url"]');
+    if (ogUrl) {
+      ogUrl.setAttribute('content', `https://keypadking.com${targetPath}`);
+    }
+
+    // Update page-specific hreflang alternates (en, fr, es, ar, x-default)
+    const activeLocales: SupportedLocale[] = ['en', 'fr', 'es', 'ar'];
+    activeLocales.forEach((loc) => {
+      const locPath = getLocalizedPath(currentKeyboard.id, loc);
+      let link = document.querySelector(`link[rel="alternate"][hreflang="${loc}"]`);
+      if (!link) {
+        link = document.createElement('link');
+        link.setAttribute('rel', 'alternate');
+        link.setAttribute('hreflang', loc);
+        document.head.appendChild(link);
+      }
+      link.setAttribute('href', `https://keypadking.com${locPath}`);
+    });
+
+    let xDefault = document.querySelector('link[rel="alternate"][hreflang="x-default"]');
+    if (xDefault) {
+      const enPath = getLocalizedPath(currentKeyboard.id, 'en');
+      xDefault.setAttribute('href', `https://keypadking.com${enPath}`);
     }
 
     if (currentKeyboard.defaultFontSize) {
@@ -360,44 +385,30 @@ export function App() {
         onToggleTheme={handleToggleTheme}
       />
 
-      {/* Sleek Quick Popular Keyboards Strip */}
-      <div className={`border-b transition-colors w-full overflow-hidden ${
-        isDarkMode ? 'bg-slate-900/60 border-slate-800' : 'bg-white border-slate-200 shadow-2xs'
-      }`}>
-        <div className="max-w-7xl mx-auto px-2.5 sm:px-6 lg:px-8 py-2">
-          <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-touch scrollbar-none">
-            <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider pr-1 shrink-0">
-              {t.popularKeyboards} :
-            </span>
-            {POPULAR_KEYBOARDS.slice(0, 14).map(kb => {
-              const localizedHref = getLocalizedPath(kb.id, locale);
-              return (
-                <a
-                  key={`quick-${kb.id}`}
-                  id={`quick-kb-${kb.id}`}
-                  href={localizedHref}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleSelectKeyboard(kb);
-                  }}
-                  className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all cursor-pointer border touch-manipulation active:scale-95 ${
-                    kb.id === currentKeyboard.id
-                      ? 'bg-emerald-600 text-white font-bold border-emerald-600 shadow-xs'
-                      : (isDarkMode ? 'bg-slate-800 hover:bg-slate-700 text-slate-300 border-slate-700 active:bg-slate-650' : 'bg-white hover:bg-slate-50 text-slate-700 border-slate-200 shadow-2xs active:bg-slate-100')
-                  }`}
-                >
-                  <span>{kb.flag || '🌐'}</span>
-                  <span>{kb.name.split(' ')[0]}</span>
-                </a>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-
       {/* Main App Workspace */}
-      <main className="flex-1 max-w-6xl w-full mx-auto px-2.5 sm:px-6 lg:px-8 py-3 sm:py-5 space-y-4 sm:space-y-6">
+      <main className="flex-1 max-w-6xl w-full mx-auto px-2.5 sm:px-6 lg:px-8 py-3 sm:py-4 space-y-3 sm:space-y-4">
         
+        {/* Semantic SEO H1 & Page Context */}
+        <section aria-label="Page Title" className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 border-b pb-2 sm:pb-3 border-slate-200/80 dark:border-slate-800/80">
+          <div>
+            <h1 className={`text-lg sm:text-2xl font-bold tracking-tight ${
+              isDarkMode ? 'text-white' : 'text-slate-900'
+            }`}>
+              {getPageSeoMetadata(currentKeyboard, locale).h1}
+            </h1>
+            <p className={`text-xs sm:text-sm mt-0.5 leading-relaxed ${
+              isDarkMode ? 'text-slate-400' : 'text-slate-600'
+            }`}>
+              {getPageSeoMetadata(currentKeyboard, locale).description}
+            </p>
+          </div>
+          {currentKeyboard.flag && (
+            <span className="text-xl sm:text-2xl shrink-0 self-start sm:self-center" aria-hidden="true">
+              {currentKeyboard.flag}
+            </span>
+          )}
+        </section>
+
         {/* Editor Writing Area */}
         <section aria-label="Multilingual Text Editor">
           <EditorPad

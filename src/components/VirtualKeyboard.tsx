@@ -454,10 +454,17 @@ export const VirtualKeyboard: React.FC<VirtualKeyboardProps> = ({
                 {t.instructionsTitle || "Instructions :"}
               </p>
               <p className="text-[11px] sm:text-xs leading-relaxed">
-                {t.instructionsDesc || "To type directly with your computer keyboard: use the keys shown above each letter."}
-                {currentKeyboard.instructions && (
-                  <span className="block mt-1 font-mono text-[10px] sm:text-[11px] opacity-90">
-                    {currentKeyboard.instructions}
+                {currentLocale === 'fr' 
+                  ? "Pour écrire directement avec votre clavier d'ordinateur : utilisez les touches indiquées au-dessus de chaque lettre."
+                  : currentLocale === 'ar'
+                  ? "للكتابة مباشرة باستخدام لوحة مفاتيح حاسوبك : استخدم المفاتيح والرموز الموضحة فوق كل حرف."
+                  : currentLocale === 'es'
+                  ? "Para escribir directamente con el teclado de su ordenador: utilice las teclas indicadas encima de cada letra."
+                  : "To type directly with your computer keyboard: use the key hints displayed above each letter."
+                }
+                {currentKeyboard.phoneticDescription && (
+                  <span className="block mt-1 font-mono text-[10px] sm:text-[11px] opacity-90 dir-ltr text-left">
+                    {currentKeyboard.phoneticDescription}
                   </span>
                 )}
               </p>

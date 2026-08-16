@@ -215,11 +215,11 @@ export const EditorPad: React.FC<EditorPadProps> = ({
   };
 
   return (
-    <div className={`rounded-2xl border transition-all duration-200 overflow-hidden flex flex-col shadow-sm w-full max-w-full ${
+    <div className={`rounded-2xl border transition-all duration-200 flex flex-col shadow-sm w-full max-w-full relative ${
       isDarkMode 
         ? 'bg-[#0f172a] border-slate-800 text-slate-100' 
         : 'bg-white border-slate-200 text-slate-800'
-    } ${isExpanded ? 'fixed inset-2 sm:inset-4 z-50 shadow-2xl' : ''}`}>
+    } ${isExpanded ? 'fixed inset-2 sm:inset-4 z-50 shadow-2xl overflow-y-auto' : ''}`}>
       
       {/* Top Header Bar of Editor with Keyboard Switcher & Script Title */}
       <div className={`px-3 sm:px-4 py-2.5 sm:py-3 border-b flex flex-wrap items-center justify-between gap-2 sm:gap-3 ${
@@ -402,7 +402,9 @@ export const EditorPad: React.FC<EditorPadProps> = ({
               <button
                 onClick={() => setShowDictMenu(!showDictMenu)}
                 className={`flex items-center gap-1.5 text-xs font-semibold px-2.5 sm:px-3 py-2 rounded-lg border transition-all cursor-pointer shadow-xs active:scale-95 touch-manipulation min-h-[38px] ${
-                  isDarkMode ? 'bg-slate-800 hover:bg-slate-700 text-white border-slate-700' : 'bg-white hover:bg-slate-50 text-slate-700 border-slate-300'
+                  showDictMenu
+                    ? 'bg-emerald-50 text-emerald-700 border-emerald-300 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border-emerald-700'
+                    : (isDarkMode ? 'bg-slate-800 hover:bg-slate-700 text-white border-slate-700' : 'bg-white hover:bg-slate-50 text-slate-700 border-slate-300')
                 }`}
               >
                 <BookOpen className="w-3.5 h-3.5 text-emerald-500" />
@@ -410,39 +412,53 @@ export const EditorPad: React.FC<EditorPadProps> = ({
               </button>
 
               {showDictMenu && (
-                <div className={`absolute top-full left-0 mt-1 w-56 rounded-xl border shadow-xl p-2 z-50 ${
-                  isDarkMode ? 'bg-slate-800 border-slate-700 text-slate-100' : 'bg-white border-slate-200 text-slate-800'
+                <div className={`absolute bottom-full left-0 mb-1.5 w-60 rounded-xl border shadow-2xl p-1.5 z-50 animate-in fade-in zoom-in-95 duration-100 ${
+                  isDarkMode ? 'bg-slate-900 border-slate-700 text-slate-100 divide-y divide-slate-800' : 'bg-white border-slate-200 text-slate-800 divide-y divide-slate-100'
                 }`}>
-                  <a
-                    href={getWiktionaryUrl()}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex items-center gap-2 px-3 py-2.5 text-xs rounded-lg hover:bg-emerald-500/10 hover:text-emerald-500 transition-colors"
-                  >
-                    <BookOpen className="w-3.5 h-3.5" />
-                    <span>Wiktionary</span>
-                    <ExternalLink className="w-3 h-3 ml-auto opacity-50" />
-                  </a>
-                  <a
-                    href={getGoogleTranslateUrl()}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex items-center gap-2 px-3 py-2.5 text-xs rounded-lg hover:bg-emerald-500/10 hover:text-emerald-500 transition-colors"
-                  >
-                    <Globe className="w-3.5 h-3.5" />
-                    <span>Google Translate</span>
-                    <ExternalLink className="w-3 h-3 ml-auto opacity-50" />
-                  </a>
-                  <a
-                    href={getWikipediaUrl()}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex items-center gap-2 px-3 py-2.5 text-xs rounded-lg hover:bg-emerald-500/10 hover:text-emerald-500 transition-colors"
-                  >
-                    <FileText className="w-3.5 h-3.5" />
-                    <span>Wikipedia</span>
-                    <ExternalLink className="w-3 h-3 ml-auto opacity-50" />
-                  </a>
+                  <div className="py-1">
+                    <a
+                      href={getGoogleSearchUrl()}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center gap-2.5 px-3 py-2 text-xs font-medium rounded-lg hover:bg-emerald-500/10 hover:text-emerald-500 transition-colors"
+                    >
+                      <Search className="w-3.5 h-3.5 text-blue-500 shrink-0" />
+                      <span className="font-semibold">Google Search</span>
+                      <ExternalLink className="w-3 h-3 ml-auto opacity-50" />
+                    </a>
+                    <a
+                      href={getGoogleTranslateUrl()}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center gap-2.5 px-3 py-2 text-xs font-medium rounded-lg hover:bg-emerald-500/10 hover:text-emerald-500 transition-colors"
+                    >
+                      <Globe className="w-3.5 h-3.5 text-indigo-500 shrink-0" />
+                      <span>Google Translate</span>
+                      <ExternalLink className="w-3 h-3 ml-auto opacity-50" />
+                    </a>
+                  </div>
+                  <div className="py-1">
+                    <a
+                      href={getWiktionaryUrl()}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center gap-2.5 px-3 py-2 text-xs font-medium rounded-lg hover:bg-emerald-500/10 hover:text-emerald-500 transition-colors"
+                    >
+                      <BookOpen className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
+                      <span>Wiktionary</span>
+                      <ExternalLink className="w-3 h-3 ml-auto opacity-50" />
+                    </a>
+                    <a
+                      href={getWikipediaUrl()}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center gap-2.5 px-3 py-2 text-xs font-medium rounded-lg hover:bg-emerald-500/10 hover:text-emerald-500 transition-colors"
+                    >
+                      <FileText className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+                      <span>Wikipedia</span>
+                      <ExternalLink className="w-3 h-3 ml-auto opacity-50" />
+                    </a>
+                  </div>
                 </div>
               )}
             </div>

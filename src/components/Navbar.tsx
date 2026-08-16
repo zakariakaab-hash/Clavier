@@ -98,24 +98,33 @@ export const Navbar: React.FC<NavbarProps> = ({
           
           {/* Logo & Brand */}
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-            <button
-              onClick={onOpenCatalog}
+            <a
+              href={`/${currentLocale}/`}
+              onClick={(e) => {
+                e.preventDefault();
+                setIsSearchOpen(false);
+                setFavoritesOpen(false);
+                setLangMenuOpen(false);
+                window.history.pushState({}, '', `/${currentLocale}/`);
+                window.dispatchEvent(new PopStateEvent('popstate'));
+              }}
               id="brand-logo-btn"
-              className="flex items-center gap-2 text-left group transition-transform active:scale-95 cursor-pointer touch-manipulation"
+              aria-label={t.appName}
+              className="flex items-center gap-2 text-left group transition-transform active:scale-95 cursor-pointer touch-manipulation text-inherit no-underline"
             >
               <ParrotLogo size={32} />
               <div>
-                <h1 className={`font-extrabold text-base sm:text-lg leading-none tracking-tight group-hover:text-emerald-500 transition-colors ${
+                <span className={`font-extrabold text-base sm:text-lg leading-none tracking-tight group-hover:text-emerald-500 transition-colors block ${
                   isDarkMode ? 'text-white' : 'text-slate-900'
                 }`}>
                   {t.appName}
-                </h1>
+                </span>
               </div>
-            </button>
+            </a>
           </div>
 
-          {/* Search Trigger Bar */}
-          <div className="flex-1 max-w-md mx-1 sm:mx-4 relative min-w-[80px]">
+          {/* Search Trigger Bar (Desktop) */}
+          <div className="hidden md:flex flex-1 max-w-md mx-4 relative">
             <button
               id="global-search-trigger"
               onClick={() => {
@@ -391,6 +400,34 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           </div>
         </div>
+      </div>
+
+      {/* Mobile Dedicated Search Bar (Replacing Popular navbar) */}
+      <div className={`md:hidden border-t px-2.5 py-2 transition-colors ${
+        isDarkMode ? 'border-slate-800 bg-slate-900/95' : 'border-slate-200/80 bg-slate-50/80'
+      }`}>
+        <button
+          id="mobile-search-trigger"
+          onClick={() => {
+            setIsSearchOpen(true);
+            setTimeout(() => searchInputRef.current?.focus(), 50);
+          }}
+          className={`w-full flex items-center justify-between pl-9 pr-3 py-2 rounded-xl text-xs font-medium transition-all outline-hidden cursor-pointer border shadow-2xs touch-manipulation min-h-[40px] relative ${
+            isDarkMode
+              ? 'bg-slate-800/90 border-slate-700 text-slate-300 active:bg-slate-700'
+              : 'bg-white border-slate-200 text-slate-500 active:bg-slate-100'
+          }`}
+        >
+          <div className="absolute left-3 top-2.5 text-emerald-500">
+            <Search className="w-4 h-4" />
+          </div>
+          <span className={`truncate text-xs ${isDarkMode ? 'text-slate-300' : 'text-slate-600'}`}>
+            {t.searchPlaceholder}
+          </span>
+          <span className="text-[10px] font-semibold uppercase tracking-wider text-emerald-500 px-1.5 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 shrink-0">
+            100+
+          </span>
+        </button>
       </div>
     </header>
   );
