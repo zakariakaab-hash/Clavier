@@ -118,26 +118,26 @@ export const VirtualKeyboard: React.FC<VirtualKeyboardProps> = ({
     : currentKeyboard.rows;
 
   return (
-    <div className={`rounded-2xl border p-2.5 sm:p-4 md:p-5 select-none transition-colors duration-200 shadow-sm w-full max-w-full overflow-hidden ${
+    <div className={`rounded-xl sm:rounded-2xl border p-1 sm:p-3 md:p-5 select-none transition-colors duration-200 shadow-xs sm:shadow-sm w-full max-w-full overflow-hidden landscape:p-1 ${
       isDarkMode 
         ? 'bg-[#0f172a] text-slate-100 border-slate-800' 
         : 'bg-slate-100/90 text-slate-800 border-slate-200'
     }`}>
       
       {/* Top Header Bar of Virtual Keyboard */}
-      <div className={`flex flex-wrap items-center justify-between gap-2 pb-2.5 sm:pb-3 border-b mb-2.5 sm:mb-3 ${
+      <div className={`flex flex-wrap items-center justify-between gap-1 sm:gap-1.5 md:gap-2 pb-1 sm:pb-2.5 md:pb-3 border-b mb-1 sm:mb-2.5 md:mb-3 landscape:pb-0.5 landscape:mb-1 ${
         isDarkMode ? 'border-slate-800 text-slate-300' : 'border-slate-200 text-slate-700'
       }`}>
         
         {/* Left: View Mode Toggle (Original Letters vs Full PC Matrix) */}
-        <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
+        <div className="flex items-center gap-1 sm:gap-1.5 md:gap-2 flex-wrap">
           {hasLexilogos && (
             <div className={`inline-flex p-0.5 rounded-lg border text-xs font-medium ${
               isDarkMode ? 'bg-slate-900 border-slate-700' : 'bg-white border-slate-300'
             }`}>
               <button
                 onClick={() => setViewMode('lexilogos')}
-                className={`px-2.5 sm:px-3 py-1 rounded-md transition-all cursor-pointer font-semibold touch-manipulation active:scale-95 ${
+                className={`px-2 sm:px-2.5 md:px-3 py-0.5 md:py-1 rounded-md transition-all cursor-pointer font-semibold touch-manipulation active:scale-95 text-[11px] md:text-xs ${
                   viewMode === 'lexilogos'
                     ? (isDarkMode ? 'bg-emerald-700 text-white shadow-xs' : 'bg-emerald-600 text-white shadow-xs')
                     : (isDarkMode ? 'text-slate-400 hover:text-white' : 'text-slate-600 hover:text-slate-900')
@@ -147,7 +147,7 @@ export const VirtualKeyboard: React.FC<VirtualKeyboardProps> = ({
               </button>
               <button
                 onClick={() => setViewMode('hardware')}
-                className={`px-2.5 sm:px-3 py-1 rounded-md transition-all cursor-pointer touch-manipulation active:scale-95 ${
+                className={`px-2 sm:px-2.5 md:px-3 py-0.5 md:py-1 rounded-md transition-all cursor-pointer touch-manipulation active:scale-95 text-[11px] md:text-xs ${
                   viewMode === 'hardware'
                     ? (isDarkMode ? 'bg-emerald-700 text-white shadow-xs' : 'bg-emerald-600 text-white shadow-xs')
                     : (isDarkMode ? 'text-slate-400 hover:text-white' : 'text-slate-600 hover:text-slate-900')
@@ -163,7 +163,7 @@ export const VirtualKeyboard: React.FC<VirtualKeyboardProps> = ({
             <button
               id="phonetic-toggle-btn"
               onClick={onTogglePhoneticMode}
-              className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer border touch-manipulation active:scale-95 ${
+              className={`flex items-center gap-1 sm:gap-1.5 px-2 sm:px-2.5 md:px-3 py-0.5 md:py-1 rounded-lg text-[11px] md:text-xs font-semibold transition-all cursor-pointer border touch-manipulation active:scale-95 ${
                 phoneticMode
                   ? 'bg-amber-400 text-slate-950 border-amber-500 shadow-2xs ring-1 ring-amber-300'
                   : (isDarkMode 
@@ -179,10 +179,10 @@ export const VirtualKeyboard: React.FC<VirtualKeyboardProps> = ({
         </div>
 
         {/* Right: Modifiers & Instructions toggle */}
-        <div className="flex items-center gap-1.5 sm:gap-2">
+        <div className="flex items-center gap-1 sm:gap-1.5 md:gap-2">
           <button
             onClick={() => setIsCapsLockActive(!isCapsLockActive)}
-            className={`px-2.5 py-1 text-xs font-semibold rounded-lg border transition-colors cursor-pointer touch-manipulation active:scale-95 ${
+            className={`px-2 md:px-2.5 py-0.5 md:py-1 text-[11px] md:text-xs font-semibold rounded-lg border transition-colors cursor-pointer touch-manipulation active:scale-95 ${
               isCapsLockActive 
                 ? 'bg-emerald-600 text-white border-emerald-600 shadow-2xs' 
                 : (isDarkMode ? 'bg-slate-800 text-slate-300 border-slate-700' : 'bg-white text-slate-700 border-slate-300')
@@ -193,7 +193,7 @@ export const VirtualKeyboard: React.FC<VirtualKeyboardProps> = ({
 
           <button
             onClick={() => setShowInstructions(!showInstructions)}
-            className={`flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-lg border transition-colors cursor-pointer touch-manipulation active:scale-95 ${
+            className={`flex items-center gap-1 px-2 md:px-2.5 py-0.5 md:py-1 text-[11px] md:text-xs font-medium rounded-lg border transition-colors cursor-pointer touch-manipulation active:scale-95 ${
               showInstructions 
                 ? (isDarkMode ? 'bg-slate-800 text-emerald-400 border-slate-700' : 'bg-emerald-50 text-emerald-800 border-emerald-300')
                 : (isDarkMode ? 'bg-slate-800 text-slate-400 border-slate-700' : 'bg-white text-slate-600 border-slate-300')
@@ -207,10 +207,10 @@ export const VirtualKeyboard: React.FC<VirtualKeyboardProps> = ({
 
       {/* Quick Diacritics Strip if available */}
       {currentKeyboard.diacritics && currentKeyboard.diacritics.length > 0 && (
-        <div className={`mb-2.5 sm:mb-3 p-1.5 sm:p-2 rounded-xl border flex items-center gap-1.5 overflow-x-auto scrollbar-touch ${
+        <div className={`mb-1.5 sm:mb-2.5 md:mb-3 p-1 sm:p-1.5 md:p-2 rounded-xl border flex items-center gap-1 sm:gap-1.5 overflow-x-auto scrollbar-touch ${
           isDarkMode ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-200 shadow-2xs'
         }`}>
-          <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider px-1 shrink-0">
+          <span className="text-[10px] md:text-[11px] font-bold text-slate-400 uppercase tracking-wider px-1 shrink-0">
             {t.vowelsAndDiacritics || t.diacritics} :
           </span>
           <div className="flex items-center gap-1 sm:gap-1.5 flex-nowrap">
@@ -221,7 +221,7 @@ export const VirtualKeyboard: React.FC<VirtualKeyboardProps> = ({
                   handleAudio('key');
                   onInsertChar(dia);
                 }}
-                className={`w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center font-bold text-lg sm:text-xl rounded-lg border transition-all shrink-0 cursor-pointer touch-manipulation active:scale-95 ${
+                className={`w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 flex items-center justify-center font-bold text-base sm:text-lg md:text-xl rounded-lg border transition-all shrink-0 cursor-pointer touch-manipulation active:scale-95 ${
                   isDarkMode 
                     ? 'bg-slate-800 hover:bg-slate-700 text-red-400 border-slate-700 active:bg-slate-650' 
                     : 'bg-slate-50 hover:bg-red-50 text-[#a80000] border-slate-200 hover:border-red-300 shadow-2xs active:bg-red-100'
@@ -236,31 +236,31 @@ export const VirtualKeyboard: React.FC<VirtualKeyboardProps> = ({
 
       {/* MAIN KEYBOARD AREA: Lexilogos Clavier Mode with Original Keyboard Letters Above Keys */}
       {viewMode === 'lexilogos' ? (
-        <div className="space-y-1.5 sm:space-y-2 py-0.5">
+        <div className="space-y-0.5 sm:space-y-1.5 md:space-y-2 py-0.5 landscape:space-y-0.5">
           {rowsToRender.map((row, rowIdx) => (
             <div 
               key={`lexi-row-${rowIdx}`} 
-              className="flex justify-center items-end gap-1 sm:gap-1.5 md:gap-2 max-w-full"
+              className="flex justify-center items-end gap-0.5 sm:gap-1 md:gap-2 max-w-full"
             >
               {row.map((kDef, kIdx) => {
                 const charToShow = kDef.displayChar || kDef.char;
 
                 return (
-                  <div key={`lexi-key-${rowIdx}-${kIdx}`} className="flex flex-col items-center flex-1 min-w-[26px] max-w-[54px]">
-                    {/* Original Keyboard Letter Guide Centered Above Key */}
+                  <div key={`lexi-key-${rowIdx}-${kIdx}`} className="flex flex-col items-center flex-1 min-w-[18px] sm:min-w-[26px] max-w-[54px]">
+                    {/* Original Keyboard Letter Guide Centered Above Key (hidden on tiny screens to maximize key size, visible on sm+) */}
                     <span 
-                      className={`text-[9px] sm:text-[11px] md:text-xs font-bold tracking-wider h-3.5 sm:h-4 md:h-5 flex items-center justify-center font-mono select-none ${
-                        isDarkMode ? 'text-slate-200' : 'text-slate-700'
+                      className={`text-[8px] sm:text-[10px] md:text-xs font-bold tracking-wider h-2 sm:h-4 md:h-5 flex items-center justify-center font-mono select-none landscape:h-1.5 landscape:text-[7px] ${
+                        isDarkMode ? 'text-slate-300' : 'text-slate-600'
                       }`}
                     >
                       {kDef.latinGuide || '\u00A0'}
                     </span>
 
-                    {/* Keycap: Rounded Card with Deep Crimson Script Letter */}
+                    {/* Keycap: Native smartphone keycap styling with responsive height and rounded corners */}
                     <button
                       onClick={() => handleKeyClick(kDef)}
                       title={kDef.latinGuide ? `Touche: ${kDef.latinGuide} → ${kDef.char}` : kDef.char}
-                      className={`w-full h-10 sm:h-11 md:h-12 bg-white text-[#a80000] hover:text-[#dc2626] active:scale-95 active:bg-slate-50 rounded-lg shadow-sm border border-slate-300 hover:border-red-400 flex items-center justify-center font-bold text-lg sm:text-xl md:text-2xl transition-transform cursor-pointer select-none touch-manipulation ${
+                      className={`w-full h-9 sm:h-11 md:h-12 landscape:h-7.5 sm:landscape:h-8.5 bg-white text-[#a80000] hover:text-[#dc2626] active:scale-95 active:bg-slate-100 rounded-md sm:rounded-lg shadow-xs sm:shadow-sm border border-slate-300 hover:border-red-400 flex items-center justify-center font-bold text-base sm:text-xl md:text-2xl transition-all cursor-pointer select-none touch-manipulation active:ring-2 active:ring-emerald-400/40 ${
                         currentKeyboard.fontFamilyClass || ''
                       }`}
                     >
@@ -273,16 +273,16 @@ export const VirtualKeyboard: React.FC<VirtualKeyboardProps> = ({
           ))}
 
           {/* Quick Space & Controls bar */}
-          <div className="flex justify-center items-center gap-1.5 sm:gap-2 pt-1.5 sm:pt-2">
+          <div className="flex justify-center items-center gap-1 sm:gap-2 pt-0.5 sm:pt-1.5 md:pt-2 landscape:pt-0.5">
             <button
               onClick={() => {
                 handleAudio('space');
                 onInsertChar(' ');
               }}
-              className="flex-1 max-w-md min-h-[42px] sm:min-h-[44px] px-4 py-2.5 bg-white hover:bg-slate-50 active:scale-98 active:bg-slate-100 border border-slate-300 text-slate-700 hover:border-slate-400 rounded-lg text-xs font-bold flex items-center justify-center gap-2 transition-all shadow-xs cursor-pointer touch-manipulation"
+              className="flex-1 max-w-md min-h-[34px] sm:min-h-[42px] md:min-h-[44px] landscape:min-h-[28px] px-3 md:px-4 py-1 sm:py-2 md:py-2.5 bg-white hover:bg-slate-50 active:scale-98 active:bg-slate-100 border border-slate-300 text-slate-700 hover:border-slate-400 rounded-lg text-xs font-bold flex items-center justify-center gap-2 transition-all shadow-xs cursor-pointer touch-manipulation"
             >
               <Space className="w-4 h-4 text-slate-400" />
-              <span className="font-mono tracking-widest text-slate-500 uppercase">{t.space}</span>
+              <span className="font-mono tracking-widest text-slate-500 uppercase text-[11px] sm:text-xs">{t.space}</span>
             </button>
 
             <button
@@ -290,7 +290,7 @@ export const VirtualKeyboard: React.FC<VirtualKeyboardProps> = ({
                 handleAudio('backspace');
                 onBackspace();
               }}
-              className="min-h-[42px] sm:min-h-[44px] px-3.5 sm:px-4 py-2.5 bg-white hover:bg-rose-50 active:scale-95 hover:text-rose-700 border border-slate-300 text-slate-700 rounded-lg text-xs font-bold flex items-center justify-center gap-1.5 transition-all shadow-xs cursor-pointer touch-manipulation shrink-0"
+              className="min-h-[34px] sm:min-h-[42px] md:min-h-[44px] landscape:min-h-[28px] px-3 sm:px-3.5 md:px-4 py-1 sm:py-2 md:py-2.5 bg-white hover:bg-rose-50 active:scale-95 hover:text-rose-700 border border-slate-300 text-slate-700 rounded-lg text-xs font-bold flex items-center justify-center gap-1.5 transition-all shadow-xs cursor-pointer touch-manipulation shrink-0"
             >
               <Delete className="w-4 h-4" />
               <span className="hidden xs:inline">{t.backspace}</span>

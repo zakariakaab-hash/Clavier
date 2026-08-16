@@ -3,6 +3,7 @@ import { Navbar } from './components/Navbar';
 import { EditorPad } from './components/EditorPad';
 import { VirtualKeyboard } from './components/VirtualKeyboard';
 import { KeyboardCatalog } from './components/KeyboardCatalog';
+import { MobileFloatingSearch } from './components/MobileFloatingSearch';
 import { FAQSection } from './components/FAQSection';
 import { ParrotLogo } from './components/ParrotLogo';
 import { StaticPageView } from './components/StaticPageView';
@@ -556,70 +557,91 @@ export function App() {
           />
         </main>
       ) : (
-        <main className="flex-1 max-w-6xl w-full mx-auto px-2.5 sm:px-6 lg:px-8 py-3 sm:py-4 space-y-3 sm:space-y-4">
-          {/* Semantic SEO H1 & Page Context */}
-          <section aria-label="Page Title" className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 border-b pb-2 sm:pb-3 border-slate-200/80 dark:border-slate-800/80">
-            <div>
-              <h1 className={`text-lg sm:text-2xl font-bold tracking-tight ${
-                isDarkMode ? 'text-white' : 'text-slate-900'
-              }`}>
-                {getPageSeoMetadata(currentKeyboard, locale, isHomepage).h1}
-              </h1>
-              <p className={`text-xs sm:text-sm mt-0.5 leading-relaxed ${
-                isDarkMode ? 'text-slate-400' : 'text-slate-600'
-              }`}>
-                {getPageSeoMetadata(currentKeyboard, locale, isHomepage).description}
-              </p>
-            </div>
+        <main className="flex-1 max-w-6xl w-full mx-auto px-1 sm:px-4 md:px-6 lg:px-8 py-1 sm:py-2 md:py-4 flex flex-col space-y-1.5 sm:space-y-2 md:space-y-4">
+          
+          {/* Top Interactive App Section - Fills exactly initial screen on mobile (100dvh minus navbar) with keyboard flush at bottom */}
+          <div className="flex flex-col min-h-[calc(100dvh-3.25rem)] sm:min-h-[calc(100dvh-3.5rem)] md:min-h-0 md:h-auto justify-between gap-1 sm:gap-2 md:gap-4 pb-[max(4px,env(safe-area-inset-bottom))] md:pb-0">
+            {/* Semantic SEO H1 & Page Context (H1 only on top for mobile; description & badge on top for desktop) */}
+            <section aria-label="Page Title" className="shrink-0 flex flex-col sm:flex-row sm:items-baseline justify-between gap-0.5 md:gap-1 border-b pb-1 sm:pb-2 md:pb-3 border-slate-200/80 dark:border-slate-800/80">
+              <div>
+                <h1 className={`text-sm sm:text-xl md:text-2xl font-bold tracking-tight ${
+                  isDarkMode ? 'text-white' : 'text-slate-900'
+                }`}>
+                  {getPageSeoMetadata(currentKeyboard, locale, isHomepage).h1}
+                </h1>
+                {/* Description rendered here on desktop (md+), moved below keyboard on mobile */}
+                <p className={`hidden md:block text-[11px] sm:text-xs md:text-sm mt-0.5 leading-relaxed ${
+                  isDarkMode ? 'text-slate-400' : 'text-slate-600'
+                }`}>
+                  {getPageSeoMetadata(currentKeyboard, locale, isHomepage).description}
+                </p>
+              </div>
+              {currentKeyboard.flag && (
+                <span className="hidden md:inline text-lg sm:text-xl md:text-2xl shrink-0 self-start sm:self-center" aria-hidden="true">
+                  {currentKeyboard.flag}
+                </span>
+              )}
+            </section>
+
+            {/* Editor Writing Area - Flexible flex-1 min-h-0 on mobile to absorb available height */}
+            <section aria-label="Multilingual Text Editor" className="flex-1 min-h-0 flex flex-col">
+              <EditorPad
+                text={editorText}
+                onChangeText={setEditorText}
+                currentKeyboard={currentKeyboard}
+                onSelectKeyboard={handleSelectKeyboard}
+                activeFontSize={activeFontSize}
+                onChangeFontSize={setActiveFontSize}
+                textareaRef={textareaRef}
+                theme={theme}
+                onToggleTheme={handleToggleTheme}
+                onInsertSpace={() => handleInsertChar(' ')}
+                soundEnabled={soundEnabled}
+                phoneticMode={phoneticMode}
+                onTogglePhoneticMode={() => setPhoneticMode(!phoneticMode)}
+                currentLocale={locale}
+              />
+            </section>
+
+            {/* Interactive Virtual Keyboard with Original Keyboard Letters - Anchored at the bottom of the initial screen */}
+            <section aria-label="Virtual Keyboard" className="shrink-0">
+              <VirtualKeyboard
+                currentKeyboard={currentKeyboard}
+                onInsertChar={handleInsertChar}
+                onBackspace={handleBackspace}
+                onClear={() => setEditorText('')}
+                soundEnabled={soundEnabled}
+                phoneticMode={phoneticMode}
+                onTogglePhoneticMode={() => setPhoneticMode(!phoneticMode)}
+                theme={theme}
+                currentLocale={locale}
+              />
+            </section>
+          </div>
+
+          {/* Mobile-Only Description & Context Below Virtual Keyboard */}
+          <div className="md:hidden px-1 py-1.5 border-t border-slate-200/80 dark:border-slate-800/80 flex items-start justify-between gap-2">
+            <p className={`text-xs leading-relaxed ${
+              isDarkMode ? 'text-slate-400' : 'text-slate-600'
+            }`}>
+              {getPageSeoMetadata(currentKeyboard, locale, isHomepage).description}
+            </p>
             {currentKeyboard.flag && (
-              <span className="text-xl sm:text-2xl shrink-0 self-start sm:self-center" aria-hidden="true">
+              <span className="text-lg shrink-0" aria-hidden="true">
                 {currentKeyboard.flag}
               </span>
             )}
-          </section>
-
-          {/* Editor Writing Area */}
-          <section aria-label="Multilingual Text Editor">
-            <EditorPad
-              text={editorText}
-              onChangeText={setEditorText}
-              currentKeyboard={currentKeyboard}
-              onSelectKeyboard={handleSelectKeyboard}
-              activeFontSize={activeFontSize}
-              onChangeFontSize={setActiveFontSize}
-              textareaRef={textareaRef}
-              theme={theme}
-              onToggleTheme={handleToggleTheme}
-              onInsertSpace={() => handleInsertChar(' ')}
-              soundEnabled={soundEnabled}
-              phoneticMode={phoneticMode}
-              onTogglePhoneticMode={() => setPhoneticMode(!phoneticMode)}
-              currentLocale={locale}
-            />
-          </section>
-
-          {/* Interactive Virtual Keyboard with Original Keyboard Letters */}
-          <section aria-label="Virtual Keyboard">
-            <VirtualKeyboard
-              currentKeyboard={currentKeyboard}
-              onInsertChar={handleInsertChar}
-              onBackspace={handleBackspace}
-              onClear={() => setEditorText('')}
-              soundEnabled={soundEnabled}
-              phoneticMode={phoneticMode}
-              onTogglePhoneticMode={() => setPhoneticMode(!phoneticMode)}
-              theme={theme}
-              currentLocale={locale}
-            />
-          </section>
+          </div>
 
           {/* Informative & Concise Dynamic FAQ Section */}
-          <FAQSection
-            currentLocale={locale}
-            isDarkMode={isDarkMode}
-            currentKeyboard={currentKeyboard}
-            keyboardName={currentKeyboard.name}
-          />
+          <div className="w-full">
+            <FAQSection
+              currentLocale={locale}
+              isDarkMode={isDarkMode}
+              currentKeyboard={currentKeyboard}
+              keyboardName={currentKeyboard.name}
+            />
+          </div>
         </main>
       )}
 
@@ -846,6 +868,14 @@ export function App() {
         currentKeyboardId={currentKeyboard.id}
         favorites={favorites}
         onToggleFavorite={handleToggleFavorite}
+      />
+
+      {/* Mobile Floating Language Search Control (Strictly Mobile Only) */}
+      <MobileFloatingSearch
+        currentKeyboard={currentKeyboard}
+        onSelectKeyboard={(kb) => handleSelectKeyboard(kb)}
+        currentLocale={locale}
+        theme={theme}
       />
 
     </div>

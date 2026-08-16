@@ -94,7 +94,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       isDarkMode ? 'bg-slate-900 border-slate-800 text-white' : 'bg-white border-slate-200 text-slate-900 shadow-xs'
     }`}>
       <div className="max-w-7xl mx-auto px-2.5 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-14 sm:h-16 gap-1.5 sm:gap-4">
+        <div className="flex items-center justify-between h-13 sm:h-16 md:h-16 landscape:h-11 md:landscape:h-16 gap-1.5 sm:gap-4">
           
           {/* Logo & Brand */}
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
@@ -400,34 +400,6 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           </div>
         </div>
-      </div>
-
-      {/* Mobile Dedicated Search Bar (Replacing Popular navbar) */}
-      <div className={`md:hidden border-t px-2.5 py-2 transition-colors ${
-        isDarkMode ? 'border-slate-800 bg-slate-900/95' : 'border-slate-200/80 bg-slate-50/80'
-      }`}>
-        <button
-          id="mobile-search-trigger"
-          onClick={() => {
-            setIsSearchOpen(true);
-            setTimeout(() => searchInputRef.current?.focus(), 50);
-          }}
-          className={`w-full flex items-center justify-between pl-9 pr-3 py-2 rounded-xl text-xs font-medium transition-all outline-hidden cursor-pointer border shadow-2xs touch-manipulation min-h-[40px] relative ${
-            isDarkMode
-              ? 'bg-slate-800/90 border-slate-700 text-slate-300 active:bg-slate-700'
-              : 'bg-white border-slate-200 text-slate-500 active:bg-slate-100'
-          }`}
-        >
-          <div className="absolute left-3 top-2.5 text-emerald-500">
-            <Search className="w-4 h-4" />
-          </div>
-          <span className={`truncate text-xs ${isDarkMode ? 'text-slate-300' : 'text-slate-600'}`}>
-            {t.searchPlaceholder}
-          </span>
-          <span className="text-[10px] font-semibold uppercase tracking-wider text-emerald-500 px-1.5 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 shrink-0">
-            100+
-          </span>
-        </button>
       </div>
     </header>
   );
