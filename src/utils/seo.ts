@@ -1,10 +1,134 @@
 import { SupportedLocale } from './i18n';
 import { KeyboardLayout } from '../types';
+import { StaticPageType } from './routes';
 
 export interface PageSeoMetadata {
   title: string;
   h1: string;
   description: string;
+}
+
+/**
+ * Provides accurate, natural, non-stuffed SEO metadata for the legal & trust pages.
+ */
+export function getStaticPageSeoMetadata(page: StaticPageType, locale: SupportedLocale): PageSeoMetadata {
+  switch (page) {
+    case 'privacy':
+      switch (locale) {
+        case 'fr':
+          return {
+            title: 'Politique de Confidentialité | KeypadKing',
+            h1: 'Politique de Confidentialité',
+            description: "Consultez la politique de confidentialité de KeypadKing : fonctionnement côté client, stockage local, cookies et protection de vos données sur notre plateforme de claviers virtuels."
+          };
+        case 'es':
+          return {
+            title: 'Política de Privacidad | KeypadKing',
+            h1: 'Política de Privacidad',
+            description: "Conozca la política de privacidad de KeypadKing: procesamiento de texto en el navegador, almacenamiento local, cookies y protección de datos en nuestra plataforma de teclados virtuales."
+          };
+        case 'ar':
+          return {
+            title: 'سياسة الخصوصية | KeypadKing',
+            h1: 'سياسة الخصوصية',
+            description: "تعرف على سياسة الخصوصية في KeypadKing وكيفية حماية البيانات ومعالجة الكتابة داخل المتصفح واستخدام ملفات تعريف الارتباط."
+          };
+        case 'en':
+        default:
+          return {
+            title: 'Privacy Policy | KeypadKing',
+            h1: 'Privacy Policy',
+            description: "Learn about KeypadKing's privacy practices. Read how client-side typing, cookies, analytics, and data protection work on our virtual keyboard platform."
+          };
+      }
+
+    case 'terms':
+      switch (locale) {
+        case 'fr':
+          return {
+            title: "Conditions d'Utilisation | KeypadKing",
+            h1: "Conditions d'Utilisation",
+            description: "Consultez les conditions d'utilisation de la plateforme KeypadKing, de ses claviers virtuels gratuits et de ses outils de translittération en ligne."
+          };
+        case 'es':
+          return {
+            title: 'Términos de Uso | KeypadKing',
+            h1: 'Términos de Uso',
+            description: "Consulte los términos y condiciones de uso de los teclados virtuales gratuitos y herramientas de transliteración de KeypadKing."
+          };
+        case 'ar':
+          return {
+            title: 'شروط الاستخدام | KeypadKing',
+            h1: 'شروط الاستخدام',
+            description: "شروط وأحكام استخدام موقع KeypadKing ولوحات المفاتيح الافتراضية المجانية وأدوات الكتابة والترجمة الصوتية."
+          };
+        case 'en':
+        default:
+          return {
+            title: 'Terms of Use | KeypadKing',
+            h1: 'Terms of Use',
+            description: "Read the terms and conditions for using KeypadKing's free online virtual keyboards, multilingual input tools, and transliteration services."
+          };
+      }
+
+    case 'about':
+      switch (locale) {
+        case 'fr':
+          return {
+            title: 'À Propos de KeypadKing | Claviers Virtuels en Ligne',
+            h1: 'À Propos de KeypadKing',
+            description: "KeypadKing est une plateforme gratuite de claviers virtuels en ligne conçue pour vous permettre d'écrire dans tous les alphabets et caractères sans installer de logiciel."
+          };
+        case 'es':
+          return {
+            title: 'Acerca de KeypadKing | Teclados Virtuales en Línea',
+            h1: 'Acerca de KeypadKing',
+            description: "KeypadKing es una plataforma gratuita de teclados virtuales en línea diseñada para escribir en alfabetos y caracteres no disponibles en su teclado físico."
+          };
+        case 'ar':
+          return {
+            title: 'عن الموقع | KeypadKing',
+            h1: 'عن موقع KeypadKing',
+            description: "منصة KeypadKing هي موقع مجاني للوحات المفاتيح الافتراضية مصممة لمساعدتك على الكتابة بمختلف اللغات والحروف غير المتوفرة على لوحة مفاتيحك الفعلية."
+          };
+        case 'en':
+        default:
+          return {
+            title: 'About KeypadKing | Online Virtual Keyboards',
+            h1: 'About KeypadKing',
+            description: "KeypadKing is a free online virtual keyboard platform designed to help people type characters and scripts that may not be available on their physical keyboard."
+          };
+      }
+
+    case 'contact':
+      switch (locale) {
+        case 'fr':
+          return {
+            title: 'Contact KeypadKing | Claviers Virtuels en Ligne',
+            h1: 'Contactez KeypadKing',
+            description: "Contactez l'équipe KeypadKing pour nous faire part de vos retours, suggérer une nouvelle langue ou signaler un problème technique."
+          };
+        case 'es':
+          return {
+            title: 'Contacto | KeypadKing',
+            h1: 'Contacto',
+            description: "Póngase en contacto con el equipo de KeypadKing para enviar comentarios, sugerir nuevos teclados o reportar errores."
+          };
+        case 'ar':
+          return {
+            title: 'اتصل بنا | KeypadKing',
+            h1: 'اتصل بنا',
+            description: "تواصل مع فريق KeypadKing لتقديم الملاحظات والاقتراحات أو الإبلاغ عن المشكلات المتعلقة بلوحات المفاتيح."
+          };
+        case 'en':
+        default:
+          return {
+            title: 'Contact KeypadKing | Online Virtual Keyboards',
+            h1: 'Contact KeypadKing',
+            description: "Get in touch with the KeypadKing team for feedback, keyboard layout suggestions, bug reports, or general inquiries."
+          };
+      }
+  }
 }
 
 /**

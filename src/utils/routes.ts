@@ -146,14 +146,74 @@ export function getLocalizedPath(keyboardId: string, locale: SupportedLocale = '
   return `/${locale}/${validId}-keyboard`;
 }
 
+export type StaticPageType = 'privacy' | 'terms' | 'about' | 'contact';
+
+export const STATIC_PAGE_SLUGS: Record<StaticPageType, Record<SupportedLocale, string>> = {
+  privacy: {
+    en: 'privacy',
+    fr: 'confidentialite',
+    es: 'privacidad',
+    ar: 'privacy',
+  },
+  terms: {
+    en: 'terms',
+    fr: 'conditions',
+    es: 'terminos',
+    ar: 'terms',
+  },
+  about: {
+    en: 'about',
+    fr: 'a-propos',
+    es: 'acerca-de',
+    ar: 'about',
+  },
+  contact: {
+    en: 'contact',
+    fr: 'contact',
+    es: 'contacto',
+    ar: 'contact',
+  },
+};
+
 /**
- * Parse any pathname & query params into a resolved locale, keyboardId, and whether it is a homepage.
+ * Generate canonical SEO URL path for a given static legal/trust page and locale.
+ * Examples:
+ * - getStaticPagePath('privacy', 'en') -> "/en/privacy"
+ * - getStaticPagePath('privacy', 'fr') -> "/fr/confidentialite"
+ * - getStaticPagePath('terms', 'fr') -> "/fr/conditions"
+ * - getStaticPagePath('about', 'es') -> "/es/acerca-de"
+ */
+export function getStaticPagePath(page: StaticPageType, locale: SupportedLocale = 'en'): string {
+  const slug = STATIC_PAGE_SLUGS[page]?.[locale] || STATIC_PAGE_SLUGS[page]?.en || page;
+  return `/${locale}/${slug}`;
+}
+
+export function resolveStaticPageFromSlug(slug: string): { page: StaticPageType; locale?: SupportedLocale } | undefined {
+  if (!slug) return undefined;
+  const clean = slug.toLowerCase().trim();
+  for (const [pageKey, localeMap] of Object.entries(STATIC_PAGE_SLUGS)) {
+    for (const [locKey, s] of Object.entries(localeMap)) {
+      if (s === clean) {
+        return { page: pageKey as StaticPageType, locale: locKey as SupportedLocale };
+      }
+    }
+  }
+  return undefined;
+}
+
+/**
+ * Parse any pathname & query params into a resolved locale, keyboardId, staticPage, and whether it is a homepage.
  * Supports:
  * - / -> isHomepage: true, locale: undefined, keyboardId: undefined
  * - /en/ or /en -> isHomepage: true, locale: 'en', keyboardId: undefined
  * - /fr/ or /fr -> isHomepage: true, locale: 'fr', keyboardId: undefined
  * - /es/ or /es -> isHomepage: true, locale: 'es', keyboardId: undefined
  * - /ar/ or /ar -> isHomepage: true, locale: 'ar', keyboardId: undefined
+ * - /en/privacy -> isHomepage: false, locale: 'en', staticPage: 'privacy'
+ * - /fr/confidentialite -> isHomepage: false, locale: 'fr', staticPage: 'privacy'
+ * - /fr/conditions -> isHomepage: false, locale: 'fr', staticPage: 'terms'
+ * - /en/about -> isHomepage: false, locale: 'en', staticPage: 'about'
+ * - /en/contact -> isHomepage: false, locale: 'en', staticPage: 'contact'
  * - /en/arabic-keyboard -> isHomepage: false, locale: 'en', keyboardId: 'arabic'
  * - /fr/clavier-arabe -> isHomepage: false, locale: 'fr', keyboardId: 'arabic'
  * - /ar/clavier-arabe -> isHomepage: false, locale: 'ar', keyboardId: 'arabic'
@@ -166,6 +226,7 @@ export function parseCurrentPath(pathname: string, search: string): {
   locale?: SupportedLocale; 
   keyboardId?: string;
   isHomepage?: boolean;
+  staticPage?: StaticPageType;
 } {
   const searchParams = new URLSearchParams(search);
   const kbQuery = searchParams.get('kb');
@@ -176,6 +237,7 @@ export function parseCurrentPath(pathname: string, search: string): {
 
   let detectedLocale: SupportedLocale | undefined = undefined;
   let detectedKbId: string | undefined = undefined;
+  let detectedStaticPage: StaticPageType | undefined = undefined;
   let isHomepage = false;
 
   // Root homepage: /
@@ -185,24 +247,51 @@ export function parseCurrentPath(pathname: string, search: string): {
     // Localized homepage: /en, /fr, /es, /ar
     detectedLocale = segments[0] as SupportedLocale;
     isHomepage = true;
+  } else if (segments.length === 1) {
+    // Single segment that might be a static page slug (e.g. /privacy, /confidentialite, /about)
+    const staticMatch = resolveStaticPageFromSlug(segments[0]);
+    if (staticMatch) {
+      detectedStaticPage = staticMatch.page;
+      detectedLocale = staticMatch.locale || 'en';
+      isHomepage = false;
+    } else {
+      // Or a single keyboard slug directly like /clavier-arabe or /arabic-keyboard
+      const slug = segments[0].toLowerCase();
+      detectedKbId = resolveKeyboardFromSlug(slug);
+      isHomepage = false;
+      
+      if (slug.startsWith('clavier-')) {
+        detectedLocale = 'fr';
+      } else if (slug.startsWith('teclado-')) {
+        detectedLocale = 'es';
+      } else if (slug.endsWith('-keyboard')) {
+        detectedLocale = 'en';
+      }
+    }
   } else if (segments.length > 1 && SUPPORTED_LOCALES.includes(segments[0] as SupportedLocale)) {
-    // Localized keyboard page: /en/arabic-keyboard, /fr/clavier-arabe
+    // Localized route: /en/privacy, /fr/confidentialite, /en/arabic-keyboard, etc.
     detectedLocale = segments[0] as SupportedLocale;
-    const slug = segments[1].toLowerCase();
-    detectedKbId = resolveKeyboardFromSlug(slug);
-    isHomepage = false;
-  } else if (segments.length > 0) {
-    // No locale prefix, just a slug directly like /clavier-arabe or /arabic-keyboard
-    const slug = segments[0].toLowerCase();
-    detectedKbId = resolveKeyboardFromSlug(slug);
-    isHomepage = false;
+    const secondSegment = segments[1].toLowerCase();
     
-    if (slug.startsWith('clavier-')) {
-      detectedLocale = 'fr';
-    } else if (slug.startsWith('teclado-')) {
-      detectedLocale = 'es';
-    } else if (slug.endsWith('-keyboard')) {
-      detectedLocale = 'en';
+    const staticMatch = resolveStaticPageFromSlug(secondSegment);
+    if (staticMatch) {
+      detectedStaticPage = staticMatch.page;
+      isHomepage = false;
+    } else {
+      detectedKbId = resolveKeyboardFromSlug(secondSegment);
+      isHomepage = false;
+    }
+  } else if (segments.length > 0) {
+    // Fallback
+    const slug = segments[segments.length - 1].toLowerCase();
+    const staticMatch = resolveStaticPageFromSlug(slug);
+    if (staticMatch) {
+      detectedStaticPage = staticMatch.page;
+      detectedLocale = staticMatch.locale || 'en';
+      isHomepage = false;
+    } else {
+      detectedKbId = resolveKeyboardFromSlug(slug);
+      isHomepage = false;
     }
   }
 
@@ -212,6 +301,7 @@ export function parseCurrentPath(pathname: string, search: string): {
     if (found) {
       detectedKbId = found.id;
       isHomepage = false;
+      detectedStaticPage = undefined;
     }
   }
   if (langQuery && SUPPORTED_LOCALES.includes(langQuery)) {
@@ -221,7 +311,8 @@ export function parseCurrentPath(pathname: string, search: string): {
   return {
     locale: detectedLocale,
     keyboardId: detectedKbId,
-    isHomepage
+    isHomepage,
+    staticPage: detectedStaticPage,
   };
 }
 

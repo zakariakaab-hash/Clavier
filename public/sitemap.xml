@@ -556,4 +556,140 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-runes-futhark"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-runas-futhark"/>
   </url>
+
+  <!-- Legal & Trust Pages: Privacy Policy -->
+  <url>
+    <loc>https://keypadking.com/en/privacy</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/privacy"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/privacy"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/confidentialite"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/privacidad"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/privacy"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/fr/confidentialite</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/privacy"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/privacy"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/confidentialite"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/privacidad"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/privacy"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/es/privacidad</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/privacy"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/privacy"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/confidentialite"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/privacidad"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/privacy"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/ar/privacy</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/privacy"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/privacy"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/confidentialite"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/privacidad"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/privacy"/>
+  </url>
+
+  <!-- Legal & Trust Pages: Terms of Use -->
+  <url>
+    <loc>https://keypadking.com/en/terms</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/terms"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/terms"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/conditions"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/terminos"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/terms"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/fr/conditions</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/terms"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/terms"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/conditions"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/terminos"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/terms"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/es/terminos</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/terms"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/terms"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/conditions"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/terminos"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/terms"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/ar/terms</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/terms"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/terms"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/conditions"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/terminos"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/terms"/>
+  </url>
+
+  <!-- Legal & Trust Pages: About -->
+  <url>
+    <loc>https://keypadking.com/en/about</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/about"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/about"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/a-propos"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/acerca-de"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/about"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/fr/a-propos</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/about"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/about"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/a-propos"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/acerca-de"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/about"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/es/acerca-de</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/about"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/about"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/a-propos"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/acerca-de"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/about"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/ar/about</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/about"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/about"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/a-propos"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/acerca-de"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/about"/>
+  </url>
+
+  <!-- Legal & Trust Pages: Contact -->
+  <url>
+    <loc>https://keypadking.com/en/contact</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/contact"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/contact"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/contact"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/contacto"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/contact"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/fr/contact</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/contact"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/contact"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/contact"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/contacto"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/contact"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/es/contacto</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/contact"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/contact"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/contact"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/contacto"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/contact"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/ar/contact</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/contact"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/contact"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/contact"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/contacto"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/contact"/>
+  </url>
 </urlset>

@@ -5,21 +5,23 @@ import { VirtualKeyboard } from './components/VirtualKeyboard';
 import { KeyboardCatalog } from './components/KeyboardCatalog';
 import { FAQSection } from './components/FAQSection';
 import { ParrotLogo } from './components/ParrotLogo';
+import { StaticPageView } from './components/StaticPageView';
 import { KeyboardLayout } from './types';
 import { ALL_KEYBOARDS, POPULAR_KEYBOARDS, getKeyboardById } from './data/keyboards';
 import { transliterateText } from './utils/transliterate';
 import { processPhysicalKeyStroke } from './utils/keyboardEngine';
 import { playKeyClickSound, playSpacebarSound } from './utils/audio';
 import { SupportedLocale, TRANSLATIONS, getTranslation, detectUserSystemLanguageAndLocation } from './utils/i18n';
-import { getLocalizedPath, parseCurrentPath } from './utils/routes';
-import { getPageSeoMetadata } from './utils/seo';
-import { Globe, Star, Layers, ShieldCheck, Heart, BookOpen } from 'lucide-react';
+import { getLocalizedPath, parseCurrentPath, StaticPageType, getStaticPagePath } from './utils/routes';
+import { getPageSeoMetadata, getStaticPageSeoMetadata } from './utils/seo';
+import { Globe, Star, Layers, ShieldCheck, Heart, BookOpen, Mail, Lock, FileText, Info } from 'lucide-react';
 
 export function App() {
-  // 1. Initial URL Path Parsing (e.g. /en/arabic-keyboard, /fr/clavier-arabe, /ar/, /)
+  // 1. Initial URL Path Parsing (e.g. /en/privacy, /fr/confidentialite, /en/arabic-keyboard, /fr/clavier-arabe, /ar/, /)
   const [initialRoute] = useState(() => parseCurrentPath(window.location.pathname, window.location.search));
   const [detectedInfo] = useState(() => detectUserSystemLanguageAndLocation());
   const [isHomepage, setIsHomepage] = useState<boolean>(() => Boolean(initialRoute.isHomepage));
+  const [activeStaticPage, setActiveStaticPage] = useState<StaticPageType | null>(() => initialRoute.staticPage || null);
 
   const [locale, setLocale] = useState<SupportedLocale>(() => {
     // 1. URL path or query parameter has highest priority
@@ -81,7 +83,73 @@ export function App() {
   useEffect(() => {
     localStorage.setItem('lexi_current_kb', currentKeyboard.id);
     
-    // Accurate Dynamic SEO Title, Description & H1 (Check if homepage or specific keyboard page)
+    // 1. Static Legal/Trust Pages SEO (Privacy, Terms, About, Contact)
+    if (activeStaticPage) {
+      const seoMeta = getStaticPageSeoMetadata(activeStaticPage, locale);
+      document.title = seoMeta.title;
+
+      let metaDesc = document.querySelector('meta[name="description"]');
+      if (!metaDesc) {
+        metaDesc = document.createElement('meta');
+        metaDesc.setAttribute('name', 'description');
+        document.head.appendChild(metaDesc);
+      }
+      metaDesc.setAttribute('content', seoMeta.description);
+
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      if (ogTitle) ogTitle.setAttribute('content', seoMeta.title);
+      const ogDesc = document.querySelector('meta[property="og:description"]');
+      if (ogDesc) ogDesc.setAttribute('content', seoMeta.description);
+
+      const twTitle = document.querySelector('meta[name="twitter:title"]');
+      if (twTitle) twTitle.setAttribute('content', seoMeta.title);
+      const twDesc = document.querySelector('meta[name="twitter:description"]');
+      if (twDesc) twDesc.setAttribute('content', seoMeta.description);
+
+      const targetPath = getStaticPagePath(activeStaticPage, locale);
+      if (window.location.pathname !== targetPath) {
+        window.history.replaceState({ staticPage: activeStaticPage, locale }, '', targetPath);
+      }
+
+      let canonical = document.querySelector('link[rel="canonical"]');
+      if (!canonical) {
+        canonical = document.createElement('link');
+        canonical.setAttribute('rel', 'canonical');
+        document.head.appendChild(canonical);
+      }
+      const fullCanonicalUrl = `https://keypadking.com${targetPath}`;
+      canonical.setAttribute('href', fullCanonicalUrl);
+
+      const ogUrl = document.querySelector('meta[property="og:url"]');
+      if (ogUrl) {
+        ogUrl.setAttribute('content', fullCanonicalUrl);
+      }
+
+      const activeLocales: SupportedLocale[] = ['en', 'fr', 'es', 'ar'];
+      activeLocales.forEach((loc) => {
+        const locPath = getStaticPagePath(activeStaticPage, loc);
+        let link = document.querySelector(`link[rel="alternate"][hreflang="${loc}"]`);
+        if (!link) {
+          link = document.createElement('link');
+          link.setAttribute('rel', 'alternate');
+          link.setAttribute('hreflang', loc);
+          document.head.appendChild(link);
+        }
+        link.setAttribute('href', `https://keypadking.com${locPath}`);
+      });
+
+      let xDefault = document.querySelector('link[rel="alternate"][hreflang="x-default"]');
+      if (!xDefault) {
+        xDefault = document.createElement('link');
+        xDefault.setAttribute('rel', 'alternate');
+        xDefault.setAttribute('hreflang', 'x-default');
+        document.head.appendChild(xDefault);
+      }
+      xDefault.setAttribute('href', `https://keypadking.com${getStaticPagePath(activeStaticPage, 'en')}`);
+      return;
+    }
+
+    // 2. Homepage or Keyboard Page Specific SEO
     const seoMeta = getPageSeoMetadata(currentKeyboard, locale, isHomepage);
     
     document.title = seoMeta.title;
@@ -176,12 +244,13 @@ export function App() {
     if (currentKeyboard.defaultFontSize) {
       setActiveFontSize(currentKeyboard.defaultFontSize);
     }
-  }, [currentKeyboard, locale, isHomepage]);
+  }, [currentKeyboard, locale, isHomepage, activeStaticPage]);
 
   // Handle Browser Back / Forward navigation (PopState)
   useEffect(() => {
     const handlePopState = () => {
       const parsed = parseCurrentPath(window.location.pathname, window.location.search);
+      setActiveStaticPage(parsed.staticPage || null);
       setIsHomepage(Boolean(parsed.isHomepage));
       if (parsed.locale && TRANSLATIONS[parsed.locale]) {
         setLocale(parsed.locale);
@@ -220,6 +289,7 @@ export function App() {
     window.addEventListener('languagechange', handleSystemLanguageChange);
     return () => window.removeEventListener('languagechange', handleSystemLanguageChange);
   }, [initialRoute]);
+
   useEffect(() => {
     localStorage.setItem('lexi_sound_enabled', String(soundEnabled));
   }, [soundEnabled]);
@@ -232,6 +302,8 @@ export function App() {
   // Global physical keyboard listener when user types outside input fields
   useEffect(() => {
     const handleGlobalKeyDown = (e: KeyboardEvent) => {
+      if (activeStaticPage) return;
+
       // Don't intercept if inside an input, other textarea, or if modal is open
       const activeEl = document.activeElement as HTMLElement | null;
       if (
@@ -251,7 +323,7 @@ export function App() {
       if (e.altKey && !e.ctrlKey && e.key !== 'AltGraph') {
         return;
       }
-      if (e.key === 'Tab' || e.key === 'Escape' || e.key.startsWith('F') && e.key.length > 1) {
+      if (e.key === 'Tab' || e.key === 'Escape' || (e.key.startsWith('F') && e.key.length > 1)) {
         return;
       }
 
@@ -296,7 +368,7 @@ export function App() {
 
     window.addEventListener('keydown', handleGlobalKeyDown);
     return () => window.removeEventListener('keydown', handleGlobalKeyDown);
-  }, [currentKeyboard, phoneticMode, soundEnabled, isCatalogOpen]);
+  }, [currentKeyboard, phoneticMode, soundEnabled, isCatalogOpen, activeStaticPage]);
 
   const handleToggleTheme = () => {
     setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
@@ -383,13 +455,33 @@ export function App() {
 
   const handleSelectKeyboard = (kb: KeyboardLayout) => {
     localStorage.setItem('lexi_current_kb_manual', 'true');
+    setActiveStaticPage(null);
     setIsHomepage(false);
     setCurrentKeyboard(kb);
+    const targetPath = getLocalizedPath(kb.id, locale);
+    window.history.pushState({ kbId: kb.id, locale }, '', targetPath);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleChangeLocale = (loc: SupportedLocale) => {
     localStorage.setItem('lexi_user_locale_manual', 'true');
     setLocale(loc);
+  };
+
+  const handleNavigateStaticPage = (page: StaticPageType, targetLocale: SupportedLocale = locale) => {
+    setActiveStaticPage(page);
+    setIsHomepage(false);
+    const targetPath = getStaticPagePath(page, targetLocale);
+    window.history.pushState({ staticPage: page, locale: targetLocale }, '', targetPath);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleNavigateHome = () => {
+    setActiveStaticPage(null);
+    setIsHomepage(true);
+    const homePath = locale === 'en' ? '/' : `/${locale}/`;
+    window.history.pushState({ isHomepage: true, locale }, '', homePath);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const isDarkMode = theme === 'dark';
@@ -416,17 +508,18 @@ export function App() {
         onToggleTheme={handleToggleTheme}
       />
 
-      {/* Popular Keyboards Navbar (Desktop / Web version only) */}
+      {/* Popular Keyboards Quick Bar (Desktop / Web version only) */}
       <div className={`hidden md:block border-b transition-colors w-full overflow-hidden ${
         isDarkMode ? 'bg-slate-900/60 border-slate-800' : 'bg-white border-slate-200 shadow-2xs'
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
           <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-touch scrollbar-none">
             <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider pr-1 shrink-0">
-              {t.popularKeyboards} :
+              {t.popularKeyboards}
             </span>
             {POPULAR_KEYBOARDS.slice(0, 16).map(kb => {
               const localizedHref = getLocalizedPath(kb.id, locale);
+              const isActive = !activeStaticPage && kb.id === currentKeyboard.id;
               return (
                 <a
                   key={`quick-${kb.id}`}
@@ -437,7 +530,7 @@ export function App() {
                     handleSelectKeyboard(kb);
                   }}
                   className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all cursor-pointer border touch-manipulation active:scale-95 ${
-                    kb.id === currentKeyboard.id
+                    isActive
                       ? 'bg-emerald-600 text-white font-bold border-emerald-600 shadow-xs'
                       : (isDarkMode ? 'bg-slate-800 hover:bg-slate-700 text-slate-300 border-slate-700 active:bg-slate-650' : 'bg-white hover:bg-slate-50 text-slate-700 border-slate-200 shadow-2xs active:bg-slate-100')
                   }`}
@@ -452,88 +545,107 @@ export function App() {
       </div>
 
       {/* Main App Workspace */}
-      <main className="flex-1 max-w-6xl w-full mx-auto px-2.5 sm:px-6 lg:px-8 py-3 sm:py-4 space-y-3 sm:space-y-4">
-        
-        {/* Semantic SEO H1 & Page Context */}
-        <section aria-label="Page Title" className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 border-b pb-2 sm:pb-3 border-slate-200/80 dark:border-slate-800/80">
-          <div>
-            <h1 className={`text-lg sm:text-2xl font-bold tracking-tight ${
-              isDarkMode ? 'text-white' : 'text-slate-900'
-            }`}>
-              {getPageSeoMetadata(currentKeyboard, locale, isHomepage).h1}
-            </h1>
-            <p className={`text-xs sm:text-sm mt-0.5 leading-relaxed ${
-              isDarkMode ? 'text-slate-400' : 'text-slate-600'
-            }`}>
-              {getPageSeoMetadata(currentKeyboard, locale, isHomepage).description}
-            </p>
-          </div>
-          {currentKeyboard.flag && (
-            <span className="text-xl sm:text-2xl shrink-0 self-start sm:self-center" aria-hidden="true">
-              {currentKeyboard.flag}
-            </span>
-          )}
-        </section>
-
-        {/* Editor Writing Area */}
-        <section aria-label="Multilingual Text Editor">
-          <EditorPad
-            text={editorText}
-            onChangeText={setEditorText}
-            currentKeyboard={currentKeyboard}
-            onSelectKeyboard={setCurrentKeyboard}
-            activeFontSize={activeFontSize}
-            onChangeFontSize={setActiveFontSize}
-            textareaRef={textareaRef}
+      {activeStaticPage ? (
+        <main className="flex-1 w-full">
+          <StaticPageView
+            pageType={activeStaticPage}
+            locale={locale}
             theme={theme}
-            onToggleTheme={handleToggleTheme}
-            onInsertSpace={() => handleInsertChar(' ')}
-            soundEnabled={soundEnabled}
-            phoneticMode={phoneticMode}
-            onTogglePhoneticMode={() => setPhoneticMode(!phoneticMode)}
-            currentLocale={locale}
+            onNavigateHome={handleNavigateHome}
+            onNavigateStaticPage={handleNavigateStaticPage}
           />
-        </section>
+        </main>
+      ) : (
+        <main className="flex-1 max-w-6xl w-full mx-auto px-2.5 sm:px-6 lg:px-8 py-3 sm:py-4 space-y-3 sm:space-y-4">
+          {/* Semantic SEO H1 & Page Context */}
+          <section aria-label="Page Title" className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 border-b pb-2 sm:pb-3 border-slate-200/80 dark:border-slate-800/80">
+            <div>
+              <h1 className={`text-lg sm:text-2xl font-bold tracking-tight ${
+                isDarkMode ? 'text-white' : 'text-slate-900'
+              }`}>
+                {getPageSeoMetadata(currentKeyboard, locale, isHomepage).h1}
+              </h1>
+              <p className={`text-xs sm:text-sm mt-0.5 leading-relaxed ${
+                isDarkMode ? 'text-slate-400' : 'text-slate-600'
+              }`}>
+                {getPageSeoMetadata(currentKeyboard, locale, isHomepage).description}
+              </p>
+            </div>
+            {currentKeyboard.flag && (
+              <span className="text-xl sm:text-2xl shrink-0 self-start sm:self-center" aria-hidden="true">
+                {currentKeyboard.flag}
+              </span>
+            )}
+          </section>
 
-        {/* Interactive Virtual Keyboard with Original Keyboard Letters */}
-        <section aria-label="Virtual Keyboard">
-          <VirtualKeyboard
+          {/* Editor Writing Area */}
+          <section aria-label="Multilingual Text Editor">
+            <EditorPad
+              text={editorText}
+              onChangeText={setEditorText}
+              currentKeyboard={currentKeyboard}
+              onSelectKeyboard={handleSelectKeyboard}
+              activeFontSize={activeFontSize}
+              onChangeFontSize={setActiveFontSize}
+              textareaRef={textareaRef}
+              theme={theme}
+              onToggleTheme={handleToggleTheme}
+              onInsertSpace={() => handleInsertChar(' ')}
+              soundEnabled={soundEnabled}
+              phoneticMode={phoneticMode}
+              onTogglePhoneticMode={() => setPhoneticMode(!phoneticMode)}
+              currentLocale={locale}
+            />
+          </section>
+
+          {/* Interactive Virtual Keyboard with Original Keyboard Letters */}
+          <section aria-label="Virtual Keyboard">
+            <VirtualKeyboard
+              currentKeyboard={currentKeyboard}
+              onInsertChar={handleInsertChar}
+              onBackspace={handleBackspace}
+              onClear={() => setEditorText('')}
+              soundEnabled={soundEnabled}
+              phoneticMode={phoneticMode}
+              onTogglePhoneticMode={() => setPhoneticMode(!phoneticMode)}
+              theme={theme}
+              currentLocale={locale}
+            />
+          </section>
+
+          {/* Informative & Concise Dynamic FAQ Section */}
+          <FAQSection
+            currentLocale={locale}
+            isDarkMode={isDarkMode}
             currentKeyboard={currentKeyboard}
-            onInsertChar={handleInsertChar}
-            onBackspace={handleBackspace}
-            onClear={() => setEditorText('')}
-            soundEnabled={soundEnabled}
-            phoneticMode={phoneticMode}
-            onTogglePhoneticMode={() => setPhoneticMode(!phoneticMode)}
-            theme={theme}
-            currentLocale={locale}
+            keyboardName={currentKeyboard.name}
           />
-        </section>
+        </main>
+      )}
 
-        {/* Informative & Concise Dynamic FAQ Section */}
-        <FAQSection
-          currentLocale={locale}
-          isDarkMode={isDarkMode}
-          currentKeyboard={currentKeyboard}
-          keyboardName={currentKeyboard.name}
-        />
-
-      </main>
-
-      {/* Modern SEO-friendly Footer */}
+      {/* Modern SEO-friendly & Trust Footer */}
       <footer className="bg-slate-900 text-slate-300 border-t border-slate-800 mt-12 py-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pb-8 border-b border-slate-800">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-8 border-b border-slate-800">
             
             {/* Column 1: Brand & Mission */}
             <div className="space-y-3">
-              <div className="flex items-center gap-2.5">
+              <div 
+                className="flex items-center gap-2.5 cursor-pointer"
+                onClick={handleNavigateHome}
+              >
                 <ParrotLogo size={34} />
                 <span className="font-bold text-base text-white tracking-tight">{t.appName}</span>
               </div>
               <p className="text-xs text-slate-400 leading-relaxed">
                 {t.footerDesc || t.tagline}
               </p>
+              <div className="pt-2">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[11px] font-semibold">
+                  <ShieldCheck className="w-3.5 h-3.5" />
+                  <span>100% Client-Side Privacy</span>
+                </span>
+              </div>
             </div>
 
             {/* Column 2: Popular Keyboards */}
@@ -544,11 +656,9 @@ export function App() {
                   { id: 'arabic', label: 'Arabic (العربية)' },
                   { id: 'persian', label: 'Persian Farsi (فارسی)' },
                   { id: 'urdu', label: 'Urdu (اردو)' },
-                  { id: 'russian', label: 'Russian (Русский)' },
                   { id: 'polytonic-greek', label: 'Greek (Ἑλληνική)' },
                   { id: 'hindi', label: 'Hindi Devanagari (हिन्दी)' },
                   { id: 'japanese-hiragana', label: 'Japanese Hiragana (日本語)' },
-                  { id: 'french', label: 'French (Français AZERTY)' },
                 ].map((item) => {
                   const kb = getKeyboardById(item.id);
                   const href = getLocalizedPath(kb.id, locale);
@@ -601,10 +711,107 @@ export function App() {
               </ul>
             </div>
 
+            {/* Column 4: Legal & Trust Pages */}
+            <div>
+              <h4 className="font-bold text-white text-xs uppercase tracking-wider mb-3">
+                {locale === 'fr' ? 'Informations & Légal' : locale === 'es' ? 'Información y Legal' : locale === 'ar' ? 'معلومات وروابط قانونية' : 'About & Legal'}
+              </h4>
+              <ul className="space-y-2 text-xs text-slate-400">
+                <li>
+                  <a
+                    href={getStaticPagePath('about', locale)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavigateStaticPage('about');
+                    }}
+                    className="group flex items-center gap-1.5 hover:text-emerald-400 focus-visible:text-emerald-400 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-emerald-400 rounded-sm cursor-pointer transition-colors duration-200"
+                  >
+                    <Info className="w-3.5 h-3.5 text-slate-400 group-hover:text-emerald-400 group-focus-visible:text-emerald-400 transition-colors duration-200 shrink-0" />
+                    <span>{locale === 'fr' ? 'À Propos de KeypadKing' : locale === 'es' ? 'Acerca de KeypadKing' : locale === 'ar' ? 'عن موقع KeypadKing' : 'About KeypadKing'}</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={getStaticPagePath('privacy', locale)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavigateStaticPage('privacy');
+                    }}
+                    className="group flex items-center gap-1.5 hover:text-emerald-400 focus-visible:text-emerald-400 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-emerald-400 rounded-sm cursor-pointer transition-colors duration-200"
+                  >
+                    <Lock className="w-3.5 h-3.5 text-slate-400 group-hover:text-emerald-400 group-focus-visible:text-emerald-400 transition-colors duration-200 shrink-0" />
+                    <span>{locale === 'fr' ? 'Politique de Confidentialité' : locale === 'es' ? 'Política de Privacidad' : locale === 'ar' ? 'سياسة الخصوصية' : 'Privacy Policy'}</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={getStaticPagePath('terms', locale)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavigateStaticPage('terms');
+                    }}
+                    className="group flex items-center gap-1.5 hover:text-emerald-400 focus-visible:text-emerald-400 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-emerald-400 rounded-sm cursor-pointer transition-colors duration-200"
+                  >
+                    <FileText className="w-3.5 h-3.5 text-slate-400 group-hover:text-emerald-400 group-focus-visible:text-emerald-400 transition-colors duration-200 shrink-0" />
+                    <span>{locale === 'fr' ? "Conditions d'Utilisation" : locale === 'es' ? 'Términos de Uso' : locale === 'ar' ? 'شروط الاستخدام' : 'Terms of Use'}</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={getStaticPagePath('contact', locale)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavigateStaticPage('contact');
+                    }}
+                    className="group flex items-center gap-1.5 hover:text-emerald-400 focus-visible:text-emerald-400 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-emerald-400 rounded-sm cursor-pointer transition-colors duration-200"
+                  >
+                    <Mail className="w-3.5 h-3.5 text-slate-400 group-hover:text-emerald-400 group-focus-visible:text-emerald-400 transition-colors duration-200 shrink-0" />
+                    <span>{locale === 'fr' ? 'Contact & Assistance' : locale === 'es' ? 'Contacto y Soporte' : locale === 'ar' ? 'اتصل بنا والدعم' : 'Contact & Inquiries'}</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
           </div>
 
+          {/* Subfooter */}
           <div className="pt-6 border-t border-slate-800 flex flex-wrap items-center justify-between gap-4 text-xs text-slate-400">
-            <p>© {new Date().getFullYear()} {t.appName} • {t.tagline}</p>
+            <div className="flex items-center gap-2 flex-wrap">
+              <p>© {new Date().getFullYear()} {t.appName} • {t.tagline}</p>
+              <span>•</span>
+              <a
+                href={getStaticPagePath('privacy', locale)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavigateStaticPage('privacy');
+                }}
+                className="hover:text-slate-200 transition-colors"
+              >
+                {locale === 'fr' ? 'Confidentialité' : locale === 'es' ? 'Privacidad' : locale === 'ar' ? 'الخصوصية' : 'Privacy'}
+              </a>
+              <span>•</span>
+              <a
+                href={getStaticPagePath('terms', locale)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavigateStaticPage('terms');
+                }}
+                className="hover:text-slate-200 transition-colors"
+              >
+                {locale === 'fr' ? 'Conditions' : locale === 'es' ? 'Términos' : locale === 'ar' ? 'الشروط' : 'Terms'}
+              </a>
+              <span>•</span>
+              <a
+                href={getStaticPagePath('contact', locale)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavigateStaticPage('contact');
+                }}
+                className="hover:text-slate-200 transition-colors"
+              >
+                {locale === 'fr' ? 'Contact' : locale === 'es' ? 'Contacto' : locale === 'ar' ? 'اتصل بنا' : 'Contact'}
+              </a>
+            </div>
             
             {/* Quick Locale Switcher in Footer */}
             <div className="flex items-center gap-1.5 flex-wrap">
