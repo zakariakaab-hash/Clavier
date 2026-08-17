@@ -13,50 +13,10 @@ export const russianKeyboard: KeyboardLayout = {
   sampleText: 'Съешь же ещё этих мягких французских булок, да выпей чаю.',
   hasPhoneticMode: true,
   phoneticDescription: 'Type phonetically in Latin: zh=ж, ch=ч, sh=ш, shch=щ, yu=ю, ya=я, yo=ё',
-  instructions: 'Pour écrire directement avec le clavier d\'origine (ordinateur) : utiliser les touches indiquées au-dessus de chaque lettre. Tapez a=а, b=б, v=в, g=г, d=д, e=е, yo=ё, zh=ж, z=з, i=и, j=й, k=к, l=л, m=м, n=н, o=о, p=п, r=р, s=с, t=т, u=у, f=ф, kh=х, ts=ц, ch=ч, sh=ш, shch=щ, y=ы, e=э, yu=ю, ya=я',
   specialCharGroups: [
     { title: 'Vowels', chars: ['а', 'е', 'ё', 'и', 'о', 'у', 'ы', 'э', 'ю', 'я'] },
     { title: 'Signs', chars: ['ъ', 'ь', '́' /* stress mark */] },
     { title: 'Pre-1918 Historical Letters', chars: ['ѣ', 'ѳ', 'ѵ', 'і'] }
-  ],
-  lexilogosRows: [
-    [
-      { char: 'а', latinGuide: 'a' },
-      { char: 'б', latinGuide: 'b' },
-      { char: 'в', latinGuide: 'v' },
-      { char: 'г', latinGuide: 'g' },
-      { char: 'д', latinGuide: 'd' },
-      { char: 'е', latinGuide: 'e' },
-      { char: 'ё', latinGuide: 'yo' },
-      { char: 'ж', latinGuide: 'zh' },
-      { char: 'з', latinGuide: 'z' },
-      { char: 'и', latinGuide: 'i' },
-      { char: 'й', latinGuide: 'j' },
-      { char: 'к', latinGuide: 'k' },
-      { char: 'л', latinGuide: 'l' },
-      { char: 'м', latinGuide: 'm' },
-      { char: 'н', latinGuide: 'n' },
-      { char: 'о', latinGuide: 'o' }
-    ],
-    [
-      { char: 'п', latinGuide: 'p' },
-      { char: 'р', latinGuide: 'r' },
-      { char: 'с', latinGuide: 's' },
-      { char: 'т', latinGuide: 't' },
-      { char: 'у', latinGuide: 'u' },
-      { char: 'ф', latinGuide: 'f' },
-      { char: 'х', latinGuide: 'kh' },
-      { char: 'ц', latinGuide: 'ts' },
-      { char: 'ч', latinGuide: 'ch' },
-      { char: 'ш', latinGuide: 'sh' },
-      { char: 'щ', latinGuide: 'shch' },
-      { char: 'ъ', latinGuide: "'" },
-      { char: 'ы', latinGuide: 'y' },
-      { char: 'ь', latinGuide: "'" },
-      { char: 'э', latinGuide: 'e' },
-      { char: 'ю', latinGuide: 'yu' },
-      { char: 'я', latinGuide: 'ya' }
-    ]
   ],
   rows: [
     [
@@ -116,8 +76,7 @@ export const russianKeyboard: KeyboardLayout = {
   ],
   externalLinks: {
     wikipediaLang: 'ru',
-    wiktionaryLang: 'ru',
-    lexilogosUrl: 'https://www.lexilogos.com/clavier/russe.htm'
+    wiktionaryLang: 'ru'
   },
   seoKeywords: ['russian keyboard', 'clavier russe', 'русская клавиатура', 'russian phonetic keyboard', 'type russian online', 'cyrillic keyboard online']
 };
@@ -195,8 +154,7 @@ export const ukrainianKeyboard: KeyboardLayout = {
   ],
   externalLinks: {
     wikipediaLang: 'uk',
-    wiktionaryLang: 'uk',
-    lexilogosUrl: 'https://www.lexilogos.com/clavier/ukrainien.htm'
+    wiktionaryLang: 'uk'
   },
   seoKeywords: ['ukrainian keyboard', 'clavier ukrainien', 'українська клавіатура', 'type ukrainian online']
 };
@@ -273,8 +231,7 @@ export const serbianCyrillicKeyboard: KeyboardLayout = {
   ],
   externalLinks: {
     wikipediaLang: 'sr',
-    wiktionaryLang: 'sr',
-    lexilogosUrl: 'https://www.lexilogos.com/clavier/serbe.htm'
+    wiktionaryLang: 'sr'
   },
   seoKeywords: ['serbian keyboard', 'clavier serbe', 'српска тастатура', 'serbian cyrillic keyboard']
 };
@@ -296,56 +253,56 @@ export const oldChurchSlavonicKeyboard: KeyboardLayout = {
   ],
   rows: [
     [
-      { char: 'ѯ', shiftChar: 'Ѯ' },
-      { char: 'ѱ', shiftChar: 'Ѱ' },
-      { char: 'ѳ', shiftChar: 'Ѳ' },
-      { char: 'ѵ', shiftChar: 'Ѵ' },
-      { char: 'ѣ', shiftChar: 'Ѣ' },
-      { char: 'ѫ', shiftChar: 'Ѫ' },
-      { char: 'ѧ', shiftChar: 'Ѧ' },
-      { char: 'ѡ', shiftChar: 'Ѡ' },
-      { char: 'ѿ', shiftChar: 'Ѿ' },
-      { char: 'ѥ', shiftChar: 'Ѥ' },
-      { char: 'ѩ', shiftChar: 'Ѩ' },
-      { char: 'ѭ', shiftChar: 'Ѭ' },
+      { char: 'ѯ', shiftChar: 'Ѯ', code: 'KeyQ' },
+      { char: 'ѱ', shiftChar: 'Ѱ', code: 'KeyW' },
+      { char: 'ѳ', shiftChar: 'Ѳ', code: 'KeyE' },
+      { char: 'ѵ', shiftChar: 'Ѵ', code: 'KeyR' },
+      { char: 'ѣ', shiftChar: 'Ѣ', code: 'KeyT' },
+      { char: 'ѫ', shiftChar: 'Ѫ', code: 'KeyY' },
+      { char: 'ѧ', shiftChar: 'Ѧ', code: 'KeyU' },
+      { char: 'ѡ', shiftChar: 'Ѡ', code: 'KeyI' },
+      { char: 'ѿ', shiftChar: 'Ѿ', code: 'KeyO' },
+      { char: 'ѥ', shiftChar: 'Ѥ', code: 'KeyP' },
+      { char: 'ѩ', shiftChar: 'Ѩ', code: 'BracketLeft' },
+      { char: 'ѭ', shiftChar: 'Ѭ', code: 'BracketRight' },
     ],
     [
-      { char: 'а', shiftChar: 'А' },
-      { char: 'б', shiftChar: 'Б' },
-      { char: 'в', shiftChar: 'В' },
-      { char: 'г', shiftChar: 'Г' },
-      { char: 'д', shiftChar: 'Д' },
-      { char: 'е', shiftChar: 'Е' },
-      { char: 'ж', shiftChar: 'Ж' },
-      { char: 'ѕ', shiftChar: 'Ѕ' },
-      { char: 'з', shiftChar: 'З' },
-      { char: 'и', shiftChar: 'И' },
-      { char: 'і', shiftChar: 'І' },
-      { char: 'к', shiftChar: 'К' },
+      { char: 'а', shiftChar: 'А', code: 'KeyA' },
+      { char: 'б', shiftChar: 'Б', code: 'KeyS' },
+      { char: 'в', shiftChar: 'В', code: 'KeyD' },
+      { char: 'г', shiftChar: 'Г', code: 'KeyF' },
+      { char: 'д', shiftChar: 'Д', code: 'KeyG' },
+      { char: 'е', shiftChar: 'Е', code: 'KeyH' },
+      { char: 'ж', shiftChar: 'Ж', code: 'KeyJ' },
+      { char: 'ѕ', shiftChar: 'Ѕ', code: 'KeyK' },
+      { char: 'з', shiftChar: 'З', code: 'KeyL' },
+      { char: 'и', shiftChar: 'И', code: 'Semicolon' },
+      { char: 'і', shiftChar: 'І', code: 'Quote' },
+      { char: 'к', shiftChar: 'К', code: 'Backslash' },
     ],
     [
-      { char: 'л', shiftChar: 'Л' },
-      { char: 'м', shiftChar: 'М' },
-      { char: 'н', shiftChar: 'Н' },
-      { char: 'о', shiftChar: 'О' },
-      { char: 'п', shiftChar: 'П' },
-      { char: 'р', shiftChar: 'Р' },
-      { char: 'с', shiftChar: 'С' },
-      { char: 'т', shiftChar: 'Т' },
-      { char: 'оу', shiftChar: 'Оу' },
-      { char: 'ф', shiftChar: 'Ф' },
-      { char: 'х', shiftChar: 'Х' },
+      { char: 'л', shiftChar: 'Л', code: 'KeyZ' },
+      { char: 'м', shiftChar: 'М', code: 'KeyX' },
+      { char: 'н', shiftChar: 'Н', code: 'KeyC' },
+      { char: 'о', shiftChar: 'О', code: 'KeyV' },
+      { char: 'п', shiftChar: 'П', code: 'KeyB' },
+      { char: 'р', shiftChar: 'Р', code: 'KeyN' },
+      { char: 'с', shiftChar: 'С', code: 'KeyM' },
+      { char: 'т', shiftChar: 'Т', code: 'Comma' },
+      { char: 'оу', shiftChar: 'Оу', code: 'Period' },
+      { char: 'ф', shiftChar: 'Ф', code: 'Slash' },
+      { char: 'х', shiftChar: 'Х', code: 'Minus' },
     ],
     [
-      { char: 'ц', shiftChar: 'Ц' },
-      { char: 'ч', shiftChar: 'Ч' },
-      { char: 'ш', shiftChar: 'Ш' },
-      { char: 'щ', shiftChar: 'Щ' },
-      { char: 'ъ', shiftChar: 'Ъ' },
-      { char: 'ꙑ', shiftChar: 'Ꙑ' },
-      { char: 'ь', shiftChar: 'Ь' },
-      { char: '҃', shiftChar: '҂' },
-      { char: '·', shiftChar: '⁘' },
+      { char: 'ц', shiftChar: 'Ц', code: 'Digit1' },
+      { char: 'ч', shiftChar: 'Ч', code: 'Digit2' },
+      { char: 'ш', shiftChar: 'Ш', code: 'Digit3' },
+      { char: 'щ', shiftChar: 'Щ', code: 'Digit4' },
+      { char: 'ъ', shiftChar: 'Ъ', code: 'Digit5' },
+      { char: 'ꙑ', shiftChar: 'Ꙑ', code: 'Digit6' },
+      { char: 'ь', shiftChar: 'Ь', code: 'Digit7' },
+      { char: '҃', shiftChar: '҂', code: 'Digit8' },
+      { char: '·', shiftChar: '⁘', code: 'Digit9' },
     ]
   ],
   seoKeywords: ['old church slavonic keyboard', 'archaic cyrillic keyboard', 'yat keyboard', 'liturgical slavic']

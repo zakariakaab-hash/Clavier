@@ -150,7 +150,7 @@ export const EditorPad: React.FC<EditorPadProps> = ({
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `${currentKeyboard.id}-lexilogos-text.txt`;
+    a.download = `${currentKeyboard.id}-keyboard-text.txt`;
     a.click();
     URL.revokeObjectURL(url);
   };

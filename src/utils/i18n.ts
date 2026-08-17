@@ -72,7 +72,6 @@ export interface TranslationDict {
   popularKeyboardsFooter?: string;
   ancientAndStemFooter?: string;
   resourcesFooter?: string;
-  officialLexilogos?: string;
   unicodeTables?: string;
   ipaSite?: string;
 }
@@ -143,7 +142,6 @@ export const TRANSLATIONS: Record<SupportedLocale, TranslationDict> = {
     popularKeyboardsFooter: 'Popular Keyboards',
     ancientAndStemFooter: 'Ancient & STEM Scripts',
     resourcesFooter: 'Linguistic Resources',
-    officialLexilogos: 'Official Lexilogos Website',
     unicodeTables: 'Unicode Character Tables',
     ipaSite: 'International Phonetic Association'
   },
@@ -212,7 +210,6 @@ export const TRANSLATIONS: Record<SupportedLocale, TranslationDict> = {
     popularKeyboardsFooter: 'Claviers Populaires',
     ancientAndStemFooter: 'Écritures Anciennes & STEM',
     resourcesFooter: 'Ressources Linguistiques',
-    officialLexilogos: 'Site officiel Lexilogos',
     unicodeTables: 'Tables de Caractères Unicode',
     ipaSite: 'Association Phonétique Internationale (API)'
   },
@@ -281,7 +278,6 @@ export const TRANSLATIONS: Record<SupportedLocale, TranslationDict> = {
     popularKeyboardsFooter: 'Teclados Populares',
     ancientAndStemFooter: 'Escrituras Antiguas y STEM',
     resourcesFooter: 'Recursos Lingüísticos',
-    officialLexilogos: 'Sitio oficial Lexilogos',
     unicodeTables: 'Tablas de Caracteres Unicode',
     ipaSite: 'Asociación Fonética Internacional (AFI)'
   },
@@ -350,7 +346,6 @@ export const TRANSLATIONS: Record<SupportedLocale, TranslationDict> = {
     popularKeyboardsFooter: 'لوحات المفاتيح الشائعة',
     ancientAndStemFooter: 'الخطوط القديمة والرموز العلمية',
     resourcesFooter: 'المصادر والمراجع اللغوية',
-    officialLexilogos: 'موقع ليكسيلوجوس الرسمي',
     unicodeTables: 'جداول رموز اليونيكود',
     ipaSite: 'جمعية الصوتيات الدولية (IPA)'
   }

@@ -1,5 +1,7 @@
 export type ScriptDirection = 'ltr' | 'rtl';
 
+export type PhysicalLayout = 'auto' | 'qwerty' | 'azerty' | 'qwertz';
+
 export type KeyboardCategory =
   | 'middle-eastern'
   | 'cyrillic'
@@ -43,7 +45,6 @@ export interface KeyboardLayout {
   hasPhoneticMode?: boolean;
   phoneticDescription?: string;
   instructions?: string;
-  lexilogosRows?: KeyCap[][]; // Lexilogos classic layout with original keyboard letters above keys
   rows: KeyCap[][];
   shiftRows?: KeyCap[][];
   altGrRows?: KeyCap[][];
@@ -53,7 +54,6 @@ export interface KeyboardLayout {
   externalLinks?: {
     wikipediaLang?: string;
     wiktionaryLang?: string;
-    lexilogosUrl?: string;
   };
   seoKeywords: string[];
 }

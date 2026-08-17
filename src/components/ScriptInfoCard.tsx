@@ -87,33 +87,22 @@ export const ScriptInfoCard: React.FC<ScriptInfoCardProps> = ({ keyboard }) => {
           </div>
         )}
 
-        {/* Lexilogos & Encyclopedic External Portals */}
+        {/* Encyclopedic & Language External Portals */}
         <div className="pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3 text-xs">
           <div className="flex items-center gap-1.5 text-slate-500">
             <BookOpen className="w-3.5 h-3.5 text-indigo-600" />
-            <span>Official References & Language Authorities:</span>
+            <span>Official References & Linguistic Guide:</span>
           </div>
 
           <div className="flex items-center gap-3">
-            {keyboard.externalLinks?.lexilogosUrl && (
-              <a
-                href={keyboard.externalLinks.lexilogosUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-semibold text-indigo-600 hover:text-indigo-800 flex items-center gap-1 underline underline-offset-2"
-              >
-                <span>Lexilogos {keyboard.name} Page</span>
-                <ExternalLink className="w-3 h-3" />
-              </a>
-            )}
             <a
               href={`https://en.wikipedia.org/wiki/${encodeURIComponent(keyboard.name)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-slate-600 hover:text-slate-900 flex items-center gap-1"
+              className="text-indigo-600 hover:text-indigo-800 font-semibold flex items-center gap-1"
             >
-              <span>Wikipedia Article</span>
-              <ExternalLink className="w-3 h-3 text-slate-400" />
+              <span>Wikipedia Linguistic Article</span>
+              <ExternalLink className="w-3 h-3 text-indigo-500" />
             </a>
           </div>
         </div>

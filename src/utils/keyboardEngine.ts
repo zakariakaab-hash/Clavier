@@ -1,5 +1,5 @@
 // Comprehensive Real-Time Physical Keyboard & Transliteration Engine
-import { KeyboardLayout, KeyDefinition } from '../types';
+import { KeyboardLayout, KeyDefinition, PhysicalLayout } from '../types';
 import { transliterateText } from './transliterate';
 
 // Hangul Jamo tables for 2-Bolsik composition
@@ -19,7 +19,7 @@ const HANGUL_FINALS = [
   'ㅆ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'
 ];
 
-// Korean 2-Bolsik physical QWERTY key mapping
+// Korean 2-Bolsik physical key mapping
 const KOREAN_2BOLSIK_MAP: Record<string, string> = {
   'q': 'ㅂ', 'Q': 'ㅃ', 'w': 'ㅈ', 'W': 'ㅉ', 'e': 'ㄷ', 'E': 'ㄸ',
   'r': 'ㄱ', 'R': 'ㄲ', 't': 'ㅅ', 'T': 'ㅆ', 'y': 'ㅛ', 'Y': 'ㅛ',
@@ -62,13 +62,122 @@ export function composeHangul(prevChar: string, newJamo: string): string {
   return prevChar + newJamo;
 }
 
+// Physical Key code to visual label map for QWERTY, AZERTY, QWERTZ
+export const PHYSICAL_KEY_LABELS: Record<'qwerty' | 'azerty' | 'qwertz', Record<string, string>> = {
+  qwerty: {
+    KeyQ: 'Q', KeyW: 'W', KeyE: 'E', KeyR: 'R', KeyT: 'T', KeyY: 'Y', KeyU: 'U', KeyI: 'I', KeyO: 'O', KeyP: 'P',
+    KeyA: 'A', KeyS: 'S', KeyD: 'D', KeyF: 'F', KeyG: 'G', KeyH: 'H', KeyJ: 'J', KeyK: 'K', KeyL: 'L',
+    KeyZ: 'Z', KeyX: 'X', KeyC: 'C', KeyV: 'V', KeyB: 'B', KeyN: 'N', KeyM: 'M',
+    Digit1: '1', Digit2: '2', Digit3: '3', Digit4: '4', Digit5: '5', Digit6: '6', Digit7: '7', Digit8: '8', Digit9: '9', Digit0: '0',
+    Minus: '-', Equal: '=', BracketLeft: '[', BracketRight: ']', Backslash: '\\', Semicolon: ';', Quote: "'",
+    Backquote: '`', Comma: ',', Period: '.', Slash: '/', IntlBackslash: '\\'
+  },
+  azerty: {
+    KeyQ: 'A', KeyW: 'Z', KeyE: 'E', KeyR: 'R', KeyT: 'T', KeyY: 'Y', KeyU: 'U', KeyI: 'I', KeyO: 'O', KeyP: 'P',
+    KeyA: 'Q', KeyS: 'S', KeyD: 'D', KeyF: 'F', KeyG: 'G', KeyH: 'H', KeyJ: 'J', KeyK: 'K', KeyL: 'L',
+    KeyZ: 'W', KeyX: 'X', KeyC: 'C', KeyV: 'V', KeyB: 'B', KeyN: 'N', KeyM: ',',
+    Digit1: '&', Digit2: 'é', Digit3: '"', Digit4: "'", Digit5: '(', Digit6: '-', Digit7: 'è', Digit8: '_', Digit9: 'ç', Digit0: 'à',
+    Minus: ')', Equal: '=', BracketLeft: '^', BracketRight: '$', Backslash: '*', Semicolon: 'M', Quote: 'ù',
+    Backquote: '²', Comma: ';', Period: ':', Slash: '!', IntlBackslash: '<'
+  },
+  qwertz: {
+    KeyQ: 'Q', KeyW: 'W', KeyE: 'E', KeyR: 'R', KeyT: 'T', KeyY: 'Z', KeyU: 'U', KeyI: 'I', KeyO: 'O', KeyP: 'P',
+    KeyA: 'A', KeyS: 'S', KeyD: 'D', KeyF: 'F', KeyG: 'G', KeyH: 'H', KeyJ: 'J', KeyK: 'K', KeyL: 'L',
+    KeyZ: 'Y', KeyX: 'X', KeyC: 'C', KeyV: 'V', KeyB: 'B', KeyN: 'N', KeyM: 'M',
+    Digit1: '1', Digit2: '2', Digit3: '3', Digit4: '4', Digit5: '5', Digit6: '6', Digit7: '7', Digit8: '8', Digit9: '9', Digit0: '0',
+    Minus: 'ß', Equal: '´', BracketLeft: 'Ü', BracketRight: '+', Backslash: '#', Semicolon: 'Ö', Quote: 'Ä',
+    Backquote: '^', Comma: ',', Period: '.', Slash: '-', IntlBackslash: '<'
+  }
+};
+
+/**
+ * Get the displayed physical-key hint for any key definition according to active layout
+ */
+export function getPhysicalKeyHint(
+  keyDef: KeyDefinition,
+  layout: 'qwerty' | 'azerty' | 'qwertz'
+): string | null {
+  if (keyDef.code && PHYSICAL_KEY_LABELS[layout]?.[keyDef.code]) {
+    return PHYSICAL_KEY_LABELS[layout][keyDef.code];
+  }
+  if (keyDef.latinGuide) {
+    // If latinGuide is a single letter, adjust for layout if needed
+    const upper = keyDef.latinGuide.toUpperCase();
+    if (layout === 'azerty') {
+      if (upper === 'Q') return 'A';
+      if (upper === 'A') return 'Q';
+      if (upper === 'W') return 'Z';
+      if (upper === 'Z') return 'W';
+    } else if (layout === 'qwertz') {
+      if (upper === 'Y') return 'Z';
+      if (upper === 'Z') return 'Y';
+    }
+    return keyDef.latinGuide;
+  }
+  return null;
+}
+
+/**
+ * Automatic Browser Keyboard Layout Detection
+ * Uses navigator.keyboard.getLayoutMap() where available with silent fallback to QWERTY
+ */
+export async function detectBrowserPhysicalLayout(): Promise<'qwerty' | 'azerty' | 'qwertz'> {
+  try {
+    if (typeof navigator !== 'undefined' && 'keyboard' in navigator && (navigator as any).keyboard?.getLayoutMap) {
+      const layoutMap = await (navigator as any).keyboard.getLayoutMap();
+      const qKey = layoutMap.get('KeyQ');
+      const wKey = layoutMap.get('KeyW');
+      const zKey = layoutMap.get('KeyZ');
+      const yKey = layoutMap.get('KeyY');
+
+      if (qKey === 'a' || wKey === 'z') {
+        return 'azerty';
+      }
+      if (zKey === 'y' || yKey === 'z') {
+        return 'qwertz';
+      }
+      if (qKey === 'q') {
+        return 'qwerty';
+      }
+    }
+  } catch {
+    // Silently continue with default
+  }
+  return 'qwerty';
+}
+
+/**
+ * Real-time keystroke inference of user physical layout
+ */
+export function inferPhysicalLayoutFromKeystroke(
+  code: string,
+  key: string
+): 'qwerty' | 'azerty' | 'qwertz' | null {
+  if (!code || !key) return null;
+  const lowerKey = key.toLowerCase();
+
+  if (code === 'KeyQ' && lowerKey === 'a') return 'azerty';
+  if (code === 'KeyA' && lowerKey === 'q') return 'azerty';
+  if (code === 'KeyW' && lowerKey === 'z') return 'azerty';
+  if (code === 'KeyZ' && lowerKey === 'w') return 'azerty';
+  if (code === 'KeyZ' && lowerKey === 'y') return 'qwertz';
+  if (code === 'KeyY' && lowerKey === 'z') return 'qwertz';
+  if (code === 'KeyQ' && lowerKey === 'q') return 'qwerty';
+
+  return null;
+}
+
 // Arabic transliteration lookup table (Reverse mappings & multi-key lookups)
 const ARABIC_KEY_MAP: Record<string, string> = {
-  'a': 'ا', 'b': 'ب', 't': 'ت', 'j': 'ج', 'H': 'ح', 'Ḥ': 'ح', '7': 'ح',
-  'd': 'د', 'r': 'ر', 'z': 'ز', 's': 'س', 'S': 'ص', 'D': 'ض',
-  'T': 'ط', 'Z': 'ظ', 'g': 'ع', '3': 'ع', 'E': 'ع', 'f': 'ف',
-  'q': 'ق', 'k': 'ك', 'l': 'ل', 'm': 'م', 'n': 'ن', 'h': 'ه',
-  'w': 'و', 'y': 'ي', 'p': 'پ', 'v': 'ڤ', '2': 'ء', '-': 'ء',
+  'a': 'ا', 'A': 'آ', 'b': 'ب', 'B': 'ب', 't': 'ت', 'T': 'ط',
+  'j': 'ج', 'J': 'چ', 'h': 'ه', 'H': 'ح', '7': 'ح', 'x': 'خ', 'X': 'خ',
+  'd': 'د', 'D': 'ض', 'r': 'ر', 'R': 'ر', 'z': 'ز', 'Z': 'ظ',
+  's': 'س', 'S': 'ص', 'c': 'ش', 'C': 'ث', 'v': 'ظ', 'V': 'ذ',
+  'g': 'غ', 'G': 'غ', '3': 'ع', 'e': 'ع', 'E': 'ع', 'f': 'ف', 'F': 'ف',
+  'q': 'ق', 'Q': 'ق', 'k': 'ك', 'K': 'ك', 'l': 'ل', 'L': 'ل',
+  'm': 'م', 'M': 'م', 'n': 'ن', 'N': 'ن', 'w': 'و', 'W': 'ؤ',
+  'y': 'ي', 'Y': 'ى', 'p': 'پ', 'P': 'ڤ', 'o': 'ة', 'O': 'ة',
+  'u': 'ء', 'U': 'ئ', 'i': 'إ', 'I': 'أ', '2': 'ء', '-': 'ء',
   '?': '؟', ',': '،', ';': '؛', '%': '٪'
 };
 
@@ -81,6 +190,22 @@ const ARABIC_MULTI_COMBOS: Record<string, string> = {
   'aa': 'آ', 'a=': 'آ', 'اا': 'آ', "ا'": 'آ',
   'a>': 'أ', 'i=': 'إ', 'u=': 'ؤ', 'y=': 'ئ', 't=': 'ة', 'a_': 'ى',
   'ee': 'ي', 'oo': 'و', 'ou': 'و'
+};
+
+// Persian / Farsi multi combos
+const PERSIAN_MULTI_COMBOS: Record<string, string> = {
+  'kh': 'خ', 'KH': 'خ', 'gh': 'غ', 'GH': 'غ',
+  'sh': 'ش', 'SH': 'ش', 'zh': 'ژ', 'ZH': 'ژ',
+  'ch': 'چ', 'CH': 'چ', 'aa': 'آ'
+};
+
+// Urdu multi combos
+const URDU_MULTI_COMBOS: Record<string, string> = {
+  'kh': 'خ', 'KH': 'خ', 'gh': 'غ', 'GH': 'غ',
+  'sh': 'ش', 'SH': 'ش', 'zh': 'ژ', 'ZH': 'ژ',
+  'ch': 'چ', 'CH': 'چ', 'jh': 'جھ', 'th': 'تھ',
+  'dh': 'دھ', 'bh': 'بھ', 'ph': 'پھ', 'rh': 'ڑھ',
+  'Th': 'ٹ', 'Dh': 'ڈ', 'Rh': 'ڑ', 'aa': 'آ'
 };
 
 // Russian phonetic typing table
@@ -180,8 +305,28 @@ const ARMENIAN_MULTI_COMBOS: Record<string, string> = {
   "p'": 'փ', "P'": 'Փ', "k'": 'ք', "K'": 'Ք', "o'": 'օ', "O'": 'Օ'
 };
 
+// Japanese Dakuten and Handakuten lookup
+const JAPANESE_DAKUTEN_MAP: Record<string, string> = {
+  'か': 'が', 'き': 'ぎ', 'く': 'ぐ', 'け': 'げ', 'こ': 'ご',
+  'さ': 'ざ', 'し': 'じ', 'す': 'ず', 'せ': 'ぜ', 'そ': 'ぞ',
+  'た': 'だ', 'ち': 'ぢ', 'つ': 'づ', 'て': 'で', 'と': 'ど',
+  'は': 'ば', 'ひ': 'び', 'ふ': 'ぶ', 'へ': 'べ', 'ほ': 'ぼ',
+  'カ': 'ガ', 'キ': 'ギ', 'ク': 'グ', 'ケ': 'ゲ', 'コ': 'ゴ',
+  'サ': 'ザ', 'シ': 'ジ', 'ス': 'ズ', 'セ': 'ゼ', 'ソ': 'ゾ',
+  'タ': 'ダ', 'チ': 'ヂ', 'ツ': 'ヅ', 'テ': 'デ', 'ト': 'ド',
+  'ハ': 'バ', 'ヒ': 'ビ', 'フ': 'ブ', 'ヘ': 'ベ', 'ホ': 'ボ',
+  'ウ': 'ヴ', 'う': 'ゔ'
+};
+
+const JAPANESE_HANDAKUTEN_MAP: Record<string, string> = {
+  'は': 'ぱ', 'ひ': 'ぴ', 'ふ': 'ぷ', 'へ': 'ぺ', 'ほ': 'ぽ',
+  'ハ': 'パ', 'ヒ': 'ピ', 'フ': 'プ', 'ヘ': 'ペ', 'ホ': 'ポ'
+};
+
 /**
- * Main function: Process physical keyboard keystroke and return updated text + cursor
+ * Main Keystroke Processing Function
+ * Resolves physical keystroke taking into account physical keyboard layout (QWERTY, AZERTY, QWERTZ),
+ * phonetic mode multi-character context, and Hangul syllable composition.
  */
 export function processPhysicalKeyStroke(
   key: string,
@@ -192,14 +337,15 @@ export function processPhysicalKeyStroke(
   cursorStart: number,
   cursorEnd: number,
   keyboard: KeyboardLayout,
-  phoneticMode: boolean
+  phoneticMode: boolean,
+  physicalLayout: 'qwerty' | 'azerty' | 'qwertz' = 'qwerty'
 ): {
   newText: string;
   newCursor: number;
   handled: boolean;
   insertedChar: string;
 } {
-  // If control / modifier / special function keys, pass through
+  // If control / navigation keys, let browser handle
   if (key === 'Backspace' || key === 'Delete' || key === 'Tab' || key === 'Enter' || key === 'ArrowLeft' || key === 'ArrowRight' || key === 'ArrowUp' || key === 'ArrowDown' || key === 'Home' || key === 'End') {
     return { newText: text, newCursor: cursorStart, handled: false, insertedChar: '' };
   }
@@ -217,7 +363,15 @@ export function processPhysicalKeyStroke(
 
   // Handle Korean Hangul specifically (2-Bolsik composition)
   if (keyboard.id === 'korean-hangul') {
-    const rawJamo = KOREAN_2BOLSIK_MAP[key] || KOREAN_2BOLSIK_MAP[key.toLowerCase()];
+    let effectiveKey = key;
+    // Adapt for physical layout (e.g. on AZERTY, 'a' key corresponds to 'q' in 2-Bolsik)
+    if (physicalLayout === 'azerty') {
+      if (code === 'KeyQ') effectiveKey = isShift ? 'A' : 'a';
+      else if (code === 'KeyA') effectiveKey = isShift ? 'Q' : 'q';
+      else if (code === 'KeyW') effectiveKey = isShift ? 'Z' : 'z';
+      else if (code === 'KeyZ') effectiveKey = isShift ? 'W' : 'w';
+    }
+    const rawJamo = KOREAN_2BOLSIK_MAP[effectiveKey] || KOREAN_2BOLSIK_MAP[effectiveKey.toLowerCase()];
     if (rawJamo) {
       if (cursorStart === cursorEnd && cursorStart > 0) {
         const prevChar = text[cursorStart - 1];
@@ -232,13 +386,100 @@ export function processPhysicalKeyStroke(
     }
   }
 
+  // Handle Japanese Romaji Phonetic Engine specifically
+  if ((keyboard.id.includes('japanese') || keyboard.id === 'hiragana') && phoneticMode) {
+    const isDakutenKey = key === '"' || key === '゛' || key === "'";
+    const isHandakutenKey = key === '°' || key === '゜' || key === '*';
+
+    if (cursorStart === cursorEnd && cursorStart > 0) {
+      const prevChar = text.substring(cursorStart - 1, cursorStart);
+      const twoCharsBefore = text.substring(Math.max(0, cursorStart - 2), cursorStart);
+      const threeCharsBefore = text.substring(Math.max(0, cursorStart - 3), cursorStart);
+
+      // Dakuten / Handakuten modifier
+      if (isDakutenKey && JAPANESE_DAKUTEN_MAP[prevChar]) {
+        const voiced = JAPANESE_DAKUTEN_MAP[prevChar];
+        const newText = text.substring(0, cursorStart - 1) + voiced + text.substring(cursorEnd);
+        return { newText, newCursor: cursorStart, handled: true, insertedChar: voiced };
+      }
+      if (isHandakutenKey && JAPANESE_HANDAKUTEN_MAP[prevChar]) {
+        const semivoiced = JAPANESE_HANDAKUTEN_MAP[prevChar];
+        const newText = text.substring(0, cursorStart - 1) + semivoiced + text.substring(cursorEnd);
+        return { newText, newCursor: cursorStart, handled: true, insertedChar: semivoiced };
+      }
+
+      // 1. 3-char Romaji prefix + key (e.g. shya -> しゃ, chyu -> ちゅ, etc.)
+      if (threeCharsBefore.length === 3) {
+        const test4 = (threeCharsBefore + key).toLowerCase();
+        const converted4 = transliterateText(test4, 'japanese-hiragana');
+        if (converted4 && converted4 !== test4) {
+          const newText = text.substring(0, cursorStart - 3) + converted4 + text.substring(cursorEnd);
+          return { newText, newCursor: cursorStart - 3 + converted4.length, handled: true, insertedChar: converted4 };
+        }
+      }
+
+      // 2. 2-char Romaji prefix + key (e.g. kya -> きゃ, sho -> しょ, tsu -> つ, etc.)
+      if (twoCharsBefore.length === 2) {
+        const test3 = (twoCharsBefore + key).toLowerCase();
+        const converted3 = transliterateText(test3, 'japanese-hiragana');
+        if (converted3 && converted3 !== test3) {
+          const newText = text.substring(0, cursorStart - 2) + converted3 + text.substring(cursorEnd);
+          return { newText, newCursor: cursorStart - 2 + converted3.length, handled: true, insertedChar: converted3 };
+        }
+      }
+
+      // 3. 1-char Romaji prefix + key (e.g. ka -> か, sa -> さ, etc.)
+      const test2 = (prevChar + key).toLowerCase();
+      const converted2 = transliterateText(test2, 'japanese-hiragana');
+      if (converted2 && converted2 !== test2) {
+        const newText = text.substring(0, cursorStart - 1) + converted2 + text.substring(cursorEnd);
+        return { newText, newCursor: cursorStart - 1 + converted2.length, handled: true, insertedChar: converted2 };
+      }
+
+      // 4. Double consonant -> Sokuon っ (e.g. kk -> っk, tt -> っt, ss -> っs, pp -> っp)
+      if (
+        prevChar.toLowerCase() === key.toLowerCase() &&
+        'bcdfghjklmpqrstvwxyz'.includes(key.toLowerCase()) &&
+        key.toLowerCase() !== 'n'
+      ) {
+        const sokuonReplacement = 'っ' + key.toLowerCase();
+        const newText = text.substring(0, cursorStart - 1) + sokuonReplacement + text.substring(cursorEnd);
+        return { newText, newCursor: cursorStart - 1 + sokuonReplacement.length, handled: true, insertedChar: sokuonReplacement };
+      }
+
+      // 5. 'n' before another consonant -> ん + consonant (e.g. n + k -> んk)
+      if (
+        prevChar.toLowerCase() === 'n' &&
+        'bcdfghjklmpqrstvwxyz'.includes(key.toLowerCase())
+      ) {
+        const nReplacement = 'ん' + key.toLowerCase();
+        const newText = text.substring(0, cursorStart - 1) + nReplacement + text.substring(cursorEnd);
+        return { newText, newCursor: cursorStart - 1 + nReplacement.length, handled: true, insertedChar: nReplacement };
+      }
+    }
+
+    // Direct single vowel or symbol conversion in Japanese
+    const singleTranslit = transliterateText(key.toLowerCase(), 'japanese-hiragana');
+    if (singleTranslit && singleTranslit !== key.toLowerCase()) {
+      const newText = text.substring(0, cursorStart) + singleTranslit + text.substring(cursorEnd);
+      return { newText, newCursor: cursorStart + singleTranslit.length, handled: true, insertedChar: singleTranslit };
+    }
+
+    // If consonant was typed, insert it as Latin char so next keystroke completes syllable
+    if ('bcdfghjklmnpqrstvwxyz'.includes(key.toLowerCase())) {
+      const lowerKey = key.toLowerCase();
+      const newText = text.substring(0, cursorStart) + lowerKey + text.substring(cursorEnd);
+      return { newText, newCursor: cursorStart + lowerKey.length, handled: true, insertedChar: lowerKey };
+    }
+  }
+
   // Multi-character contextual combinations check (e.g. s' -> ش, kh -> خ, th -> θ, zh -> ж, etc.)
   if (phoneticMode && keyboard.hasPhoneticMode && cursorStart === cursorEnd && cursorStart > 0) {
     const prevChar = text.substring(cursorStart - 1, cursorStart);
     const twoCharsBefore = text.substring(Math.max(0, cursorStart - 2), cursorStart);
     const threeCharsBefore = text.substring(Math.max(0, cursorStart - 3), cursorStart);
 
-    // 1. Check 3-char prefix + key
+    // 1. Check 3-char prefix + key (e.g. shch -> щ)
     if (threeCharsBefore.length === 3) {
       const test4 = threeCharsBefore + key;
       const converted4 = transliterateText(test4, keyboard.id);
@@ -264,7 +505,11 @@ export function processPhysicalKeyStroke(
 
     if (keyboard.id.includes('arabic')) {
       comboMatch = ARABIC_MULTI_COMBOS[test2];
-    } else if (keyboard.id.includes('russian') || keyboard.id.includes('cyrillic') || keyboard.id === 'ukrainian') {
+    } else if (keyboard.id === 'persian') {
+      comboMatch = PERSIAN_MULTI_COMBOS[test2];
+    } else if (keyboard.id === 'urdu') {
+      comboMatch = URDU_MULTI_COMBOS[test2];
+    } else if (keyboard.id.includes('russian') || keyboard.id.includes('cyrillic') || keyboard.id === 'ukrainian' || keyboard.id === 'serbian') {
       comboMatch = RUSSIAN_MULTI_COMBOS[test2];
     } else if (keyboard.id.includes('greek')) {
       comboMatch = GREEK_MULTI_COMBOS[test2];
@@ -289,73 +534,77 @@ export function processPhysicalKeyStroke(
     }
   }
 
-  // Single-key lookup resolution order:
-  // 1. Language-specific dedicated phonetic dictionary
+  // Single-key lookup resolution
   let mappedChar: string | null = null;
 
-  if (phoneticMode && keyboard.hasPhoneticMode) {
-    if (keyboard.id.includes('arabic') && ARABIC_KEY_MAP[key]) {
-      mappedChar = ARABIC_KEY_MAP[key];
-    } else if ((keyboard.id.includes('russian') || keyboard.id.includes('cyrillic') || keyboard.id === 'ukrainian') && RUSSIAN_KEY_MAP[key]) {
-      mappedChar = RUSSIAN_KEY_MAP[key];
-    } else if (keyboard.id.includes('greek') && GREEK_KEY_MAP[key]) {
-      mappedChar = GREEK_KEY_MAP[key];
-    } else if (keyboard.id.includes('hebrew') && HEBREW_KEY_MAP[key]) {
-      mappedChar = HEBREW_KEY_MAP[key];
-    } else if (keyboard.id === 'georgian' && GEORGIAN_KEY_MAP[key]) {
-      mappedChar = GEORGIAN_KEY_MAP[key];
-    } else if (keyboard.id === 'armenian' && ARMENIAN_KEY_MAP[key]) {
-      mappedChar = ARMENIAN_KEY_MAP[key];
-    } else {
-      const translit = transliterateText(key, keyboard.id);
-      if (translit && translit !== key) {
-        mappedChar = translit;
-      }
-    }
-  }
-
-  // 2. Lexilogos Latin Guide matching from keyboard definition (e.g. latinGuide: "s", "H", "t", etc.)
-  if (!mappedChar && keyboard.lexilogosRows) {
-    for (const row of keyboard.lexilogosRows) {
-      for (const item of row) {
-        if (item.latinGuide === key || (item.latinGuide && item.latinGuide.toLowerCase() === key.toLowerCase())) {
-          mappedChar = item.char;
-          break;
-        }
-      }
-      if (mappedChar) break;
-    }
-  }
-
-  // 3. Physical KeyCode / PC matrix rows lookup (e.g. code: "KeyQ", "KeyW", "Digit1", etc.)
-  if (!mappedChar && keyboard.rows) {
-    for (const row of keyboard.rows) {
-      for (const item of row) {
-        if (item.code === code) {
-          if (isAltGr && item.altChar) {
-            mappedChar = item.altChar;
-          } else if (isShift && item.shiftChar) {
-            mappedChar = item.shiftChar;
-          } else {
-            mappedChar = item.char;
+  // --- 1. HARDWARE KEYBOARD MODE (Default when phoneticMode is false) ---
+  if (!phoneticMode) {
+    // A. Direct Hardware KeyCode matching in target keyboard layout rows (Single Source of Truth)
+    if (keyboard.rows) {
+      for (const row of keyboard.rows) {
+        for (const item of row) {
+          if (item.code === code) {
+            if (isAltGr && item.altChar) {
+              mappedChar = item.altChar;
+            } else if (isShift && item.shiftChar) {
+              mappedChar = item.shiftChar;
+            } else {
+              mappedChar = item.char;
+            }
+            break;
           }
-          break;
         }
+        if (mappedChar) break;
       }
-      if (mappedChar) break;
     }
-  }
 
-  // 4. Fallback search through rows by latinGuide or char
-  if (!mappedChar && keyboard.rows) {
-    for (const row of keyboard.rows) {
-      for (const item of row) {
-        if (item.latinGuide === key) {
-          mappedChar = isShift && item.shiftChar ? item.shiftChar : item.char;
-          break;
+    // B. Fallback search through rows by char or latinGuide
+    if (!mappedChar && keyboard.rows) {
+      for (const row of keyboard.rows) {
+        for (const item of row) {
+          if (item.latinGuide === key || item.char === key) {
+            mappedChar = isShift && item.shiftChar ? item.shiftChar : item.char;
+            break;
+          }
+        }
+        if (mappedChar) break;
+      }
+    }
+  } else {
+    // --- 2. PHONETIC TRANSLITERATION MODE ---
+    // A. Language-specific dedicated phonetic dictionary
+    if (keyboard.hasPhoneticMode) {
+      if (keyboard.id.includes('arabic') && ARABIC_KEY_MAP[key]) {
+        mappedChar = ARABIC_KEY_MAP[key];
+      } else if ((keyboard.id.includes('russian') || keyboard.id.includes('cyrillic') || keyboard.id === 'ukrainian') && RUSSIAN_KEY_MAP[key]) {
+        mappedChar = RUSSIAN_KEY_MAP[key];
+      } else if (keyboard.id.includes('greek') && GREEK_KEY_MAP[key]) {
+        mappedChar = GREEK_KEY_MAP[key];
+      } else if (keyboard.id.includes('hebrew') && HEBREW_KEY_MAP[key]) {
+        mappedChar = HEBREW_KEY_MAP[key];
+      } else if (keyboard.id === 'georgian' && GEORGIAN_KEY_MAP[key]) {
+        mappedChar = GEORGIAN_KEY_MAP[key];
+      } else if (keyboard.id === 'armenian' && ARMENIAN_KEY_MAP[key]) {
+        mappedChar = ARMENIAN_KEY_MAP[key];
+      } else {
+        const translit = transliterateText(key, keyboard.id);
+        if (translit && translit !== key) {
+          mappedChar = translit;
         }
       }
-      if (mappedChar) break;
+    }
+
+    // B. Fallback search through rows by Latin Guide or key
+    if (!mappedChar && keyboard.rows) {
+      for (const row of keyboard.rows) {
+        for (const item of row) {
+          if (item.latinGuide === key || (item.latinGuide && item.latinGuide.toLowerCase() === key.toLowerCase())) {
+            mappedChar = isShift && item.shiftChar ? item.shiftChar : item.char;
+            break;
+          }
+        }
+        if (mappedChar) break;
+      }
     }
   }
 
@@ -370,8 +619,7 @@ export function processPhysicalKeyStroke(
     };
   }
 
-  // If no mapping found (e.g. user typed a key that doesn't have a special mapping in this language)
-  // Let the default key insertion proceed or insert raw key
+  // If no mapping found, pass key
   return {
     newText: text.substring(0, cursorStart) + key + text.substring(cursorEnd),
     newCursor: cursorStart + key.length,
