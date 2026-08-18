@@ -4,6 +4,7 @@ import fs from 'fs';
 import { fileURLToPath } from 'url';
 import { createServer as createViteServer } from 'vite';
 import dotenv from 'dotenv';
+import { parseCurrentPath } from './src/utils/routes';
 
 dotenv.config();
 
@@ -52,7 +53,13 @@ async function startServer() {
     const distPath = path.join(process.cwd(), 'dist');
     app.use(express.static(distPath));
     app.get('*', (req, res) => {
-      res.sendFile(path.join(distPath, 'index.html'));
+      const parsed = parseCurrentPath(req.path, req.url.includes('?') ? req.url.split('?')[1] : '');
+      const indexPath = path.join(distPath, 'index.html');
+      if (parsed.isNotFound) {
+        res.status(404).sendFile(indexPath);
+      } else {
+        res.status(200).sendFile(indexPath);
+      }
     });
   }
 

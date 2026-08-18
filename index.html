@@ -79,9 +79,24 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans:wght@400;500;600;700&family=Noto+Serif:wght@400;600&family=Amiri:wght@400;700&family=Noto+Sans+Devanagari:wght@400;600&family=Noto+Sans+Arabic:wght@400;600&family=Noto+Sans+Hebrew:wght@400;600&display=swap" rel="stylesheet">
     
-    <!-- JSON-LD Structured Data for SEO -->
-    <script type="application/ld+json">
+    <!-- Initial Static SEO Schema (Synchronized dynamically by React runtime) -->
+    <script id="schema-ld-json" type="application/ld+json">
     [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "KeypadKing",
+        "alternateName": "KeypadKing Multilingual Virtual Keyboards",
+        "url": "https://keypadking.com/",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://keypadking.com/en/?kb={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      },
       {
         "@context": "https://schema.org",
         "@type": "WebApplication",
@@ -104,41 +119,30 @@
           "System Language & Geolocation Detection",
           "Full Unicode 15.1 Compliance"
         ]
-      },
-      {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "How do I type in non-Latin scripts (Arabic, Cyrillic, Greek) without a physical foreign keyboard?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "KeypadKing allows you to type directly with your standard computer keyboard using phonetic transliteration mode (e.g. typing 'a' gives 'ا' in Arabic or 'а' in Russian) or by clicking the on-screen virtual keyboard keys."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Is KeypadKing compatible with diacritics, vocalization and polytonic Greek?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes, KeypadKing fully supports Greek polytonic accents (oxia, varia, perispomeni, iota subscript), Arabic vocalization (tashkeel), Hebrew niqqud, and phonetic IPA symbols."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "How does automatic phonetic transliteration work?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Toggle Phonetic Transliteration mode to automatically convert your Romanized Latin keystrokes into the corresponding target script characters instantly."
-            }
-          }
-        ]
       }
     ]
     </script>
   </head>
   <body class="bg-slate-50 text-slate-900 antialiased selection:bg-emerald-500 selection:text-white min-h-screen w-full overflow-x-hidden m-0 p-0">
+    <noscript>
+      <div style="max-width: 800px; margin: 2rem auto; padding: 1.5rem; font-family: sans-serif;">
+        <h1>Online Keyboards for Every Language &amp; Script | KeypadKing</h1>
+        <p>Type in any language or script with interactive virtual keyboards, real-time phonetic transliteration, and diacritics directly in your web browser.</p>
+        <h2>Popular Online Keyboards</h2>
+        <ul>
+          <li><a href="/en/arabic-keyboard">Arabic Keyboard (لوحة مفاتيح عربية)</a></li>
+          <li><a href="/fr/clavier-arabe">Clavier Arabe en Ligne</a></li>
+          <li><a href="/es/teclado-arabe">Teclado Árabe Online</a></li>
+          <li><a href="/en/russian-keyboard">Russian Keyboard (Русская клавиатура)</a></li>
+          <li><a href="/en/polytonic-greek-keyboard">Polytonic Greek Keyboard (Ἑλληνική)</a></li>
+          <li><a href="/en/hebrew-keyboard">Hebrew Keyboard (מקלדת עברית)</a></li>
+          <li><a href="/en/hindi-devanagari-keyboard">Hindi Devanagari Keyboard (हिन्दी कीबोर्ड)</a></li>
+          <li><a href="/en/japanese-hiragana-keyboard">Japanese Hiragana Keyboard (日本語キーボード)</a></li>
+          <li><a href="/en/ipa-phonetic-keyboard">International Phonetic Alphabet (IPA) Keyboard</a></li>
+        </ul>
+        <p>Please enable JavaScript to use the interactive virtual keyboard and real-time transliteration features.</p>
+      </div>
+    </noscript>
     <div id="root" class="min-h-screen w-full flex flex-col"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

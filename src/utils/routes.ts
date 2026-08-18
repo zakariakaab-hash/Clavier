@@ -222,12 +222,15 @@ export function resolveStaticPageFromSlug(slug: string): { page: StaticPageType;
  * - /arabic-keyboard -> isHomepage: false, locale: 'en', keyboardId: 'arabic'
  * - ?kb=arabic&lang=fr
  */
-export function parseCurrentPath(pathname: string, search: string): { 
+export interface ParsedRoute {
   locale?: SupportedLocale; 
   keyboardId?: string;
   isHomepage?: boolean;
   staticPage?: StaticPageType;
-} {
+  isNotFound?: boolean;
+}
+
+export function parseCurrentPath(pathname: string, search: string): ParsedRoute {
   const searchParams = new URLSearchParams(search);
   const kbQuery = searchParams.get('kb');
   const langQuery = searchParams.get('lang') as SupportedLocale | null;
@@ -239,6 +242,7 @@ export function parseCurrentPath(pathname: string, search: string): {
   let detectedKbId: string | undefined = undefined;
   let detectedStaticPage: StaticPageType | undefined = undefined;
   let isHomepage = false;
+  let isNotFound = false;
 
   // Root homepage: /
   if (segments.length === 0) {
@@ -260,15 +264,19 @@ export function parseCurrentPath(pathname: string, search: string): {
       detectedKbId = resolveKeyboardFromSlug(slug);
       isHomepage = false;
       
-      if (slug.startsWith('clavier-')) {
-        detectedLocale = 'fr';
-      } else if (slug.startsWith('teclado-')) {
-        detectedLocale = 'es';
-      } else if (slug.endsWith('-keyboard')) {
-        detectedLocale = 'en';
+      if (detectedKbId) {
+        if (slug.startsWith('clavier-')) {
+          detectedLocale = 'fr';
+        } else if (slug.startsWith('teclado-')) {
+          detectedLocale = 'es';
+        } else if (slug.endsWith('-keyboard')) {
+          detectedLocale = 'en';
+        }
+      } else {
+        isNotFound = true;
       }
     }
-  } else if (segments.length > 1 && SUPPORTED_LOCALES.includes(segments[0] as SupportedLocale)) {
+  } else if (segments.length === 2 && SUPPORTED_LOCALES.includes(segments[0] as SupportedLocale)) {
     // Localized route: /en/privacy, /fr/confidentialite, /en/arabic-keyboard, etc.
     detectedLocale = segments[0] as SupportedLocale;
     const secondSegment = segments[1].toLowerCase();
@@ -280,9 +288,12 @@ export function parseCurrentPath(pathname: string, search: string): {
     } else {
       detectedKbId = resolveKeyboardFromSlug(secondSegment);
       isHomepage = false;
+      if (!detectedKbId) {
+        isNotFound = true;
+      }
     }
   } else if (segments.length > 0) {
-    // Fallback
+    // Fallback or deep nested unknown path
     const slug = segments[segments.length - 1].toLowerCase();
     const staticMatch = resolveStaticPageFromSlug(slug);
     if (staticMatch) {
@@ -291,7 +302,11 @@ export function parseCurrentPath(pathname: string, search: string): {
       isHomepage = false;
     } else {
       detectedKbId = resolveKeyboardFromSlug(slug);
-      isHomepage = false;
+      if (detectedKbId) {
+        isHomepage = false;
+      } else {
+        isNotFound = true;
+      }
     }
   }
 
@@ -302,6 +317,7 @@ export function parseCurrentPath(pathname: string, search: string): {
       detectedKbId = found.id;
       isHomepage = false;
       detectedStaticPage = undefined;
+      isNotFound = false;
     }
   }
   if (langQuery && SUPPORTED_LOCALES.includes(langQuery)) {
@@ -313,6 +329,7 @@ export function parseCurrentPath(pathname: string, search: string): {
     keyboardId: detectedKbId,
     isHomepage,
     staticPage: detectedStaticPage,
+    isNotFound,
   };
 }
 

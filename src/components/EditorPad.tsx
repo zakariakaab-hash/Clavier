@@ -312,7 +312,7 @@ export const EditorPad: React.FC<EditorPadProps> = ({
       <div className="p-1.5 sm:p-3.5 md:p-5 flex flex-col flex-1 min-h-0 gap-1 sm:gap-2.5 md:gap-3">
         <textarea
           ref={textareaRef}
-          id="lexi-editor-textarea"
+          id="kp-editor-textarea"
           value={text}
           onChange={e => handleTextChange(e.target.value)}
           onKeyDown={handleKeyDown}

@@ -92,7 +92,7 @@ export const VirtualKeyboard: React.FC<VirtualKeyboardProps> = ({
       }
 
       const target = e.target as HTMLElement;
-      if (target.tagName === 'INPUT' && target.id !== 'lexi-editor-textarea') {
+      if (target.tagName === 'INPUT' && target.id !== 'kp-editor-textarea') {
         return;
       }
       if (e.key === 'Shift') {

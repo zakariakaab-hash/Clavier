@@ -22,7 +22,7 @@ export const ParrotLogo: React.FC<ParrotLogoProps> = ({
         aria-label="KeypadKing Logo"
       >
         <defs>
-          <linearGradient id="lexiEmeraldGrad" x1="16" y1="8" x2="44" y2="56" gradientUnits="userSpaceOnUse">
+          <linearGradient id="kpEmeraldGrad" x1="16" y1="8" x2="44" y2="56" gradientUnits="userSpaceOnUse">
             <stop offset="0%" stopColor="#10B981" />
             <stop offset="100%" stopColor="#059669" />
           </linearGradient>
@@ -41,7 +41,7 @@ export const ParrotLogo: React.FC<ParrotLogoProps> = ({
         {/* Body Silhouette */}
         <path
           d="M22 20C22 13.37 27.37 8 34 8C40.63 8 46 13.37 46 20V34C46 43 38 52 27 55C26 55.5 25 54.8 25.5 53.8C27 50.5 28 46 28 41L22 35V20Z"
-          fill="url(#lexiEmeraldGrad)"
+          fill="url(#kpEmeraldGrad)"
         />
 
         {/* Minimal Tail Streamer */}

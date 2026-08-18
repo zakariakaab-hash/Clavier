@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <!-- Homepage / Core Landing Pages -->
+  <!-- Homepage & Language Gateways -->
   <url>
     <loc>https://keypadking.com/</loc>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/"/>
@@ -42,7 +42,7 @@
     <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/"/>
   </url>
 
-  <!-- Arabic Keyboards -->
+  <!-- All Multilingual Virtual Keyboards (33 Layouts x 4 Locales) -->
   <url>
     <loc>https://keypadking.com/en/arabic-keyboard</loc>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/arabic-keyboard"/>
@@ -75,76 +75,6 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-arabe"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-arabe"/>
   </url>
-
-  <!-- Russian Keyboards -->
-  <url>
-    <loc>https://keypadking.com/en/russian-keyboard</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/russian-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/russian-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-russe"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-ruso"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-russian"/>
-  </url>
-  <url>
-    <loc>https://keypadking.com/fr/clavier-russe</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/russian-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/russian-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-russe"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-ruso"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-russian"/>
-  </url>
-  <url>
-    <loc>https://keypadking.com/es/teclado-ruso</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/russian-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/russian-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-russe"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-ruso"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-russian"/>
-  </url>
-  <url>
-    <loc>https://keypadking.com/ar/clavier-russian</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/russian-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/russian-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-russe"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-ruso"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-russian"/>
-  </url>
-
-  <!-- Urdu Keyboards -->
-  <url>
-    <loc>https://keypadking.com/en/urdu-keyboard</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/urdu-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/urdu-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-ourdou"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-urdu"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-urdu"/>
-  </url>
-  <url>
-    <loc>https://keypadking.com/fr/clavier-ourdou</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/urdu-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/urdu-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-ourdou"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-urdu"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-urdu"/>
-  </url>
-  <url>
-    <loc>https://keypadking.com/es/teclado-urdu</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/urdu-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/urdu-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-ourdou"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-urdu"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-urdu"/>
-  </url>
-  <url>
-    <loc>https://keypadking.com/ar/clavier-urdu</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/urdu-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/urdu-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-ourdou"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-urdu"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-urdu"/>
-  </url>
-
-  <!-- Persian Farsi Keyboards -->
   <url>
     <loc>https://keypadking.com/en/persian-farsi-keyboard</loc>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/persian-farsi-keyboard"/>
@@ -177,8 +107,230 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-persa-farsi"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-persian"/>
   </url>
-
-  <!-- Polytonic Greek Keyboards -->
+  <url>
+    <loc>https://keypadking.com/en/urdu-keyboard</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/urdu-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/urdu-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-ourdou"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-urdu"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-urdu"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/fr/clavier-ourdou</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/urdu-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/urdu-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-ourdou"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-urdu"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-urdu"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/es/teclado-urdu</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/urdu-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/urdu-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-ourdou"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-urdu"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-urdu"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/ar/clavier-urdu</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/urdu-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/urdu-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-ourdou"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-urdu"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-urdu"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/en/hebrew-keyboard</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/hebrew-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/hebrew-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-hebreu"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-hebreo"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-hebrew"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/fr/clavier-hebreu</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/hebrew-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/hebrew-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-hebreu"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-hebreo"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-hebrew"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/es/teclado-hebreo</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/hebrew-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/hebrew-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-hebreu"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-hebreo"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-hebrew"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/ar/clavier-hebrew</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/hebrew-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/hebrew-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-hebreu"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-hebreo"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-hebrew"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/en/russian-keyboard</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/russian-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/russian-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-russe"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-ruso"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-russian"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/fr/clavier-russe</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/russian-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/russian-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-russe"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-ruso"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-russian"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/es/teclado-ruso</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/russian-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/russian-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-russe"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-ruso"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-russian"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/ar/clavier-russian</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/russian-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/russian-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-russe"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-ruso"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-russian"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/en/ukrainian-keyboard</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/ukrainian-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/ukrainian-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-ukrainian"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-ukrainian"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-ukrainian"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/fr/clavier-ukrainian</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/ukrainian-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/ukrainian-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-ukrainian"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-ukrainian"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-ukrainian"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/es/teclado-ukrainian</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/ukrainian-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/ukrainian-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-ukrainian"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-ukrainian"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-ukrainian"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/ar/clavier-ukrainian</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/ukrainian-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/ukrainian-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-ukrainian"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-ukrainian"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-ukrainian"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/en/serbian-keyboard</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/serbian-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/serbian-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-serbian"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-serbian"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-serbian"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/fr/clavier-serbian</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/serbian-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/serbian-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-serbian"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-serbian"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-serbian"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/es/teclado-serbian</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/serbian-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/serbian-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-serbian"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-serbian"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-serbian"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/ar/clavier-serbian</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/serbian-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/serbian-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-serbian"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-serbian"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-serbian"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/en/old-church-slavonic-keyboard</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/old-church-slavonic-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/old-church-slavonic-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-old-church-slavonic"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-old-church-slavonic"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-old-church-slavonic"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/fr/clavier-old-church-slavonic</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/old-church-slavonic-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/old-church-slavonic-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-old-church-slavonic"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-old-church-slavonic"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-old-church-slavonic"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/es/teclado-old-church-slavonic</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/old-church-slavonic-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/old-church-slavonic-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-old-church-slavonic"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-old-church-slavonic"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-old-church-slavonic"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/ar/clavier-old-church-slavonic</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/old-church-slavonic-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/old-church-slavonic-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-old-church-slavonic"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-old-church-slavonic"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-old-church-slavonic"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/en/greek-keyboard</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/greek-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/greek-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-grec"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-griego"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-greek"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/fr/clavier-grec</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/greek-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/greek-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-grec"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-griego"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-greek"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/es/teclado-griego</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/greek-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/greek-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-grec"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-griego"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-greek"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/ar/clavier-greek</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/greek-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/greek-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-grec"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-griego"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-greek"/>
+  </url>
   <url>
     <loc>https://keypadking.com/en/polytonic-greek-keyboard</loc>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/polytonic-greek-keyboard"/>
@@ -211,60 +363,237 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-griego-politonico"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-polytonic-greek"/>
   </url>
-
-  <!-- Greek Keyboards -->
   <url>
-    <loc>https://keypadking.com/en/greek-keyboard</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/greek-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/greek-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-grec"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-griego"/>
+    <loc>https://keypadking.com/en/coptic-keyboard</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/coptic-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/coptic-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-coptic"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-coptic"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-coptic"/>
   </url>
   <url>
-    <loc>https://keypadking.com/fr/clavier-grec</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/greek-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/greek-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-grec"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-griego"/>
+    <loc>https://keypadking.com/fr/clavier-coptic</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/coptic-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/coptic-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-coptic"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-coptic"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-coptic"/>
   </url>
   <url>
-    <loc>https://keypadking.com/es/teclado-griego</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/greek-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/greek-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-grec"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-griego"/>
-  </url>
-
-  <!-- Hebrew Keyboards -->
-  <url>
-    <loc>https://keypadking.com/en/hebrew-keyboard</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/hebrew-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/hebrew-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-hebreu"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-hebreo"/>
+    <loc>https://keypadking.com/es/teclado-coptic</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/coptic-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/coptic-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-coptic"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-coptic"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-coptic"/>
   </url>
   <url>
-    <loc>https://keypadking.com/fr/clavier-hebreu</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/hebrew-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/hebrew-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-hebreu"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-hebreo"/>
+    <loc>https://keypadking.com/ar/clavier-coptic</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/coptic-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/coptic-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-coptic"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-coptic"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-coptic"/>
   </url>
   <url>
-    <loc>https://keypadking.com/es/teclado-hebreo</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/hebrew-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/hebrew-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-hebreu"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-hebreo"/>
+    <loc>https://keypadking.com/en/french-keyboard</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/french-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/french-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-french"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-french"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-french"/>
   </url>
-
-  <!-- Hindi Devanagari Keyboards -->
+  <url>
+    <loc>https://keypadking.com/fr/clavier-french</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/french-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/french-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-french"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-french"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-french"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/es/teclado-french</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/french-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/french-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-french"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-french"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-french"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/ar/clavier-french</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/french-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/french-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-french"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-french"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-french"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/en/german-keyboard</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/german-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/german-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-german"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-german"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-german"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/fr/clavier-german</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/german-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/german-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-german"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-german"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-german"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/es/teclado-german</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/german-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/german-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-german"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-german"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-german"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/ar/clavier-german</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/german-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/german-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-german"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-german"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-german"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/en/spanish-keyboard</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/spanish-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/spanish-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-spanish"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-spanish"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-spanish"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/fr/clavier-spanish</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/spanish-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/spanish-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-spanish"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-spanish"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-spanish"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/es/teclado-spanish</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/spanish-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/spanish-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-spanish"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-spanish"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-spanish"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/ar/clavier-spanish</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/spanish-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/spanish-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-spanish"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-spanish"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-spanish"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/en/polish-keyboard</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/polish-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/polish-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-polish"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-polish"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-polish"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/fr/clavier-polish</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/polish-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/polish-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-polish"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-polish"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-polish"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/es/teclado-polish</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/polish-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/polish-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-polish"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-polish"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-polish"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/ar/clavier-polish</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/polish-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/polish-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-polish"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-polish"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-polish"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/en/vietnamese-keyboard</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/vietnamese-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/vietnamese-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-vietnamese"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-vietnamese"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-vietnamese"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/fr/clavier-vietnamese</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/vietnamese-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/vietnamese-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-vietnamese"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-vietnamese"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-vietnamese"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/es/teclado-vietnamese</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/vietnamese-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/vietnamese-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-vietnamese"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-vietnamese"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-vietnamese"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/ar/clavier-vietnamese</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/vietnamese-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/vietnamese-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-vietnamese"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-vietnamese"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-vietnamese"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/en/esperanto-keyboard</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/esperanto-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/esperanto-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-esperanto"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-esperanto"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-esperanto"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/fr/clavier-esperanto</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/esperanto-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/esperanto-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-esperanto"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-esperanto"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-esperanto"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/es/teclado-esperanto</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/esperanto-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/esperanto-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-esperanto"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-esperanto"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-esperanto"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/ar/clavier-esperanto</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/esperanto-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/esperanto-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-esperanto"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-esperanto"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-esperanto"/>
+  </url>
   <url>
     <loc>https://keypadking.com/en/hindi-devanagari-keyboard</loc>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/hindi-devanagari-keyboard"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/hindi-devanagari-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-hindi-devanagari"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-hindi-devanagari"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-hindi"/>
   </url>
   <url>
     <loc>https://keypadking.com/fr/clavier-hindi-devanagari</loc>
@@ -272,6 +601,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/hindi-devanagari-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-hindi-devanagari"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-hindi-devanagari"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-hindi"/>
   </url>
   <url>
     <loc>https://keypadking.com/es/teclado-hindi-devanagari</loc>
@@ -279,15 +609,87 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/hindi-devanagari-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-hindi-devanagari"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-hindi-devanagari"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-hindi"/>
   </url>
-
-  <!-- Japanese Hiragana Keyboards -->
+  <url>
+    <loc>https://keypadking.com/ar/clavier-hindi</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/hindi-devanagari-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/hindi-devanagari-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-hindi-devanagari"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-hindi-devanagari"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-hindi"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/en/bengali-keyboard</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/bengali-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/bengali-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-bengali"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-bengali"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-bengali"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/fr/clavier-bengali</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/bengali-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/bengali-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-bengali"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-bengali"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-bengali"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/es/teclado-bengali</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/bengali-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/bengali-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-bengali"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-bengali"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-bengali"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/ar/clavier-bengali</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/bengali-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/bengali-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-bengali"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-bengali"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-bengali"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/en/tamil-keyboard</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/tamil-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/tamil-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-tamil"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-tamil"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-tamil"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/fr/clavier-tamil</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/tamil-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/tamil-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-tamil"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-tamil"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-tamil"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/es/teclado-tamil</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/tamil-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/tamil-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-tamil"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-tamil"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-tamil"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/ar/clavier-tamil</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/tamil-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/tamil-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-tamil"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-tamil"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-tamil"/>
+  </url>
   <url>
     <loc>https://keypadking.com/en/japanese-hiragana-keyboard</loc>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/japanese-hiragana-keyboard"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/japanese-hiragana-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-japonais-hiragana"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-japones-hiragana"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-japanese-hiragana"/>
   </url>
   <url>
     <loc>https://keypadking.com/fr/clavier-japonais-hiragana</loc>
@@ -295,6 +697,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/japanese-hiragana-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-japonais-hiragana"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-japones-hiragana"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-japanese-hiragana"/>
   </url>
   <url>
     <loc>https://keypadking.com/es/teclado-japones-hiragana</loc>
@@ -302,15 +705,23 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/japanese-hiragana-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-japonais-hiragana"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-japones-hiragana"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-japanese-hiragana"/>
   </url>
-
-  <!-- Korean Hangul Keyboards -->
+  <url>
+    <loc>https://keypadking.com/ar/clavier-japanese-hiragana</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/japanese-hiragana-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/japanese-hiragana-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-japonais-hiragana"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-japones-hiragana"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-japanese-hiragana"/>
+  </url>
   <url>
     <loc>https://keypadking.com/en/korean-hangul-keyboard</loc>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/korean-hangul-keyboard"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/korean-hangul-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-coreen-hangul"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-coreano-hangul"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-korean-hangul"/>
   </url>
   <url>
     <loc>https://keypadking.com/fr/clavier-coreen-hangul</loc>
@@ -318,6 +729,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/korean-hangul-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-coreen-hangul"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-coreano-hangul"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-korean-hangul"/>
   </url>
   <url>
     <loc>https://keypadking.com/es/teclado-coreano-hangul</loc>
@@ -325,107 +737,55 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/korean-hangul-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-coreen-hangul"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-coreano-hangul"/>
-  </url>
-
-  <!-- IPA Phonetic Keyboards -->
-  <url>
-    <loc>https://keypadking.com/en/ipa-phonetic-keyboard</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/ipa-phonetic-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/ipa-phonetic-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-phonetique-ipa"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-fonetico-ipa"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-korean-hangul"/>
   </url>
   <url>
-    <loc>https://keypadking.com/fr/clavier-phonetique-ipa</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/ipa-phonetic-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/ipa-phonetic-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-phonetique-ipa"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-fonetico-ipa"/>
+    <loc>https://keypadking.com/ar/clavier-korean-hangul</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/korean-hangul-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/korean-hangul-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-coreen-hangul"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-coreano-hangul"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-korean-hangul"/>
   </url>
   <url>
-    <loc>https://keypadking.com/es/teclado-fonetico-ipa</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/ipa-phonetic-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/ipa-phonetic-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-phonetique-ipa"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-fonetico-ipa"/>
-  </url>
-
-  <!-- Egyptian Hieroglyphs Keyboards -->
-  <url>
-    <loc>https://keypadking.com/en/egyptian-hieroglyphs-keyboard</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/egyptian-hieroglyphs-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/egyptian-hieroglyphs-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-hieroglyphes-egyptiens"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-jeroglificos-egipcios"/>
+    <loc>https://keypadking.com/en/thai-keyboard</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/thai-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/thai-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-thai"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-thai"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-thai"/>
   </url>
   <url>
-    <loc>https://keypadking.com/fr/clavier-hieroglyphes-egyptiens</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/egyptian-hieroglyphs-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/egyptian-hieroglyphs-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-hieroglyphes-egyptiens"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-jeroglificos-egipcios"/>
+    <loc>https://keypadking.com/fr/clavier-thai</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/thai-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/thai-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-thai"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-thai"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-thai"/>
   </url>
   <url>
-    <loc>https://keypadking.com/es/teclado-jeroglificos-egipcios</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/egyptian-hieroglyphs-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/egyptian-hieroglyphs-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-hieroglyphes-egyptiens"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-jeroglificos-egipcios"/>
-  </url>
-
-  <!-- Tifinagh Berber Keyboards -->
-  <url>
-    <loc>https://keypadking.com/en/tifinagh-berber-keyboard</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/tifinagh-berber-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/tifinagh-berber-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-tifinaghe-berbere"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-tifinagh-bereber"/>
+    <loc>https://keypadking.com/es/teclado-thai</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/thai-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/thai-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-thai"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-thai"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-thai"/>
   </url>
   <url>
-    <loc>https://keypadking.com/fr/clavier-tifinaghe-berbere</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/tifinagh-berber-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/tifinagh-berber-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-tifinaghe-berbere"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-tifinagh-bereber"/>
+    <loc>https://keypadking.com/ar/clavier-thai</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/thai-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/thai-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-thai"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-thai"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-thai"/>
   </url>
-  <url>
-    <loc>https://keypadking.com/es/teclado-tifinagh-bereber</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/tifinagh-berber-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/tifinagh-berber-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-tifinaghe-berbere"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-tifinagh-bereber"/>
-  </url>
-
-  <!-- Ukrainian Keyboards -->
-  <url>
-    <loc>https://keypadking.com/en/ukrainian-keyboard</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/ukrainian-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/ukrainian-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-ukrainian"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-ukrainian"/>
-  </url>
-  <url>
-    <loc>https://keypadking.com/fr/clavier-ukrainian</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/ukrainian-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/ukrainian-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-ukrainian"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-ukrainian"/>
-  </url>
-  <url>
-    <loc>https://keypadking.com/es/teclado-ukrainian</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/ukrainian-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/ukrainian-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-ukrainian"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-ukrainian"/>
-  </url>
-
-  <!-- Georgian Keyboards -->
   <url>
     <loc>https://keypadking.com/en/georgian-keyboard</loc>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/georgian-keyboard"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/georgian-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-georgien"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-georgiano"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-georgian"/>
   </url>
   <url>
     <loc>https://keypadking.com/fr/clavier-georgien</loc>
@@ -433,6 +793,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/georgian-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-georgien"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-georgiano"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-georgian"/>
   </url>
   <url>
     <loc>https://keypadking.com/es/teclado-georgiano</loc>
@@ -440,15 +801,23 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/georgian-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-georgien"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-georgiano"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-georgian"/>
   </url>
-
-  <!-- Armenian Keyboards -->
+  <url>
+    <loc>https://keypadking.com/ar/clavier-georgian</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/georgian-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/georgian-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-georgien"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-georgiano"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-georgian"/>
+  </url>
   <url>
     <loc>https://keypadking.com/en/armenian-keyboard</loc>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/armenian-keyboard"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/armenian-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-armenien"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-armenio"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-armenian"/>
   </url>
   <url>
     <loc>https://keypadking.com/fr/clavier-armenien</loc>
@@ -456,6 +825,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/armenian-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-armenien"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-armenio"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-armenian"/>
   </url>
   <url>
     <loc>https://keypadking.com/es/teclado-armenio</loc>
@@ -463,15 +833,23 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/armenian-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-armenien"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-armenio"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-armenian"/>
   </url>
-
-  <!-- Amharic Geez Keyboards -->
+  <url>
+    <loc>https://keypadking.com/ar/clavier-armenian</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/armenian-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/armenian-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-armenien"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-armenio"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-armenian"/>
+  </url>
   <url>
     <loc>https://keypadking.com/en/amharic-geez-keyboard</loc>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/amharic-geez-keyboard"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/amharic-geez-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-amharique-geez"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-amharico-geez"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-amharic"/>
   </url>
   <url>
     <loc>https://keypadking.com/fr/clavier-amharique-geez</loc>
@@ -479,6 +857,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/amharic-geez-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-amharique-geez"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-amharico-geez"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-amharic"/>
   </url>
   <url>
     <loc>https://keypadking.com/es/teclado-amharico-geez</loc>
@@ -486,61 +865,119 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/amharic-geez-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-amharique-geez"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-amharico-geez"/>
-  </url>
-
-  <!-- Mathematical & Logic Symbols Keyboards -->
-  <url>
-    <loc>https://keypadking.com/en/math-symbols-keyboard</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/math-symbols-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/math-symbols-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-symboles-mathematiques"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-simbolos-matematicos"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-amharic"/>
   </url>
   <url>
-    <loc>https://keypadking.com/fr/clavier-symboles-mathematiques</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/math-symbols-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/math-symbols-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-symboles-mathematiques"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-simbolos-matematicos"/>
+    <loc>https://keypadking.com/ar/clavier-amharic</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/amharic-geez-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/amharic-geez-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-amharique-geez"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-amharico-geez"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-amharic"/>
   </url>
   <url>
-    <loc>https://keypadking.com/es/teclado-simbolos-matematicos</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/math-symbols-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/math-symbols-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-symboles-mathematiques"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-simbolos-matematicos"/>
-  </url>
-
-  <!-- Braille Keyboards -->
-  <url>
-    <loc>https://keypadking.com/en/braille-keyboard</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/braille-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/braille-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-braille"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-braille"/>
+    <loc>https://keypadking.com/en/tifinagh-berber-keyboard</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/tifinagh-berber-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/tifinagh-berber-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-tifinaghe-berbere"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-tifinagh-bereber"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-tifinagh"/>
   </url>
   <url>
-    <loc>https://keypadking.com/fr/clavier-braille</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/braille-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/braille-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-braille"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-braille"/>
+    <loc>https://keypadking.com/fr/clavier-tifinaghe-berbere</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/tifinagh-berber-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/tifinagh-berber-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-tifinaghe-berbere"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-tifinagh-bereber"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-tifinagh"/>
   </url>
   <url>
-    <loc>https://keypadking.com/es/teclado-braille</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/braille-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/braille-keyboard"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-braille"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-braille"/>
+    <loc>https://keypadking.com/es/teclado-tifinagh-bereber</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/tifinagh-berber-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/tifinagh-berber-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-tifinaghe-berbere"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-tifinagh-bereber"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-tifinagh"/>
   </url>
-
-  <!-- Runes Futhark Keyboards -->
+  <url>
+    <loc>https://keypadking.com/ar/clavier-tifinagh</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/tifinagh-berber-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/tifinagh-berber-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-tifinaghe-berbere"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-tifinagh-bereber"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-tifinagh"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/en/ipa-phonetic-keyboard</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/ipa-phonetic-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/ipa-phonetic-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-phonetique-ipa"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-fonetico-ipa"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-ipa-phonetic"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/fr/clavier-phonetique-ipa</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/ipa-phonetic-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/ipa-phonetic-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-phonetique-ipa"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-fonetico-ipa"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-ipa-phonetic"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/es/teclado-fonetico-ipa</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/ipa-phonetic-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/ipa-phonetic-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-phonetique-ipa"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-fonetico-ipa"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-ipa-phonetic"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/ar/clavier-ipa-phonetic</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/ipa-phonetic-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/ipa-phonetic-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-phonetique-ipa"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-fonetico-ipa"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-ipa-phonetic"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/en/egyptian-hieroglyphs-keyboard</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/egyptian-hieroglyphs-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/egyptian-hieroglyphs-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-hieroglyphes-egyptiens"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-jeroglificos-egipcios"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-hieroglyphs"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/fr/clavier-hieroglyphes-egyptiens</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/egyptian-hieroglyphs-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/egyptian-hieroglyphs-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-hieroglyphes-egyptiens"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-jeroglificos-egipcios"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-hieroglyphs"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/es/teclado-jeroglificos-egipcios</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/egyptian-hieroglyphs-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/egyptian-hieroglyphs-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-hieroglyphes-egyptiens"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-jeroglificos-egipcios"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-hieroglyphs"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/ar/clavier-hieroglyphs</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/egyptian-hieroglyphs-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/egyptian-hieroglyphs-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-hieroglyphes-egyptiens"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-jeroglificos-egipcios"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-hieroglyphs"/>
+  </url>
   <url>
     <loc>https://keypadking.com/en/runic-futhark-keyboard</loc>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/runic-futhark-keyboard"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/runic-futhark-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-runes-futhark"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-runas-futhark"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-runes"/>
   </url>
   <url>
     <loc>https://keypadking.com/fr/clavier-runes-futhark</loc>
@@ -548,6 +985,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/runic-futhark-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-runes-futhark"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-runas-futhark"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-runes"/>
   </url>
   <url>
     <loc>https://keypadking.com/es/teclado-runas-futhark</loc>
@@ -555,77 +993,114 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/runic-futhark-keyboard"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-runes-futhark"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-runas-futhark"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-runes"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/ar/clavier-runes</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/runic-futhark-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/runic-futhark-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-runes-futhark"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-runas-futhark"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-runes"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/en/ogham-keyboard</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/ogham-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/ogham-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-ogham"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-ogham"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-ogham"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/fr/clavier-ogham</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/ogham-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/ogham-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-ogham"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-ogham"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-ogham"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/es/teclado-ogham</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/ogham-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/ogham-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-ogham"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-ogham"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-ogham"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/ar/clavier-ogham</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/ogham-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/ogham-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-ogham"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-ogham"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-ogham"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/en/braille-keyboard</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/braille-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/braille-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-braille"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-braille"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-braille"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/fr/clavier-braille</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/braille-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/braille-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-braille"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-braille"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-braille"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/es/teclado-braille</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/braille-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/braille-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-braille"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-braille"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-braille"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/ar/clavier-braille</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/braille-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/braille-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-braille"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-braille"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-braille"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/en/math-symbols-keyboard</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/math-symbols-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/math-symbols-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-symboles-mathematiques"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-simbolos-matematicos"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-math-symbols"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/fr/clavier-symboles-mathematiques</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/math-symbols-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/math-symbols-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-symboles-mathematiques"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-simbolos-matematicos"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-math-symbols"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/es/teclado-simbolos-matematicos</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/math-symbols-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/math-symbols-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-symboles-mathematiques"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-simbolos-matematicos"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-math-symbols"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/ar/clavier-math-symbols</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/math-symbols-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/math-symbols-keyboard"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/clavier-symboles-mathematiques"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/teclado-simbolos-matematicos"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/clavier-math-symbols"/>
   </url>
 
-  <!-- Legal & Trust Pages: Privacy Policy -->
-  <url>
-    <loc>https://keypadking.com/en/privacy</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/privacy"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/privacy"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/confidentialite"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/privacidad"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/privacy"/>
-  </url>
-  <url>
-    <loc>https://keypadking.com/fr/confidentialite</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/privacy"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/privacy"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/confidentialite"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/privacidad"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/privacy"/>
-  </url>
-  <url>
-    <loc>https://keypadking.com/es/privacidad</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/privacy"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/privacy"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/confidentialite"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/privacidad"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/privacy"/>
-  </url>
-  <url>
-    <loc>https://keypadking.com/ar/privacy</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/privacy"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/privacy"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/confidentialite"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/privacidad"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/privacy"/>
-  </url>
-
-  <!-- Legal & Trust Pages: Terms of Use -->
-  <url>
-    <loc>https://keypadking.com/en/terms</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/terms"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/terms"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/conditions"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/terminos"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/terms"/>
-  </url>
-  <url>
-    <loc>https://keypadking.com/fr/conditions</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/terms"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/terms"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/conditions"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/terminos"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/terms"/>
-  </url>
-  <url>
-    <loc>https://keypadking.com/es/terminos</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/terms"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/terms"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/conditions"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/terminos"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/terms"/>
-  </url>
-  <url>
-    <loc>https://keypadking.com/ar/terms</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/terms"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/terms"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/conditions"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/terminos"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/terms"/>
-  </url>
-
-  <!-- Legal & Trust Pages: About -->
+  <!-- Static Legal & Trust Pages (4 Pages x 4 Locales) -->
   <url>
     <loc>https://keypadking.com/en/about</loc>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/about"/>
@@ -658,8 +1133,70 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/acerca-de"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/about"/>
   </url>
-
-  <!-- Legal & Trust Pages: Contact -->
+  <url>
+    <loc>https://keypadking.com/en/privacy</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/privacy"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/privacy"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/confidentialite"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/privacidad"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/privacy"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/fr/confidentialite</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/privacy"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/privacy"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/confidentialite"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/privacidad"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/privacy"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/es/privacidad</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/privacy"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/privacy"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/confidentialite"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/privacidad"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/privacy"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/ar/privacy</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/privacy"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/privacy"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/confidentialite"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/privacidad"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/privacy"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/en/terms</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/terms"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/terms"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/conditions"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/terminos"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/terms"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/fr/conditions</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/terms"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/terms"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/conditions"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/terminos"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/terms"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/es/terminos</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/terms"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/terms"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/conditions"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/terminos"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/terms"/>
+  </url>
+  <url>
+    <loc>https://keypadking.com/ar/terms</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/terms"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://keypadking.com/en/terms"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://keypadking.com/fr/conditions"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://keypadking.com/es/terminos"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://keypadking.com/ar/terms"/>
+  </url>
   <url>
     <loc>https://keypadking.com/en/contact</loc>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://keypadking.com/en/contact"/>

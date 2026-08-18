@@ -279,7 +279,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                       onClick={() => {
                         const detected = detectUserSystemLanguageAndLocation();
                         onChangeLocale(detected.locale);
-                        localStorage.removeItem('lexi_user_locale_manual');
+                        localStorage.removeItem('kp_user_locale_manual');
                         setLangMenuOpen(false);
                       }}
                       className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-semibold border transition-colors text-left cursor-pointer mb-1.5 touch-manipulation active:scale-98 ${

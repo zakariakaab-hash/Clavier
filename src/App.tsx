@@ -7,6 +7,7 @@ import { MobileFloatingSearch } from './components/MobileFloatingSearch';
 import { FAQSection } from './components/FAQSection';
 import { ParrotLogo } from './components/ParrotLogo';
 import { StaticPageView } from './components/StaticPageView';
+import { NotFoundView } from './components/NotFoundView';
 import { KeyboardLayout } from './types';
 import { ALL_KEYBOARDS, POPULAR_KEYBOARDS, getKeyboardById } from './data/keyboards';
 import { transliterateText } from './utils/transliterate';
@@ -15,6 +16,7 @@ import { playKeyClickSound, playSpacebarSound } from './utils/audio';
 import { SupportedLocale, TRANSLATIONS, getTranslation, detectUserSystemLanguageAndLocation } from './utils/i18n';
 import { getLocalizedPath, parseCurrentPath, StaticPageType, getStaticPagePath } from './utils/routes';
 import { getPageSeoMetadata, getStaticPageSeoMetadata } from './utils/seo';
+import { generateSchemaJsonLd } from './utils/schema';
 import { Globe, Star, Layers, ShieldCheck, Heart, BookOpen, Mail, Lock, FileText, Info } from 'lucide-react';
 
 export function App() {
@@ -22,6 +24,7 @@ export function App() {
   const [initialRoute] = useState(() => parseCurrentPath(window.location.pathname, window.location.search));
   const [detectedInfo] = useState(() => detectUserSystemLanguageAndLocation());
   const [isHomepage, setIsHomepage] = useState<boolean>(() => Boolean(initialRoute.isHomepage));
+  const [isNotFound, setIsNotFound] = useState<boolean>(() => Boolean(initialRoute.isNotFound));
   const [activeStaticPage, setActiveStaticPage] = useState<StaticPageType | null>(() => initialRoute.staticPage || null);
 
   const [locale, setLocale] = useState<SupportedLocale>(() => {
@@ -29,7 +32,7 @@ export function App() {
     if (initialRoute.locale && TRANSLATIONS[initialRoute.locale]) {
       return initialRoute.locale;
     }
-    const saved = localStorage.getItem('lexi_user_locale');
+    const saved = localStorage.getItem('kp_user_locale');
     if (saved && TRANSLATIONS[saved as SupportedLocale]) {
       return saved as SupportedLocale;
     }
@@ -45,7 +48,7 @@ export function App() {
       const found = ALL_KEYBOARDS.find(k => k.id === initialRoute.keyboardId);
       if (found) return found;
     }
-    const saved = localStorage.getItem('lexi_current_kb');
+    const saved = localStorage.getItem('kp_current_kb');
     if (saved) {
       const found = ALL_KEYBOARDS.find(k => k.id === saved);
       if (found) return found;
@@ -57,18 +60,18 @@ export function App() {
   });
 
   const [theme, setTheme] = useState<'dark' | 'light'>(() => {
-    const saved = localStorage.getItem('lexi_theme');
+    const saved = localStorage.getItem('kp_theme');
     return (saved === 'dark' || saved === 'light') ? saved : 'light';
   });
 
   const [editorText, setEditorText] = useState<string>('');
   const [activeFontSize, setActiveFontSize] = useState<number>(currentKeyboard.defaultFontSize || 24);
   const [soundEnabled, setSoundEnabled] = useState<boolean>(() => {
-    return localStorage.getItem('lexi_sound_enabled') !== 'false';
+    return localStorage.getItem('kp_sound_enabled') !== 'false';
   });
   const [favorites, setFavorites] = useState<string[]>(() => {
     try {
-      const saved = localStorage.getItem('lexi_favorites');
+      const saved = localStorage.getItem('kp_favorites');
       return saved ? JSON.parse(saved) : ['arabic', 'persian', 'urdu', 'russian', 'polytonic-greek'];
     } catch {
       return ['arabic', 'persian', 'urdu', 'russian'];
@@ -80,9 +83,41 @@ export function App() {
 
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
-  // Dynamic SEO Title, Description, Canonical URL and Clean Path Synchronization
+  // Dynamic SEO Title, Description, Canonical URL, Robots, Schema, and Clean Path Synchronization
   useEffect(() => {
-    localStorage.setItem('lexi_current_kb', currentKeyboard.id);
+    localStorage.setItem('kp_current_kb', currentKeyboard.id);
+
+    // Robots meta tag handler
+    let robotsMeta = document.querySelector('meta[name="robots"]');
+    if (!robotsMeta) {
+      robotsMeta = document.createElement('meta');
+      robotsMeta.setAttribute('name', 'robots');
+      document.head.appendChild(robotsMeta);
+    }
+
+    // Dynamic Schema.org JSON-LD structured data updater
+    const updateSchemaTag = () => {
+      const schemaData = generateSchemaJsonLd(currentKeyboard, locale, isHomepage, activeStaticPage, isNotFound);
+      let schemaScript = document.getElementById('schema-ld-json') as HTMLScriptElement | null;
+      if (!schemaScript) {
+        schemaScript = document.createElement('script');
+        schemaScript.id = 'schema-ld-json';
+        schemaScript.type = 'application/ld+json';
+        document.head.appendChild(schemaScript);
+      }
+      schemaScript.textContent = JSON.stringify(schemaData, null, 2);
+    };
+
+    // 0. 404 Not Found Page SEO
+    if (isNotFound) {
+      document.title = 'Page Not Found (404) | KeypadKing';
+      robotsMeta.setAttribute('content', 'noindex, follow');
+      updateSchemaTag();
+      return;
+    }
+
+    // Default valid indexing for standard pages
+    robotsMeta.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
     
     // 1. Static Legal/Trust Pages SEO (Privacy, Terms, About, Contact)
     if (activeStaticPage) {
@@ -147,6 +182,8 @@ export function App() {
         document.head.appendChild(xDefault);
       }
       xDefault.setAttribute('href', `https://keypadking.com${getStaticPagePath(activeStaticPage, 'en')}`);
+      
+      updateSchemaTag();
       return;
     }
 
@@ -177,11 +214,8 @@ export function App() {
     if (twDesc) twDesc.setAttribute('content', seoMeta.description);
 
     // Clean SEO URL Path Sync
-    // Homepage routes: / (or /en/, /fr/, /es/, /ar/)
-    // Keyboard routes: /fr/clavier-arabe, /en/arabic-keyboard, /ar/clavier-arabe, /es/teclado-arabe
     let targetPath = '';
     if (isHomepage) {
-      // If root path '/' and locale is detected/default, keep '/' or localized home '/fr/', '/ar/', etc.
       const currentPathClean = window.location.pathname.replace(/\/+$/, '');
       if (currentPathClean === '' || currentPathClean === '/') {
         targetPath = '/';
@@ -245,12 +279,15 @@ export function App() {
     if (currentKeyboard.defaultFontSize) {
       setActiveFontSize(currentKeyboard.defaultFontSize);
     }
-  }, [currentKeyboard, locale, isHomepage, activeStaticPage]);
+
+    updateSchemaTag();
+  }, [currentKeyboard, locale, isHomepage, activeStaticPage, isNotFound]);
 
   // Handle Browser Back / Forward navigation (PopState)
   useEffect(() => {
     const handlePopState = () => {
       const parsed = parseCurrentPath(window.location.pathname, window.location.search);
+      setIsNotFound(Boolean(parsed.isNotFound));
       setActiveStaticPage(parsed.staticPage || null);
       setIsHomepage(Boolean(parsed.isHomepage));
       if (parsed.locale && TRANSLATIONS[parsed.locale]) {
@@ -271,17 +308,17 @@ export function App() {
     document.documentElement.lang = locale;
     const isRtl = locale === 'ar' || locale === 'he' || locale === 'fa';
     document.documentElement.dir = isRtl ? 'rtl' : 'ltr';
-    localStorage.setItem('lexi_user_locale', locale);
+    localStorage.setItem('kp_user_locale', locale);
   }, [locale]);
 
   // Listen to browser system language changes dynamically
   useEffect(() => {
     const handleSystemLanguageChange = () => {
-      const isManual = localStorage.getItem('lexi_user_locale_manual');
+      const isManual = localStorage.getItem('kp_user_locale_manual');
       if (!isManual && !initialRoute.locale) {
         const detected = detectUserSystemLanguageAndLocation();
         setLocale(detected.locale);
-        if (detected.matchedKeyboard && !localStorage.getItem('lexi_current_kb_manual') && !initialRoute.keyboardId) {
+        if (detected.matchedKeyboard && !localStorage.getItem('kp_current_kb_manual') && !initialRoute.keyboardId) {
           setCurrentKeyboard(detected.matchedKeyboard);
         }
       }
@@ -292,12 +329,12 @@ export function App() {
   }, [initialRoute]);
 
   useEffect(() => {
-    localStorage.setItem('lexi_sound_enabled', String(soundEnabled));
+    localStorage.setItem('kp_sound_enabled', String(soundEnabled));
   }, [soundEnabled]);
 
   // Sync favorites
   useEffect(() => {
-    localStorage.setItem('lexi_favorites', JSON.stringify(favorites));
+    localStorage.setItem('kp_favorites', JSON.stringify(favorites));
   }, [favorites]);
 
   // Global physical keyboard listener when user types outside input fields
@@ -311,7 +348,7 @@ export function App() {
         activeEl && 
         (activeEl.tagName === 'INPUT' || 
          activeEl.tagName === 'SELECT' || 
-         (activeEl.tagName === 'TEXTAREA' && activeEl.id === 'lexi-editor-textarea'))
+         (activeEl.tagName === 'TEXTAREA' && activeEl.id === 'kp-editor-textarea'))
       ) {
         return;
       }
@@ -455,7 +492,7 @@ export function App() {
   };
 
   const handleSelectKeyboard = (kb: KeyboardLayout) => {
-    localStorage.setItem('lexi_current_kb_manual', 'true');
+    localStorage.setItem('kp_current_kb_manual', 'true');
     setActiveStaticPage(null);
     setIsHomepage(false);
     setCurrentKeyboard(kb);
@@ -465,7 +502,7 @@ export function App() {
   };
 
   const handleChangeLocale = (loc: SupportedLocale) => {
-    localStorage.setItem('lexi_user_locale_manual', 'true');
+    localStorage.setItem('kp_user_locale_manual', 'true');
     setLocale(loc);
   };
 
@@ -546,7 +583,17 @@ export function App() {
       </div>
 
       {/* Main App Workspace */}
-      {activeStaticPage ? (
+      {isNotFound ? (
+        <main className="flex-1 w-full">
+          <NotFoundView
+            locale={locale}
+            theme={theme}
+            onNavigateHome={handleNavigateHome}
+            onSelectKeyboard={handleSelectKeyboard}
+            onOpenCatalog={() => setIsCatalogOpen(true)}
+          />
+        </main>
+      ) : activeStaticPage ? (
         <main className="flex-1 w-full">
           <StaticPageView
             pageType={activeStaticPage}
@@ -576,11 +623,6 @@ export function App() {
                   {getPageSeoMetadata(currentKeyboard, locale, isHomepage).description}
                 </p>
               </div>
-              {currentKeyboard.flag && (
-                <span className="hidden md:inline text-lg sm:text-xl md:text-2xl shrink-0 self-start sm:self-center" aria-hidden="true">
-                  {currentKeyboard.flag}
-                </span>
-              )}
             </section>
 
             {/* Editor Writing Area - Flexible flex-1 min-h-0 on mobile to absorb available height */}
@@ -672,7 +714,7 @@ export function App() {
 
             {/* Column 2: Popular Keyboards */}
             <div>
-              <h4 className="font-bold text-white text-xs uppercase tracking-wider mb-3">{t.popularKeyboardsFooter || 'Popular Keyboards'}</h4>
+              <h2 className="font-bold text-white text-xs uppercase tracking-wider mb-3">{t.popularKeyboardsFooter || 'Popular Keyboards'}</h2>
               <ul className="space-y-1.5 text-xs text-slate-400">
                 {[
                   { id: 'arabic', label: 'Arabic (العربية)' },
@@ -704,7 +746,7 @@ export function App() {
 
             {/* Column 3: Ancient & STEM */}
             <div>
-              <h4 className="font-bold text-white text-xs uppercase tracking-wider mb-3">{t.ancientAndStemFooter || 'Ancient Scripts & STEM'}</h4>
+              <h2 className="font-bold text-white text-xs uppercase tracking-wider mb-3">{t.ancientAndStemFooter || 'Ancient Scripts & STEM'}</h2>
               <ul className="space-y-1.5 text-xs text-slate-400">
                 {[
                   { id: 'ipa-phonetic', label: 'International Phonetic Alphabet (IPA)' },
@@ -735,9 +777,9 @@ export function App() {
 
             {/* Column 4: Legal & Trust Pages */}
             <div>
-              <h4 className="font-bold text-white text-xs uppercase tracking-wider mb-3">
+              <h2 className="font-bold text-white text-xs uppercase tracking-wider mb-3">
                 {locale === 'fr' ? 'Informations & Légal' : locale === 'es' ? 'Información y Legal' : locale === 'ar' ? 'معلومات وروابط قانونية' : 'About & Legal'}
-              </h4>
+              </h2>
               <ul className="space-y-2 text-xs text-slate-400">
                 <li>
                   <a
